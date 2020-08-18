@@ -1052,6 +1052,22 @@ Sidebar.prototype.addGeneralPalette = function(expand)
 			
 			return this.createEdgeTemplateFromCells([edge], 100, 0, 'Connector with Label');
 		})),
+		this.addEntry(lineTags + 'edge title', mxUtils.bind(this, function()
+		{
+			var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;html=1;');
+			edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+			edge.geometry.setTerminalPoint(new mxPoint(100, 0), false);
+			edge.geometry.relative = true;
+			edge.edge = true;
+			
+	    	var cell0 = new mxCell('Label', new mxGeometry(0, 0, 0, 0), 'edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;');
+	    	cell0.geometry.relative = true;
+	    	cell0.setConnectable(false);
+	    	cell0.vertex = true;
+	    	edge.insert(cell0);
+			
+			return this.createEdgeTemplateFromCells([edge], 100, 0, 'Input');
+		})),
 		this.addEntry(lineTags + 'edge title multiplicity', mxUtils.bind(this, function()
 		{
 			var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;html=1;');
