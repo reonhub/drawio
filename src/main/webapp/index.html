@@ -1,6 +1,6 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=5" ><![endif]-->
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <title>Flowchart Maker &amp; Online Diagram Software</title>
     <meta charset="utf-8">
@@ -45,6 +45,7 @@
 			var result = new Object();
 			var params = window.location.search.slice(1).split('&');
 			
+
 			for (var i = 0; i < params.length; i++)
 			{
 				idx = params[i].indexOf('=');
@@ -279,6 +280,7 @@
 				}
 				
 				mxscript('js/app.min.js');
+				mxscript('plugins/DigitalTriplet.js')
 				
 				if (!supportedDomain)
 				{

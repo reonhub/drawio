@@ -1054,7 +1054,7 @@ Sidebar.prototype.addGeneralPalette = function(expand)
 		})),
 		this.addEntry(lineTags + 'edge title', mxUtils.bind(this, function()
 		{
-			var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;html=1;');
+			var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;html=1;class=input');
 			edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
 			edge.geometry.setTerminalPoint(new mxPoint(100, 0), false);
 			edge.geometry.relative = true;
