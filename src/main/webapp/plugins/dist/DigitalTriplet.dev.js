@@ -58,7 +58,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
     cell.setConnectable(false);
     cell.vertex = true;
     edge.insert(cell);
-    return this.createEdgeTemplateFromCells([edge], 0, -50, "Mechanism");
+    return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
   }))];
   this.addPaletteFunctions("D3Topic", "D3Topic", null != expand ? expand : true, fns);
 };
@@ -103,7 +103,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
     cell.setConnectable(false);
     cell.vertex = true;
     edge.insert(cell);
-    return this.createEdgeTemplateFromCells([edge], 0, -50, "Mechanism");
+    return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
   }))];
   this.addPaletteFunctions("D3Info", "D3Info", null != expand ? expand : true, fns);
 };
@@ -148,7 +148,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
     cell.setConnectable(false);
     cell.vertex = true;
     edge.insert(cell);
-    return this.createEdgeTemplateFromCells([edge], 0, -50, "Mechanism");
+    return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
   }))];
   this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, c);
 };

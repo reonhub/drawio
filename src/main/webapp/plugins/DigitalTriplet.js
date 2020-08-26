@@ -133,7 +133,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
         cell.setConnectable(false);
         cell.vertex = true;
         edge.insert(cell);
-        return this.createEdgeTemplateFromCells([edge], 0, -50, "Mechanism");
+        return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
       })
     ),
   ];
@@ -236,7 +236,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
         cell.setConnectable(false);
         cell.vertex = true;
         edge.insert(cell);
-        return this.createEdgeTemplateFromCells([edge], 0, -50, "Mechanism");
+        return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
       })
     ),
   ];
@@ -339,7 +339,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
         cell.setConnectable(false);
         cell.vertex = true;
         edge.insert(cell);
-        return this.createEdgeTemplateFromCells([edge], 0, -50, "Mechanism");
+        return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
       })
     ),
   ];
