@@ -1,3 +1,4 @@
+/*****sidebar setting for digital triplet start *****/
 Sidebar.prototype.init = function () {
   var path = STENCIL_PATH;
   this.addSearchPalette(false);
@@ -345,8 +346,50 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       })
     ),
     this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;"', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group')
-    
+
   ];
   this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
 };
 /*****D3Phys end*****/
+/*****sidebar setting for digital triplet end *****/
+
+/*****setting for "compressXml:false"*****/
+var menusInit = Menus.prototype.init;
+Menus.prototype.init = function () {
+  menusInit.apply(this, arguments);
+  var editorUi = this.editorUi;
+  var graph = editorUi.editor.graph;
+      
+  editorUi.actions.put('exportXml', new Action(mxResources.get('formatXml') + '...', function () {
+    var div = document.createElement('div');
+    div.style.whiteSpace = 'nowrap';
+    var noPages = editorUi.pages == null || editorUi.pages.length <= 1;
+
+    var hd = document.createElement('h3');
+    mxUtils.write(hd, mxResources.get('formatXml'));
+    hd.style.cssText = 'width:100%;text-align:center;margin-top:0px;margin-bottom:4px';
+    div.appendChild(hd);
+
+    var selection = editorUi.addCheckbox(div, mxResources.get('selectionOnly'),
+      false, graph.isSelectionEmpty());
+    var compressed = editorUi.addCheckbox(div, mxResources.get('compressed'), false);
+    var pages = editorUi.addCheckbox(div, mxResources.get('allPages'), !noPages, noPages);
+    pages.style.marginBottom = '16px';
+
+    mxEvent.addListener(selection, 'change', function () {
+      if (selection.checked) {
+        pages.setAttribute('disabled', 'disabled');
+      }
+      else {
+        pages.removeAttribute('disabled');
+      }
+    });
+
+    var dlg = new CustomDialog(editorUi, div, mxUtils.bind(this, function () {
+      editorUi.downloadFile('xml', !compressed.checked, null,
+        !selection.checked, noPages || !pages.checked);
+    }), null, mxResources.get('export'));
+
+    editorUi.showDialog(dlg.container, 300, 180, true, true);
+  }));
+}
