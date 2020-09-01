@@ -113,7 +113,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
 
 
 Sidebar.prototype.addD3PhysPalette = function (expand) {
-  var c = [this.createVertexTemplateEntry("rounded=0;whiteSpace=wrap;html=1;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;", 120, 60, "", "Function", null, null, "rect rectangle box"), this.createVertexTemplateEntry("text;html=1;strokeColor=none;layer=phys;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;", 40, 20, "Text", "Text", null, null, "text textbox textarea label"), this.addEntry("line lines connector connectors connection connections arrow arrows edge title", mxUtils.bind(this, function () {
+  var fns = [this.createVertexTemplateEntry("rounded=0;whiteSpace=wrap;html=1;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;", 120, 60, "", "Function", null, null, "rect rectangle box"), this.createVertexTemplateEntry("text;html=1;strokeColor=none;layer=phys;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;", 40, 20, "Text", "Text", null, null, "text textbox textarea label"), this.addEntry("line lines connector connectors connection connections arrow arrows edge title", mxUtils.bind(this, function () {
     var edge = new mxCell("", new mxGeometry(0, 0, 0, 0), "endArrow=classic;html=1;class=inputoroutput;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;");
     edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
     edge.geometry.setTerminalPoint(new mxPoint(100, 0), false);
@@ -150,6 +150,6 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
     edge.insert(cell);
     return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
   }))];
-  this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, c);
+  this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
 };
 /*****D3Phys end*****/

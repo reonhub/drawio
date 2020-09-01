@@ -246,7 +246,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
 
 /*****D3Phys start*****/
 Sidebar.prototype.addD3PhysPalette = function (expand) {
-  var c = [
+  var fns = [
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;",
       120,
@@ -343,6 +343,6 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       })
     ),
   ];
-  this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, c);
+  this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
 };
 /*****D3Phys end*****/
