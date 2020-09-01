@@ -1,6 +1,6 @@
 Sidebar.prototype.init = function () {
   var path = STENCIL_PATH;
-  this.addSearchPalette(true);
+  this.addSearchPalette(false);
   this.addD3TopicPalette(true);
   this.addD3InfoPalette(true);
   this.addD3PhysPalette(true);
@@ -136,8 +136,9 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
         return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
       })
     ),
+    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;"', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group')
   ];
-  this.addPaletteFunctions("D3Topic", "D3Topic", null != expand? expand : true, fns);
+  this.addPaletteFunctions("D3Topic", "D3Topic", null != expand ? expand : true, fns);
 };
 /*****D3Topic end*****/
 
@@ -239,6 +240,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
         return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
       })
     ),
+    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;"', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group')
   ];
   this.addPaletteFunctions("D3Info", "D3Info", null != expand ? expand : true, fns);
 };
@@ -342,6 +344,8 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
         return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
       })
     ),
+    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;"', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group')
+    
   ];
   this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
 };
