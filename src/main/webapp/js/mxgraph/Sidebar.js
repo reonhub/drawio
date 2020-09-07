@@ -87,12 +87,21 @@ Sidebar.prototype.init = function()
 	this.addMiscPalette(false);
 	this.addAdvancedPalette(false);
 	this.addBasicPalette(dir);
+	
+	this.setCurrentSearchEntryLibrary('arrows');
 	this.addStencilPalette('arrows', mxResources.get('arrows'), dir + '/arrows.xml',
 		';whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2');
+	this.setCurrentSearchEntryLibrary();
+	
 	this.addUmlPalette(false);
 	this.addBpmnPalette(dir, false);
+	
+	this.setCurrentSearchEntryLibrary('flowchart');
 	this.addStencilPalette('flowchart', 'Flowchart', dir + '/flowchart.xml',
 		';whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2');
+	this.setCurrentSearchEntryLibrary();
+	
+	this.setCurrentSearchEntryLibrary('clipart');
 	this.addImagePalette('clipart', mxResources.get('clipart'), dir + '/clipart/', '_128x128.png',
 		['Earth_globe', 'Empty_Folder', 'Full_Folder', 'Gear', 'Lock', 'Software', 'Virus', 'Email',
 		 'Database', 'Router_Icon', 'iPad', 'iMac', 'Laptop', 'MacBook', 'Monitor_Tower', 'Printer',
@@ -101,6 +110,7 @@ Sidebar.prototype.init = function()
 		 'Worker1', 'Soldier1', 'Doctor1', 'Tech1', 'Security1', 'Telesales1'], null,
 		 {'Wireless_Router_N': 'wireless router switch wap wifi access point wlan',
 		  'Router_Icon': 'router switch'});
+	this.setCurrentSearchEntryLibrary();
 };
 
 /**
@@ -502,49 +512,76 @@ Sidebar.prototype.addEntries = function(images)
 /**
  * Hides the current tooltip.
  */
+Sidebar.prototype.setCurrentSearchEntryLibrary = function(id, lib)
+{
+	this.currentSearchEntryLibrary = (id != null) ? {id: id, lib: lib} : null;
+};
+
+/**
+ * Hides the current tooltip.
+ */
 Sidebar.prototype.addEntry = function(tags, fn)
 {
 	if (this.taglist != null && tags != null && tags.length > 0)
-	{
+	{					
+		if (this.currentSearchEntryLibrary != null)
+		{				
+			fn.parentLibraries = [this.currentSearchEntryLibrary];
+		}
+		
 		// Replaces special characters
 		var tmp = tags.toLowerCase().replace(/[\/\,\(\)]/g, ' ').split(' ');
+		var tagList = [];
+		var hash = {};
 
-		var doAddEntry = mxUtils.bind(this, function(tag)
-		{
-			if (tag != null && tag.length > 1)
-			{
-				var entry = this.taglist[tag];
-				
-				if (typeof entry !== 'object')
-				{
-					entry = {entries: [], dict: new mxDictionary()};
-					this.taglist[tag] = entry;
-				}
-
-				// Ignores duplicates
-				if (entry.dict.get(fn) == null)
-				{
-					entry.dict.put(fn, fn);
-					entry.entries.push(fn);
-				}
-			}
-		});
-		
+		// Finds unique tags
 		for (var i = 0; i < tmp.length; i++)
 		{
-			doAddEntry(tmp[i]);
+			if (hash[tmp[i]] == null)
+			{
+				hash[tmp[i]] = true;
+				tagList.push(tmp[i]);
+			}
 			
 			// Adds additional entry with removed trailing numbers
 			var normalized = tmp[i].replace(/\.*\d*$/, '');
 			
 			if (normalized != tmp[i])
 			{
-				doAddEntry(normalized);
+				if (hash[normalized] == null)
+				{
+					hash[normalized] = true;
+					tagList.push(normalized);
+				}
 			}
 		}
+
+		for (var i = 0; i < tagList.length; i++)
+		{
+			this.addEntryForTag(tagList[i], fn);
+		}
 	}
-	
+
 	return fn;
+};
+
+/**
+ * Hides the current tooltip.
+ */
+Sidebar.prototype.addEntryForTag = function(tag, fn)
+{
+	if (tag != null && tag.length > 1)
+	{
+		var entry = this.taglist[tag];
+		
+		if (typeof entry !== 'object')
+		{
+			entry = {entries: []};
+			this.taglist[tag] = entry;
+		}
+
+		entry.entries.push(fn);
+	}
 };
 
 /**
@@ -656,6 +693,14 @@ Sidebar.prototype.cloneCell = function(cell, value)
 /**
  * Adds shape search UI.
  */
+Sidebar.prototype.showPopupMenuForEntry = function(elt, libs, evt)
+{												
+	// Hook for subclassers
+};
+
+/**
+ * Adds shape search UI.
+ */
 Sidebar.prototype.addSearchPalette = function(expand)
 {
 	var elt = document.createElement('div');
@@ -729,6 +774,8 @@ Sidebar.prototype.addSearchPalette = function(expand)
 	
 	// Workaround for inherited line-height in quirks mode
 	button.style.lineHeight = 'normal';
+	button.style.fontSize = '12px';
+	button.style.padding = '6px 12px 6px 12px';
 	button.style.marginTop = '4px';
 	button.style.marginBottom = '8px';
 	center.style.paddingTop = '4px';
@@ -833,21 +880,41 @@ Sidebar.prototype.addSearchPalette = function(expand)
 							
 							for (var i = 0; i < results.length; i++)
 							{
-								try
+								(mxUtils.bind(this, function(result)
 								{
-									var elt = results[i]();
-									
-									// Avoids duplicates in results
-									if (hash[elt.innerHTML] == null)
+									try
 									{
-										hash[elt.innerHTML] = '1';
-										div.appendChild(elt);
+										var elt = result();
+										
+										// Avoids duplicates in results
+										if (hash[elt.innerHTML] == null)
+										{
+											hash[elt.innerHTML] = (result.parentLibraries != null) ? result.parentLibraries.slice() : [];
+											div.appendChild(elt);
+										}
+										else if (result.parentLibraries != null)
+										{
+											hash[elt.innerHTML] = hash[elt.innerHTML].concat(result.parentLibraries);
+										}
+
+										mxEvent.addGestureListeners(elt, null, null, mxUtils.bind(this, function(evt)
+										{
+											var libs = hash[elt.innerHTML];
+	
+											if (mxEvent.isPopupTrigger(evt))
+											{
+												this.showPopupMenuForEntry(elt, libs, evt);
+											}
+										}));
+										
+										// Disables the built-in context menu
+										mxEvent.disableContextMenu(elt);
 									}
-								}
-								catch (e)
-								{
-									// ignore
-								}
+									catch (e)
+									{
+										// ignore
+									}
+								}))(results[i]);
 							}
 							
 							if (more)
@@ -984,7 +1051,8 @@ Sidebar.prototype.insertSearchHint = function(div, searchTerm, count, page, resu
 Sidebar.prototype.addGeneralPalette = function(expand)
 {
 	var lineTags = 'line lines connector connectors connection connections arrow arrows ';
-	
+	this.setCurrentSearchEntryLibrary('general', 'general');
+
 	var fns = [
 	 	this.createVertexTemplateEntry('rounded=0;whiteSpace=wrap;html=1;', 120, 60, '', 'Rectangle', null, null, 'rect rectangle box'),
 	 	this.createVertexTemplateEntry('rounded=1;whiteSpace=wrap;html=1;', 120, 60, '', 'Rounded Rectangle', null, null, 'rounded rect rectangle box'),
@@ -1126,10 +1194,10 @@ Sidebar.prototype.addGeneralPalette = function(expand)
 			edge.geometry.relative = true;
 			edge.edge = true;
 			
-	    	var cell = new mxCell('', new mxGeometry(0, 0, 30, 20), 'shape=cloud;html=1;outlineConnect=0;');
+	    	var cell = new mxCell('', new mxGeometry(0, 0, 20, 14), 'shape=message;html=1;outlineConnect=0;');
 	    	cell.geometry.relative = true;
 	    	cell.vertex = true;
-	    	cell.geometry.offset = new mxPoint(-15, -10);
+	    	cell.geometry.offset = new mxPoint(-10, -7);
 	    	edge.insert(cell);
 
 			return this.createEdgeTemplateFromCells([edge], 100, 0, 'Connector with Symbol');
@@ -1137,21 +1205,7 @@ Sidebar.prototype.addGeneralPalette = function(expand)
 	];
 	
 	this.addPaletteFunctions('general', mxResources.get('general'), (expand != null) ? expand : true, fns);
-};
-
-/**
- * Adds the general palette to the sidebar.
- */
-Sidebar.prototype.addBasicPalette = function(dir)
-{
-	this.addStencilPalette('basic', mxResources.get('basic'), dir + '/basic.xml',
-		';whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2',
-		null, null, null, null, [
-			this.createVertexTemplateEntry('shape=partialRectangle;whiteSpace=wrap;html=1;top=0;bottom=0;fillColor=none;', 120, 60, '', 'Partial Rectangle'),
-			this.createVertexTemplateEntry('shape=partialRectangle;whiteSpace=wrap;html=1;right=0;top=0;bottom=0;fillColor=none;routingCenterX=-0.5;', 120, 60, '', 'Partial Rectangle'),
-			this.createVertexTemplateEntry('shape=partialRectangle;whiteSpace=wrap;html=1;bottom=0;right=0;fillColor=none;', 120, 60, '', 'Partial Rectangle'),
-			this.createVertexTemplateEntry('shape=partialRectangle;whiteSpace=wrap;html=1;top=0;left=0;fillColor=none;', 120, 60, '', 'Partial Rectangle')
-	]);
+	this.setCurrentSearchEntryLibrary();
 };
 
 /**
@@ -1161,7 +1215,8 @@ Sidebar.prototype.addMiscPalette = function(expand)
 {
 	var sb = this;
 	var lineTags = 'line lines connector connectors connection connections arrow arrows '
-	
+	this.setCurrentSearchEntryLibrary('general', 'misc');
+
 	var fns = [
    	 	this.createVertexTemplateEntry('text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;', 100, 40, 'Title', 'Title', null, null, 'text heading title'),
 	 	this.createVertexTemplateEntry('text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;', 100, 80,
@@ -1264,13 +1319,33 @@ Sidebar.prototype.addMiscPalette = function(expand)
 	];
 
 	this.addPaletteFunctions('misc', mxResources.get('misc'), (expand != null) ? expand : true, fns);
+	this.setCurrentSearchEntryLibrary();
 };
 /**
  * Adds the container palette to the sidebar.
  */
 Sidebar.prototype.addAdvancedPalette = function(expand)
 {
+	this.setCurrentSearchEntryLibrary('general', 'advanced');
 	this.addPaletteFunctions('advanced', mxResources.get('advanced'), (expand != null) ? expand : false, this.createAdvancedShapes());
+	this.setCurrentSearchEntryLibrary();
+};
+
+/**
+ * Adds the general palette to the sidebar.
+ */
+Sidebar.prototype.addBasicPalette = function(dir)
+{
+	this.setCurrentSearchEntryLibrary('basic');
+	this.addStencilPalette('basic', mxResources.get('basic'), dir + '/basic.xml',
+		';whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2',
+		null, null, null, null, [
+			this.createVertexTemplateEntry('shape=partialRectangle;whiteSpace=wrap;html=1;top=0;bottom=0;fillColor=none;', 120, 60, '', 'Partial Rectangle'),
+			this.createVertexTemplateEntry('shape=partialRectangle;whiteSpace=wrap;html=1;right=0;top=0;bottom=0;fillColor=none;routingCenterX=-0.5;', 120, 60, '', 'Partial Rectangle'),
+			this.createVertexTemplateEntry('shape=partialRectangle;whiteSpace=wrap;html=1;bottom=0;right=0;fillColor=none;', 120, 60, '', 'Partial Rectangle'),
+			this.createVertexTemplateEntry('shape=partialRectangle;whiteSpace=wrap;html=1;top=0;left=0;fillColor=none;', 120, 60, '', 'Partial Rectangle')
+	]);
+	this.setCurrentSearchEntryLibrary();
 };
 
 /**
@@ -1351,6 +1426,7 @@ Sidebar.prototype.addUmlPalette = function(expand)
 	
 	// Default tags
 	var dt = 'uml static class ';
+	this.setCurrentSearchEntryLibrary('uml');
 	
 	var fns = [
    		this.createVertexTemplateEntry('html=1;', 110, 50, 'Object', 'Object', null, null, dt + 'object instance'),
@@ -1767,6 +1843,7 @@ Sidebar.prototype.addUmlPalette = function(expand)
 	];
 	
 	this.addPaletteFunctions('uml', mxResources.get('uml'), expand || false, fns);
+	this.setCurrentSearchEntryLibrary();
 };
 
 /**
@@ -1776,6 +1853,7 @@ Sidebar.prototype.addBpmnPalette = function(dir, expand)
 {
 	// Avoids having to bind all functions to "this"
 	var sb = this;
+	this.setCurrentSearchEntryLibrary('bpmn');
 
 	var fns =
 	[
@@ -1960,6 +2038,7 @@ Sidebar.prototype.addBpmnPalette = function(dir, expand)
 	];
 	
 	this.addPaletteFunctions('bpmn', 'BPMN ' + mxResources.get('general'), false, fns);
+	this.setCurrentSearchEntryLibrary();
 };
 
 /**
@@ -3792,7 +3871,7 @@ Sidebar.prototype.getTagsForStencil = function(packageName, stencilName, moreTag
 Sidebar.prototype.addStencilPalette = function(id, title, stencilFile, style, ignore, onInit, scale, tags, customFns)
 {
 	scale = (scale != null) ? scale : 1;
-	
+
 	if (this.addStencilsToIndex)
 	{
 		// LATER: Handle asynchronous loading dependency
@@ -3823,7 +3902,7 @@ Sidebar.prototype.addStencilPalette = function(id, title, stencilFile, style, ig
 					this.filterTags(tmp.join(' '))));
 			}
 		}), true, true);
-
+	
 		this.addPaletteFunctions(id, title, false, fns);
 	}
 	else
