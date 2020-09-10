@@ -6,27 +6,13 @@ Sidebar.prototype.init = function () {
   this.addD3InfoPalette(true);
   this.addD3PhysPalette(true);
   this.addGeneralPalette(false);
-  this.addMiscPalette(false);
-  this.addAdvancedPalette(false);
-  this.addBasicPalette(path);
-  this.addStencilPalette(
-    "arrows",
-    mxResources.get("arrows"),
-    path + "/arrows.xml",
-    ";whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2"
-  );
   this.addUmlPalette(false);
-  this.addStencilPalette(
-    "flowchart",
-    "Flowchart",
-    path + "/flowchart.xml",
-    ";whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2"
-  );
+
 };
 
-/*****D3Toic start*****/
+/*****D3Topic start*****/
 Sidebar.prototype.addD3TopicPalette = function (expand) {
-  var lineTags = 'line lines connector connectors connection connections arrow arrows ';
+  var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;",
@@ -74,122 +60,86 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       })
     ),
 
-    this.addEntry(
-      "line lines connector connectors connection connections arrow arrows edge title",
-      mxUtils.bind(this, function () {
-        //Label describing a reason for adopting the result 
-        var cell1 = new mxCell(
-          "Reason",
-          new mxGeometry(0, 0, 0, 0),
-          "edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;"
-        );
-        cell1.geometry.relative = true;
-        cell1.setConnectable(false);
-        cell1.vertex = true;
-        //Label describing an intention of the process
-        var cell2 = new mxCell(
-          "Intention",
-          new mxGeometry(0, 0, 0, 0),
-          "edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;"
-        );
-        cell2.geometry.relative = true;
-        cell2.setConnectable(false);
-        cell2.vertex = true;
-        var edge = new mxCell(
-          "",
-          new mxGeometry(0, 0, 0, 0),
-          "endArrow=classic;html=1;class=control;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;exitX=0.5;exitY=1;exitDx=0;exitDy=0;"
-        );
-        edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-        edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
-        edge.geometry.relative = true;
-        edge.edge = true;
-        edge.source = cell2;
-        edge.insert(cell1);
-        return this.createEdgeTemplateFromCells([edge], 0, 50, "Control");
-      })
-    ),
-
-    this.addEntry(
-      "line lines connector connectors connection connections arrow arrows edge title",
-      mxUtils.bind(this, function () {
-        var edge = new mxCell(
-          "",
-          new mxGeometry(0, 0, 0, 0),
-          "endArrow=classic;html=1;class=mechanism;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;"
-        );
-        edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-        edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
-        edge.geometry.relative = true;
-        edge.edge = true;
-        var cell = new mxCell(
-          "Mechanism",
-          new mxGeometry(0, 0, 0, 0),
-          "edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;"
-        );
-        cell.geometry.relative = true;
-        cell.setConnectable(false);
-        cell.vertex = true;
-        edge.insert(cell);
-        return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
-      })
-    ),
-    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
-
-    this.addEntry('container', mxUtils.bind(this, function () {
-      var cell = new mxCell('', new mxGeometry(0, 0, 120, 60), "rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;");
-      cell.geometry.setTerminalPoint(new mxPoint(0, 60), true);
-      cell.geometry.setTerminalPoint(new mxPoint(120, 0), false);
-      // cell.geometry.points = [new mxPoint(50, 50), new mxPoint(0, 0)];
-      cell.geometry.relative = true;
-      cell.edge = true;
-      cell.value = "Rectangle"
-      return this.createEdgeTemplateFromCells([cell], 120, 60, 'Container');
-    })),
-
-
-
-    this.addEntry(lineTags + 'edge title', mxUtils.bind(this, function () {
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;html=1;');
+    this.addEntry('uml relation', function () {
+      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-      edge.geometry.setTerminalPoint(new mxPoint(100, 0), false);
+      edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
+      edge.geometry.relative = true;
+      edge.geometry.x = -1;
+      edge.edge = true;
+
+      var cell = new mxCell('Reason', new mxGeometry(-0.1, 0, 0, 0), 'edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;');
+      cell.geometry.relative = true;
+      cell.setConnectable(false);
+      cell.vertex = true;
+      edge.insert(cell);
+
+      return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
+    }),
+
+    this.addEntry('uml relation', function () {
+      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=middle;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
       edge.geometry.relative = true;
       edge.edge = true;
 
-      var cell0 = new mxCell('Label', new mxGeometry(0, 0, 0, 0), 'edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;');
-      cell0.geometry.relative = true;
-      cell0.setConnectable(false);
-      cell0.vertex = true;
-      edge.insert(cell0);
-
-      return this.createEdgeTemplateFromCells([edge], 100, 0, 'Connector with Label');
-    })),
-    // this.addEntry(
-    //   mxUtils.bind(this, function () {
-    //     var edge = new mxCell(
-    //       "",
-    //       new mxGeometry(0, 0, 0, 0),
-    //       "swimlane;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;"
-    //     );
-    //     edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-    //     edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
-    //     edge.geometry.relative = true;
-    //     edge.edge = true;
-    //     var cell = new mxCell(
-    //       "Mechanism",
-    //       new mxGeometry(0, 0, 0, 0),
-    //       "edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;"
-    //     );
-    //     cell.geometry.relative = true;
-    //     cell.setConnectable(false);
-    //     cell.vertex = true;
-    //     cell.parent=edge;
-    //     return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
-    //   })
-
-    // ),
-
+      return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
+    }),
     this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+    this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+		{
+	    	var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+        cell1.vertex = true;
+        var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+        cell2.vertex = true;
+        var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+        cell3.vertex = true;
+        var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+	    	cell4.vertex = true;
+	    	
+        var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+        edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
+        edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
+        edge1.geometry.relative = true;
+        edge1.edge = true;
+        
+        var edge2 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+        edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
+        edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
+        edge2.geometry.relative = true;
+        edge2.edge = true;
+
+        var edge3 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+        edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
+        edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
+        edge3.geometry.relative = true;
+        edge3.edge = true;
+
+        var edge4 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+        edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
+        edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
+        edge4.geometry.relative = true;
+        edge4.edge = true;
+
+        var edge5 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+        edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
+        edge5.geometry.setTerminalPoint(new mxPoint(780, 30), false);
+        edge5.geometry.relative = true;
+        edge5.edge = true;
+        
+        cell1.insertEdge(edge1, false);
+        cell1.insertEdge(edge2, true);
+        cell2.insertEdge(edge2, false);
+        cell2.insertEdge(edge3, true);
+        cell3.insertEdge(edge3, false);
+        cell3.insertEdge(edge4, true);
+        cell4.insertEdge(edge4, false);
+        cell4.insertEdge(edge5, true);
+
+			return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, edge1, edge2, edge3, edge4, edge5], 640, 60, 'Engineering Cycle');
+		}),
+
 
   ];
   this.addPaletteFunctions("D3Topic", "D3Topic", null != expand ? expand : true, fns);
@@ -198,6 +148,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
 
 /*****D3Info start*****/
 Sidebar.prototype.addD3InfoPalette = function (expand) {
+  var sb=this;
   var fns = [
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;",
@@ -245,56 +196,85 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
       })
     ),
 
-    this.addEntry(
-      "line lines connector connectors connection connections arrow arrows edge title",
-      mxUtils.bind(this, function () {
-        var edge = new mxCell(
-          "",
-          new mxGeometry(0, 0, 0, 0),
-          "endArrow=classic;html=1;class=control;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;"
-        );
-        edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-        edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
-        edge.geometry.relative = true;
-        edge.edge = true;
-        var cell = new mxCell(
-          "Control",
-          new mxGeometry(0, 0, 0, 0),
-          "edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;"
-        );
-        cell.geometry.relative = true;
-        cell.setConnectable(false);
-        cell.vertex = true;
-        edge.insert(cell);
-        return this.createEdgeTemplateFromCells([edge], 0, 50, "Control");
-      })
-    ),
+    this.addEntry('uml relation', function () {
+      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
+      edge.geometry.relative = true;
+      edge.geometry.x = -1;
+      edge.edge = true;
 
-    this.addEntry(
-      "line lines connector connectors connection connections arrow arrows edge title",
-      mxUtils.bind(this, function () {
-        var edge = new mxCell(
-          "",
-          new mxGeometry(0, 0, 0, 0),
-          "endArrow=classic;html=1;class=mechanism;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;"
-        );
-        edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-        edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
-        edge.geometry.relative = true;
-        edge.edge = true;
-        var cell = new mxCell(
-          "Mechanism",
-          new mxGeometry(0, 0, 0, 0),
-          "edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;"
-        );
-        cell.geometry.relative = true;
-        cell.setConnectable(false);
-        cell.vertex = true;
-        edge.insert(cell);
-        return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
-      })
-    ),
-    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group')
+      var cell = new mxCell('Reason', new mxGeometry(-0.1, 0, 0, 0), 'edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;');
+      cell.geometry.relative = true;
+      cell.setConnectable(false);
+      cell.vertex = true;
+      edge.insert(cell);
+
+      return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
+    }),
+
+    this.addEntry('uml relation', function () {
+      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=middle;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
+      edge.geometry.relative = true;
+      edge.edge = true;
+
+      return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
+    }),
+    this.createVertexTemplateEntry('swimlane;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+    this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+		{
+	    	var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+        cell1.vertex = true;
+        var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+        cell2.vertex = true;
+        var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+        cell3.vertex = true;
+        var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+	    	cell4.vertex = true;
+	    	
+        var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+        edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
+        edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
+        edge1.geometry.relative = true;
+        edge1.edge = true;
+        
+        var edge2 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+        edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
+        edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
+        edge2.geometry.relative = true;
+        edge2.edge = true;
+
+        var edge3 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+        edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
+        edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
+        edge3.geometry.relative = true;
+        edge3.edge = true;
+
+        var edge4 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+        edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
+        edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
+        edge4.geometry.relative = true;
+        edge4.edge = true;
+
+        var edge5 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+        edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
+        edge5.geometry.setTerminalPoint(new mxPoint(780, 30), false);
+        edge5.geometry.relative = true;
+        edge5.edge = true;
+        
+        cell1.insertEdge(edge1, false);
+        cell1.insertEdge(edge2, true);
+        cell2.insertEdge(edge2, false);
+        cell2.insertEdge(edge3, true);
+        cell3.insertEdge(edge3, false);
+        cell3.insertEdge(edge4, true);
+        cell4.insertEdge(edge4, false);
+        cell4.insertEdge(edge5, true);
+
+			return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, edge1, edge2, edge3, edge4, edge5], 640, 60, 'Engineering Cycle');
+		})
   ];
   this.addPaletteFunctions("D3Info", "D3Info", null != expand ? expand : true, fns);
 };
@@ -302,6 +282,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
 
 /*****D3Phys start*****/
 Sidebar.prototype.addD3PhysPalette = function (expand) {
+  var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;",
@@ -348,58 +329,85 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
         return this.createEdgeTemplateFromCells([edge], 100, 0, "Input/Output");
       })
     ),
+    this.addEntry('uml relation', function () {
+      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
+      edge.geometry.relative = true;
+      edge.geometry.x = -1;
+      edge.edge = true;
 
-    this.addEntry(
-      "line lines connector connectors connection connections arrow arrows edge title",
-      mxUtils.bind(this, function () {
-        var edge = new mxCell(
-          "",
-          new mxGeometry(0, 0, 0, 0),
-          "endArrow=classic;html=1;class=control;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;"
-        );
-        edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-        edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
-        edge.geometry.relative = true;
-        edge.edge = true;
-        var cell = new mxCell(
-          "Control",
-          new mxGeometry(0, 0, 0, 0),
-          "edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;"
-        );
-        cell.geometry.relative = true;
-        cell.setConnectable(false);
-        cell.vertex = true;
-        edge.insert(cell);
-        return this.createEdgeTemplateFromCells([edge], 0, 50, "Control");
-      })
-    ),
+      var cell = new mxCell('Reason', new mxGeometry(-0.1, 0, 0, 0), 'edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;');
+      cell.geometry.relative = true;
+      cell.setConnectable(false);
+      cell.vertex = true;
+      edge.insert(cell);
 
-    this.addEntry(
-      "line lines connector connectors connection connections arrow arrows edge title",
-      mxUtils.bind(this, function () {
-        var edge = new mxCell(
-          "",
-          new mxGeometry(0, 0, 0, 0),
-          "endArrow=classic;html=1;class=mechanism;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;"
-        );
-        edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-        edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
-        edge.geometry.relative = true;
-        edge.edge = true;
-        var cell = new mxCell(
-          "Mechanism",
-          new mxGeometry(0, 0, 0, 0),
-          "edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;"
-        );
-        cell.geometry.relative = true;
-        cell.setConnectable(false);
-        cell.vertex = true;
-        edge.insert(cell);
-        return this.createEdgeTemplateFromCells([edge], 0, 50, "Mechanism");
-      })
-    ),
-    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group')
+      return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
+    }),
 
+    this.addEntry('uml relation', function () {
+      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=classic;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=middle;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
+      edge.geometry.relative = true;
+      edge.edge = true;
+
+      return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
+    }),
+    this.createVertexTemplateEntry('swimlane;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+    this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+		{
+	    	var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+        cell1.vertex = true;
+        var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+        cell2.vertex = true;
+        var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+        cell3.vertex = true;
+        var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+	    	cell4.vertex = true;
+	    	
+        var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+        edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
+        edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
+        edge1.geometry.relative = true;
+        edge1.edge = true;
+        
+        var edge2 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+        edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
+        edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
+        edge2.geometry.relative = true;
+        edge2.edge = true;
+
+        var edge3 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+        edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
+        edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
+        edge3.geometry.relative = true;
+        edge3.edge = true;
+
+        var edge4 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+        edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
+        edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
+        edge4.geometry.relative = true;
+        edge4.edge = true;
+
+        var edge5 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+        edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
+        edge5.geometry.setTerminalPoint(new mxPoint(780, 30), false);
+        edge5.geometry.relative = true;
+        edge5.edge = true;
+        
+        cell1.insertEdge(edge1, false);
+        cell1.insertEdge(edge2, true);
+        cell2.insertEdge(edge2, false);
+        cell2.insertEdge(edge3, true);
+        cell3.insertEdge(edge3, false);
+        cell3.insertEdge(edge4, true);
+        cell4.insertEdge(edge4, false);
+        cell4.insertEdge(edge5, true);
+
+      return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, edge1, edge2, edge3, edge4, edge5], 640, 60, 'Engineering Cycle');
+    })
   ];
   this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
 };
