@@ -223,58 +223,58 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
     }),
     this.createVertexTemplateEntry('swimlane;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
-    this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
-		{
-	    	var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-        cell1.vertex = true;
-        var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-        cell2.vertex = true;
-        var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-        cell3.vertex = true;
-        var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-	    	cell4.vertex = true;
+    // this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+		// {
+	  //   	var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+    //     cell1.vertex = true;
+    //     var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+    //     cell2.vertex = true;
+    //     var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+    //     cell3.vertex = true;
+    //     var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+	  //   	cell4.vertex = true;
 	    	
-        var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-        edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
-        edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
-        edge1.geometry.relative = true;
-        edge1.edge = true;
+    //     var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+    //     edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
+    //     edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
+    //     edge1.geometry.relative = true;
+    //     edge1.edge = true;
         
-        var edge2 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-        edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
-        edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
-        edge2.geometry.relative = true;
-        edge2.edge = true;
+    //     var edge2 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+    //     edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
+    //     edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
+    //     edge2.geometry.relative = true;
+    //     edge2.edge = true;
 
-        var edge3 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-        edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
-        edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
-        edge3.geometry.relative = true;
-        edge3.edge = true;
+    //     var edge3 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+    //     edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
+    //     edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
+    //     edge3.geometry.relative = true;
+    //     edge3.edge = true;
 
-        var edge4 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-        edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
-        edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
-        edge4.geometry.relative = true;
-        edge4.edge = true;
+    //     var edge4 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+    //     edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
+    //     edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
+    //     edge4.geometry.relative = true;
+    //     edge4.edge = true;
 
-        var edge5 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
-        edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
-        edge5.geometry.setTerminalPoint(new mxPoint(780, 30), false);
-        edge5.geometry.relative = true;
-        edge5.edge = true;
+    //     var edge5 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+    //     edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
+    //     edge5.geometry.setTerminalPoint(new mxPoint(780, 30), false);
+    //     edge5.geometry.relative = true;
+    //     edge5.edge = true;
         
-        cell1.insertEdge(edge1, false);
-        cell1.insertEdge(edge2, true);
-        cell2.insertEdge(edge2, false);
-        cell2.insertEdge(edge3, true);
-        cell3.insertEdge(edge3, false);
-        cell3.insertEdge(edge4, true);
-        cell4.insertEdge(edge4, false);
-        cell4.insertEdge(edge5, true);
+    //     cell1.insertEdge(edge1, false);
+    //     cell1.insertEdge(edge2, true);
+    //     cell2.insertEdge(edge2, false);
+    //     cell2.insertEdge(edge3, true);
+    //     cell3.insertEdge(edge3, false);
+    //     cell3.insertEdge(edge4, true);
+    //     cell4.insertEdge(edge4, false);
+    //     cell4.insertEdge(edge5, true);
 
-			return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, edge1, edge2, edge3, edge4, edge5], 640, 60, 'Engineering Cycle');
-		})
+		// 	return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, edge1, edge2, edge3, edge4, edge5], 640, 60, 'Engineering Cycle');
+		// })
   ];
   this.addPaletteFunctions("D3Info", "D3Info", null != expand ? expand : true, fns);
 };
@@ -356,58 +356,58 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
     }),
     this.createVertexTemplateEntry('swimlane;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
-    this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
-		{
-	    	var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-        cell1.vertex = true;
-        var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-        cell2.vertex = true;
-        var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-        cell3.vertex = true;
-        var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-	    	cell4.vertex = true;
+    // this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+		// {
+	  //   	var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+    //     cell1.vertex = true;
+    //     var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+    //     cell2.vertex = true;
+    //     var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+    //     cell3.vertex = true;
+    //     var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+	  //   	cell4.vertex = true;
 	    	
-        var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-        edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
-        edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
-        edge1.geometry.relative = true;
-        edge1.edge = true;
+    //     var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+    //     edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
+    //     edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
+    //     edge1.geometry.relative = true;
+    //     edge1.edge = true;
         
-        var edge2 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-        edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
-        edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
-        edge2.geometry.relative = true;
-        edge2.edge = true;
+    //     var edge2 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+    //     edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
+    //     edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
+    //     edge2.geometry.relative = true;
+    //     edge2.edge = true;
 
-        var edge3 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-        edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
-        edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
-        edge3.geometry.relative = true;
-        edge3.edge = true;
+    //     var edge3 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+    //     edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
+    //     edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
+    //     edge3.geometry.relative = true;
+    //     edge3.edge = true;
 
-        var edge4 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-        edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
-        edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
-        edge4.geometry.relative = true;
-        edge4.edge = true;
+    //     var edge4 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+    //     edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
+    //     edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
+    //     edge4.geometry.relative = true;
+    //     edge4.edge = true;
 
-        var edge5 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
-        edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
-        edge5.geometry.setTerminalPoint(new mxPoint(780, 30), false);
-        edge5.geometry.relative = true;
-        edge5.edge = true;
+    //     var edge5 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+    //     edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
+    //     edge5.geometry.setTerminalPoint(new mxPoint(780, 30), false);
+    //     edge5.geometry.relative = true;
+    //     edge5.edge = true;
         
-        cell1.insertEdge(edge1, false);
-        cell1.insertEdge(edge2, true);
-        cell2.insertEdge(edge2, false);
-        cell2.insertEdge(edge3, true);
-        cell3.insertEdge(edge3, false);
-        cell3.insertEdge(edge4, true);
-        cell4.insertEdge(edge4, false);
-        cell4.insertEdge(edge5, true);
+    //     cell1.insertEdge(edge1, false);
+    //     cell1.insertEdge(edge2, true);
+    //     cell2.insertEdge(edge2, false);
+    //     cell2.insertEdge(edge3, true);
+    //     cell3.insertEdge(edge3, false);
+    //     cell3.insertEdge(edge4, true);
+    //     cell4.insertEdge(edge4, false);
+    //     cell4.insertEdge(edge5, true);
 
-      return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, edge1, edge2, edge3, edge4, edge5], 640, 60, 'Engineering Cycle');
-    })
+    //   return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, edge1, edge2, edge3, edge4, edge5], 640, 60, 'Engineering Cycle');
+    // })
   ];
   this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
 };
