@@ -61,13 +61,13 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
     this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function () {
-      var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell1.vertex = true;
-      var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell2.vertex = true;
-      var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell3.vertex = true;
-      var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'html=1;points=[];perimeter=orthogonalPerimeter;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell4.vertex = true;
 
       var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
@@ -169,6 +169,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
+    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("D3Info", "D3Info", null != expand ? expand : true, fns);
 };
@@ -225,6 +226,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
+    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
 };
@@ -386,16 +388,16 @@ HoverIcons.prototype.drag = function (evt, x, y) {
 
     var style = [];
     var layer_source = "",
-        fillColor_source = "",
-        strokeColor_source = "";
+      fillColor_source = "",
+      strokeColor_source = "";
     style = this.currentState.cell.style.split(';');
     for (var i = 0; i < style.length; i++) {
-      if (style[i].indexOf('layer') !== -1){
-        layer_source=style[i].replace('layer=','');
-      }else if(style[i].indexOf('fillColor') !== -1){
-        fillColor_source=style[i].replace('fillColor=','');
-      }else if(style[i].indexOf('strokeColor') !== -1){
-        strokeColor_source=style[i].replace('strokeColor=','');
+      if (style[i].indexOf('layer') !== -1) {
+        layer_source = style[i].replace('layer=', '');
+      } else if (style[i].indexOf('fillColor') !== -1) {
+        fillColor_source = style[i].replace('fillColor=', '');
+      } else if (style[i].indexOf('strokeColor') !== -1) {
+        strokeColor_source = style[i].replace('strokeColor=', '');
       }
     }
 
@@ -413,7 +415,7 @@ HoverIcons.prototype.drag = function (evt, x, y) {
       es.style['sourcePortConstraint'] = direction;
     }
 
-    es.style.layer=layer_source;
+    es.style.layer = layer_source;
     es.style.fillColor = fillColor_source;
     es.style.strokeColor = strokeColor_source;
 
@@ -423,3 +425,33 @@ HoverIcons.prototype.drag = function (evt, x, y) {
   }
 };
 /*****setting for the graph made through hover icon, partycularly connection edge end*****/
+
+mxConnectionHandler.prototype.mouseDown = function (a, b) {
+  this.mouseDownCounter++;
+  if (this.isEnabled() && this.graph.isEnabled() && !b.isConsumed() && !this.isConnecting() && this.isStartEvent(b)) {
+    null != this.constraintHandler.currentConstraint && null != this.constraintHandler.currentFocus && null != this.constraintHandler.currentPoint ? (this.sourceConstraint = this.constraintHandler.currentConstraint, this.previous = this.constraintHandler.currentFocus, this.first = this.constraintHandler.currentPoint.clone()) : this.first = new mxPoint(b.getGraphX(), b.getGraphY());
+    var layer_source = "",
+        fillColor_source = "",
+        strokeColor_source = "";
+    layer_source=b.sourceState.style['layer'];
+    fillColor_source=b.sourceState.style['fillColor'];
+    strokeColor_source=b.sourceState.style['strokeColor'];
+    this.edgeState = this.createEdgeState(b);
+    this.graph.connectionHandler.edgeState['style'].layer = layer_source;
+    this.graph.connectionHandler.edgeState['style'].fillColor =fillColor_source;
+    this.graph.connectionHandler.edgeState['style'].strokeColor = strokeColor_source;
+    this.graph.currentEdgeStyle.layer = layer_source;
+    this.graph.currentEdgeStyle.fillColor = fillColor_source;
+    this.graph.currentEdgeStyle.strokeColor = strokeColor_source;
+    this.mouseDownCounter = 1;
+    this.waypointsEnabled && null == this.shape && (this.waypoints = null, this.shape = this.createShape(), null != this.edgeState && this.shape.apply(this.edgeState));
+    if (null == this.previous && null != this.edgeState) {
+      var c = this.graph.getPointForEvent(b.getEvent());
+      this.edgeState.cell.geometry.setTerminalPoint(c, !0)
+    }
+    this.fireEvent(new mxEventObject(mxEvent.START, "state", this.previous));
+    b.consume()
+  }
+  this.selectedIcon = this.icon;
+  this.icon = null
+};
