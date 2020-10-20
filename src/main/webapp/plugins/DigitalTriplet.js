@@ -67,38 +67,46 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       cell2.vertex = true;
       var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell3.vertex = true;
-      var cell4 = new mxCell('Execute', new mxGeometry(570, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var cell4 = new mxCell('Evaluate', new mxGeometry(570, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell4.vertex = true;
+      var cell5 = new mxCell('Execute', new mxGeometry(760, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      cell5.vertex = true;
 
-      var edge1 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge1 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
       edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
       edge1.geometry.relative = true;
       edge1.edge = true;
 
-      var edge2 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge2 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
       edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
       edge2.geometry.relative = true;
       edge2.edge = true;
 
-      var edge3 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge3 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
       edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
       edge3.geometry.relative = true;
       edge3.edge = true;
 
-      var edge4 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge4 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
       edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
       edge4.geometry.relative = true;
       edge4.edge = true;
 
-      var edge5 = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge5 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
-      edge5.geometry.setTerminalPoint(new mxPoint(780, 30), false);
+      edge5.geometry.setTerminalPoint(new mxPoint(760, 30), false);
       edge5.geometry.relative = true;
       edge5.edge = true;
+
+      var edge6 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge6.geometry.setTerminalPoint(new mxPoint(900, 30), true);
+      edge6.geometry.setTerminalPoint(new mxPoint(970, 30), false);
+      edge6.geometry.relative = true;
+      edge6.edge = true;
 
       cell1.insertEdge(edge1, false);
       cell1.insertEdge(edge2, true);
@@ -108,8 +116,10 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       cell3.insertEdge(edge4, true);
       cell4.insertEdge(edge4, false);
       cell4.insertEdge(edge5, true);
+      cell5.insertEdge(edge5, false);
+      cell5.insertEdge(edge6, true);
 
-      return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, edge1, edge2, edge3, edge4, edge5], 640, 60, 'Engineering Cycle');
+      return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6], 640, 60, 'Engineering Cycle');
     }),
 
 
