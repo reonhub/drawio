@@ -103,8 +103,8 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       edge5.edge = true;
 
       var edge6 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
-      edge6.geometry.setTerminalPoint(new mxPoint(900, 30), true);
-      edge6.geometry.setTerminalPoint(new mxPoint(970, 30), false);
+      edge6.geometry.setTerminalPoint(new mxPoint(880, 30), true);
+      edge6.geometry.setTerminalPoint(new mxPoint(950, 30), false);
       edge6.geometry.relative = true;
       edge6.edge = true;
 
