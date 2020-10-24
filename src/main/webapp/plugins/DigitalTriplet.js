@@ -16,8 +16,28 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       "rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;",
       120,
       60,
-      "",
       "Function",
+      "Function",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;",
+      120,
+      60,
+      "[Start]",
+      "Start",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;",
+      120,
+      60,
+      "[End]",
+      "End",
       null,
       null,
       "rect rectangle box"
@@ -136,8 +156,28 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
       "rounded=0;whiteSpace=wrap;html=1;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;",
       120,
       60,
-      "",
       "Function",
+      "Function",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;",
+      120,
+      60,
+      "[Start]",
+      "Start",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;",
+      120,
+      60,
+      "[End]",
+      "End",
       null,
       null,
       "rect rectangle box"
@@ -193,8 +233,28 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       "rounded=0;whiteSpace=wrap;html=1;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;",
       120,
       60,
-      "",
       "Function",
+      "Function",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;",
+      120,
+      60,
+      "[Start]",
+      "Start",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;",
+      120,
+      60,
+      "[End]",
+      "End",
       null,
       null,
       "rect rectangle box"
