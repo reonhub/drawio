@@ -192,10 +192,10 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
       null,
       "text textbox textarea label"
     ),
-    this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
+    this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
 
     this.addEntry('uml relation', function () {
-      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
       edge.geometry.relative = true;
@@ -211,7 +211,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
     }),
     this.addEntry('uml relation', function () {
-      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
       edge.geometry.relative = true;
@@ -219,7 +219,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;layer=info;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("D3Info", "D3Info", null != expand ? expand : true, fns);
 };
@@ -269,10 +269,10 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       null,
       "text textbox textarea label"
     ),
-    this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
+    this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
 
     this.addEntry('uml relation', function () {
-      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
       edge.geometry.relative = true;
@@ -288,7 +288,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
     }),
     this.addEntry('uml relation', function () {
-      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;');
+      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
       edge.geometry.relative = true;
@@ -296,7 +296,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;layer=topic;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;layer=phys;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
 };
