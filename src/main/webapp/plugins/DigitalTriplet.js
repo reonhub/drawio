@@ -85,9 +85,9 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       cell1.vertex = true;
       var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell2.vertex = true;
-      var cell3 = new mxCell('Decide', new mxGeometry(380, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var cell3 = new mxCell('Evaluate', new mxGeometry(380, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell3.vertex = true;
-      var cell4 = new mxCell('Evaluate', new mxGeometry(570, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var cell4 = new mxCell('Decide', new mxGeometry(570, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell4.vertex = true;
       var cell5 = new mxCell('Execute', new mxGeometry(760, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;layer=topic;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell5.vertex = true;
