@@ -279,7 +279,7 @@ Draw.loadPlugin(function(ui)
 		try
 		{
 			var result = graphDuplicateCells.call(this, cells, append);
-
+			console.log(result);
 			if (result.length == cells.length)
 			{
 				for (var i = 0; i < cells.length; i++)
@@ -303,7 +303,7 @@ Draw.loadPlugin(function(ui)
 		{
 			this.model.endUpdate();
 		}
-		
+
 		return result;
 	};
 

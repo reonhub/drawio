@@ -1139,13 +1139,26 @@ Menus.prototype.addPopupMenuStyleItems = function(menu, cell, evt)
 {
 	if (this.editorUi.editor.graph.getSelectionCount() == 1)
 	{
-		this.addMenuItems(menu, ['-', 'setAsDefaultStyle'], null, evt);
+		this.addMenuItems(menu, ['-', 'setAsDefaultStyle', 'setContainerIntheSameLayer'], null, evt);
 	}
 	else if (this.editorUi.editor.graph.isSelectionEmpty())
 	{
 		this.addMenuItems(menu, ['-', 'clearDefaultStyle'], null, evt);
 	}
 };
+
+// Menus.prototype.addPopupMenuStyleItems = function(menu, cell, evt)
+// {
+// 	if (this.editorUi.editor.graph.getSelectionCount() == 1)
+// 	{
+// 		this.addMenuItems(menu, ['-', 'setContainerIntheSameLayer'], null, evt);
+// 	}
+// 	// else if (this.editorUi.editor.graph.isSelectionEmpty())
+// 	// {
+// 	// 	this.addMenuItems(menu, ['-', 'clearDefaultStyle'], null, evt);
+// 	// }
+// };
+
 
 /**
  * Creates the keyboard event handler for the current graph and history.

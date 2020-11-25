@@ -3555,6 +3555,7 @@ EditorUi.prototype.updateActionStates = function()
 	}
 	
 	this.actions.get('setAsDefaultStyle').setEnabled(graph.getSelectionCount() == 1);
+	this.actions.get('setContainerIntheSameLayer').setEnabled(graph.getSelectionCount() == 1);
 	this.actions.get('clearWaypoints').setEnabled(!graph.isSelectionEmpty());
 	this.actions.get('copySize').setEnabled(graph.getSelectionCount() == 1);
 	this.actions.get('turn').setEnabled(!graph.isSelectionEmpty());
@@ -4986,6 +4987,7 @@ EditorUi.prototype.createKeyHandler = function(editor)
 		keyHandler.bindAction(89, true, 'autosize', true); // Ctrl+Shift+Y
 		keyHandler.bindAction(88, true, 'cut'); // Ctrl+X
 		keyHandler.bindAction(67, true, 'copy'); // Ctrl+C
+		keyHandler.bindAction(67, true, 'setContainerIntheSameLayer');
 		keyHandler.bindAction(86, true, 'paste'); // Ctrl+V
 		keyHandler.bindAction(71, true, 'group'); // Ctrl+G
 		keyHandler.bindAction(77, true, 'editData'); // Ctrl+M
