@@ -4,8 +4,6 @@ Sidebar.prototype.init = function () {
   this.addD3TopicPalette(true);
   this.addD3InfoPalette(true);
   this.addD3PhysPalette(true);
-  this.addGeneralPalette(false);
-  this.addUmlPalette(false);
 };
 
 /*****D3Topic start*****/
