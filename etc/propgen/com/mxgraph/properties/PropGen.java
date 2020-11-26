@@ -154,7 +154,7 @@ public class PropGen
 						if (!codes[i].equals(""))
 						{
 							String ext = (codes[i].equals("en")) ? "" : "_" + codes[i].toLowerCase();
-							File file = new File(tsvFile.getParent() + "/dia" + ext + "." + fileExtension);
+							File file = new File(tsvFile.getParent() + "PD3/dia" + ext + "." + fileExtension);
 							BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
 							writer.write("# *DO NOT DIRECTLY EDIT THIS FILE, IT IS AUTOMATICALLY GENERATED AND IT IS BASED ON:*\n");
 							writer.write("# https://docs.google.com/spreadsheet/ccc?key=0AmQEO36liL4FdDJLWVNMaVV2UmRKSnpXU09MYkdGbEE\n");
