@@ -52,10 +52,10 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       null,
       "text textbox textarea label"
     ),
-    this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;pd3layer=topic;pd3ytpe=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
+    this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
 
     this.addEntry('uml relation', function () {
-      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;pd3layer=topic;pd3ytpe=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
       edge.geometry.relative = true;
@@ -71,7 +71,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
     }),
     this.addEntry('uml relation', function () {
-      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;pd3layer=topic;pd3ytpe=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
       edge.geometry.relative = true;
@@ -80,6 +80,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3ytpe=container;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+
     this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function () {
       var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell1.vertex = true;
@@ -344,6 +345,7 @@ Menus.prototype.init = function () {
 }
 /*****setting of "compressXml:false" end*****/
 
+
 /*****setting for the graph made through hover icon, partycularly connection edge start*****/
 Graph.prototype.isCloneConnectSource = function (source) {
   var layout = null;
@@ -539,6 +541,7 @@ Graph.prototype.connectVertex = function (source, direction, length, evt, forceC
             edgestyle = edgestyle + style[i] + ";";
           }
         }
+        edgestyle = edgestyle + "pd3type=arrow";
         edge.style = edge.style + edgestyle;
         /*****modification part for digital triplet end*****/
         // Inserts edge before source
@@ -600,6 +603,8 @@ Graph.prototype.connectVertex = function (source, direction, length, evt, forceC
 };
 
 HoverIcons.prototype.drag = function (evt, x, y) {
+  this.graph.currentEdgeStyle.pd3type='';
+  this.graph.currentEdgeStyle.pd3layer='';
   this.graph.popupMenuHandler.hideMenu();
   this.graph.stopEditing(false);
 
@@ -609,7 +614,6 @@ HoverIcons.prototype.drag = function (evt, x, y) {
     this.graph.isMouseTrigger = mxEvent.isMouseEvent(evt);
     this.graph.isMouseDown = true;
 
-    // Hides handles for selection cell
     var handler = this.graph.selectionCellsHandler.getHandler(this.currentState.cell);
 
     var style = [];
@@ -627,12 +631,24 @@ HoverIcons.prototype.drag = function (evt, x, y) {
       }
     }
 
+    // Ctrl+shift drag sets source constraint
+    var es = this.graph.connectionHandler.edgeState;
+
+    this.graph.currentEdgeStyle.pd3layer = pd3layer_source;
+    this.graph.currentEdgeStyle.fillColor = fillColor_source;
+    this.graph.currentEdgeStyle.strokeColor = strokeColor_source;
+    this.graph.currentEdgeStyle.pd3type = "arrow"
+
+    es.style.pd3layer = pd3layer_source;
+    es.style.fillColor = fillColor_source;
+    es.style.strokeColor = strokeColor_source;
+    es.style.pd3type = "arrow";
+
+    es.cell.style = es.cell.style+"pd3layer="+pd3layer_source+";" + "pd3type=arrow;"+"fillColor="+fillColor_source+";"+"strokeColor="+strokeColor_source+";";
+
     if (handler != null) {
       handler.setHandlesVisible(false);
     }
-
-    // Ctrl+shift drag sets source constraint
-    var es = this.graph.connectionHandler.edgeState;
 
     if (evt != null && mxEvent.isShiftDown(evt) && mxEvent.isControlDown(evt) && es != null &&
       mxUtils.getValue(es.style, mxConstants.STYLE_EDGE, null) === 'orthogonalEdgeStyle') {
@@ -640,14 +656,7 @@ HoverIcons.prototype.drag = function (evt, x, y) {
       es.cell.style = mxUtils.setStyle(es.cell.style, 'sourcePortConstraint', direction);
       es.style['sourcePortConstraint'] = direction;
     }
-
-    es.style.pd3layer = pd3layer_source;
-    es.style.fillColor = fillColor_source;
-    es.style.strokeColor = strokeColor_source;
-
-    this.graph.currentEdgeStyle.pd3layer = pd3layer_source;
-    this.graph.currentEdgeStyle.fillColor = fillColor_source;
-    this.graph.currentEdgeStyle.strokeColor = strokeColor_source;
+    
   }
 };
 /*****setting for the graph made through hover icon, partycularly connection edge end*****/
@@ -1961,17 +1970,14 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
     q.setContainer_sameLayer = function (b, c) {
 
-      var cell = new mxCell('Container', new mxGeometry(0, 0, 200, 200), 'swimlane;');
-      cell.vertex = true;
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0;exitY=0;edgeStyle=orthogonalEdgeStyle;"');
-
-      // cell.geometry.relative = true;
-      cell.setConnectable(false);
-      cell.vertex = true;
       var selectedCell = this.getSelectionCell();
 
       var selectedCell_x = selectedCell.geometry.x;
       var selectedCell_y = selectedCell.geometry.y;
+
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 200, 200), 'swimlane;pd3type=container;');
+      cell.vertex = true;
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
 
       cell.geometry.x = selectedCell_x;
       cell.geometry.y = selectedCell_y + selectedCell.geometry.height + 60;
