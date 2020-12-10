@@ -688,6 +688,11 @@ mxConnectionHandler.prototype.mouseDown = function (a, b) {
   this.icon = null
 };
 
+
+
+//2 functoins 
+// ・set container in the same layer
+// ・set parent process in the same layer
 EditorUi.prototype.updateActionStates = function () {
   var a = this.editor.graph,
     c = !a.isSelectionEmpty(),
@@ -706,6 +711,7 @@ EditorUi.prototype.updateActionStates = function () {
   for (h = 0; h < e.length; h++) this.actions.get(e[h]).setEnabled(c);
   this.actions.get("setAsDefaultStyle").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setContainerIntheSameLayer").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setParentProcessIntheSameLayer").setEnabled(1 == a.getSelectionCount());
   this.actions.get("clearWaypoints").setEnabled(!a.isSelectionEmpty());
   this.actions.get("copySize").setEnabled(1 == a.getSelectionCount());
   this.actions.get("turn").setEnabled(!a.isSelectionEmpty());
@@ -869,7 +875,7 @@ EditorUi.prototype.createKeyHandler = function (a) {
     }), f.bindControlKey(13, function () {
       n.ctrlEnter()
     }), f.bindAction(8, !1, "delete"),
-    f.bindAction(8, !0, "deleteAll"), f.bindAction(46, !1, "delete"), f.bindAction(46, !0, "deleteAll"), f.bindAction(36, !1, "resetView"), f.bindAction(72, !0, "fitWindow", !0), f.bindAction(74, !0, "fitPage"), f.bindAction(74, !0, "fitTwoPages", !0), f.bindAction(48, !0, "customZoom"), f.bindAction(82, !0, "turn"), f.bindAction(82, !0, "clearDefaultStyle", !0), f.bindAction(83, !0, "save"), f.bindAction(83, !0, "saveAs", !0), f.bindAction(65, !0, "selectAll"), f.bindAction(65, !0, "selectNone", !0), f.bindAction(73, !0, "selectVertices", !0), f.bindAction(69, !0, "selectEdges", !0), f.bindAction(69, !0, "editStyle"), f.bindAction(66, !0, "bold"), f.bindAction(66, !0, "toBack", !0), f.bindAction(70, !0, "toFront", !0), f.bindAction(68, !0, "duplicate"), f.bindAction(68, !0, "setAsDefaultStyle", !0), f.bindAction(90, !0, "undo"), f.bindAction(89, !0, "autosize", !0), f.bindAction(88, !0, "cut"), f.bindAction(67, !0, "copy"), f.bindAction(188, !0, "setContainerIntheSameLayer", !0), f.bindAction(86, !0, "paste"), f.bindAction(71, !0, "group"), f.bindAction(77, !0, "editData"), f.bindAction(71, !0, "grid", !0), f.bindAction(73, !0, "italic"), f.bindAction(76, !0, "lockUnlock"),
+    f.bindAction(8, !0, "deleteAll"), f.bindAction(46, !1, "delete"), f.bindAction(46, !0, "deleteAll"), f.bindAction(36, !1, "resetView"), f.bindAction(72, !0, "fitWindow", !0), f.bindAction(74, !0, "fitPage"), f.bindAction(74, !0, "fitTwoPages", !0), f.bindAction(48, !0, "customZoom"), f.bindAction(82, !0, "turn"), f.bindAction(82, !0, "clearDefaultStyle", !0), f.bindAction(83, !0, "save"), f.bindAction(83, !0, "saveAs", !0), f.bindAction(65, !0, "selectAll"), f.bindAction(65, !0, "selectNone", !0), f.bindAction(73, !0, "selectVertices", !0), f.bindAction(69, !0, "selectEdges", !0), f.bindAction(69, !0, "editStyle"), f.bindAction(66, !0, "bold"), f.bindAction(66, !0, "toBack", !0), f.bindAction(70, !0, "toFront", !0), f.bindAction(68, !0, "duplicate"), f.bindAction(68, !0, "setAsDefaultStyle", !0), f.bindAction(90, !0, "undo"), f.bindAction(89, !0, "autosize", !0), f.bindAction(88, !0, "cut"), f.bindAction(67, !0, "copy"), f.bindAction(188, !0, "setContainerIntheSameLayer", !0),f.bindAction(190, !0, "setParentProcessIntheSameLayer", !0), f.bindAction(86, !0, "paste"), f.bindAction(71, !0, "group"), f.bindAction(77, !0, "editData"), f.bindAction(71, !0, "grid", !0), f.bindAction(73, !0, "italic"), f.bindAction(76, !0, "lockUnlock"),
     f.bindAction(76, !0, "layers", !0), f.bindAction(80, !0, "formatPanel", !0), f.bindAction(85, !0, "underline"), f.bindAction(85, !0, "ungroup", !0), f.bindAction(190, !0, "superscript"), f.bindAction(188, !0, "subscript"), f.bindAction(9, !1, "indent", !0), f.bindKey(13, function () {
       b.isEnabled() && b.startEditingAtCell()
     }), f.bindKey(113, function () {
@@ -2291,3 +2297,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     }
   }
 })();
+
+//**Set Container in the same layer */
+
