@@ -1549,7 +1549,10 @@ Actions.prototype.init = function () {
   this.addAction("setContainerIntheSameLayer", function () {
     b.setSelectionCells(b.setContainer_sameLayer());
   }, null, null, Editor.ctrlKey + "+Shift+<");
-  /***Set Container in the Same Layer***/
+  /***Set Parent Process in the Same Layer***/
+  this.addAction("setParentProcessIntheSameLayer", function () {
+    b.setSelectionCells(b.setParentProcess_sameLayer());
+  }, null, null, Editor.ctrlKey + "+Shift+>");
 
   this.addAction("clearDefaultStyle", function () {
     b.isEnabled() && c.clearDefaultStyle()
@@ -1668,8 +1671,9 @@ Actions.prototype.init = function () {
   }))
 };
 
+
 Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
-  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setContainerIntheSameLayer"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
+  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setContainerIntheSameLayer", "-", "setParentProcessIntheSameLayer"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
 };
 
 (function () {
@@ -1973,6 +1977,52 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     };
 
     q.setContainer_sameLayer = function (b, c) {
+
+      var selectedCell = this.getSelectionCell();
+
+      var selectedCell_x = selectedCell.geometry.x;
+      var selectedCell_y = selectedCell.geometry.y;
+
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 200, 200), 'swimlane;pd3type=container;');
+      cell.vertex = true;
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+
+      cell.geometry.x = selectedCell_x;
+      cell.geometry.y = selectedCell_y + selectedCell.geometry.height + 60;
+
+      edge.geometry.setTerminalPoint(new mxPoint(selectedCell_x, cell.geometry.y), true);
+      edge.geometry.setTerminalPoint(new mxPoint(selectedCell_x, selectedCell_y+selectedCell.geometry.height), false);
+      edge.edge = true;
+
+      cell.insertEdge(edge, true);
+      selectedCell.insertEdge(edge, false);
+
+      var selectedCell_style = [];
+      var pd3layer_source = "",
+          fillColor_source = "",
+          strokeColor_source = "";
+          selectedCell_style = selectedCell.style.split(';');
+      for (var i = 0; i < selectedCell_style.length; i++) {
+        if (selectedCell_style[i].indexOf('pd3layer') !== -1) {
+          pd3layer_source = selectedCell_style[i]+';';
+        } else if (selectedCell_style[i].indexOf('fillColor') !== -1) {
+          fillColor_source = selectedCell_style[i]+';';
+        } else if (selectedCell_style[i].indexOf('strokeColor') !== -1) {
+          strokeColor_source = selectedCell_style[i] + ';';
+        }
+      }
+      
+      cell.style = cell.style + pd3layer_source + fillColor_source + strokeColor_source;
+      edge.style = edge.style + pd3layer_source + fillColor_source + strokeColor_source;
+
+
+      this.addCell(cell);
+      this.addCell(edge);
+
+      return cell, edge;
+    };
+
+    q.setParentProcess_sameLayer = function (b, c) {
 
       var selectedCell = this.getSelectionCell();
 
