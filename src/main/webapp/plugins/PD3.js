@@ -1,13 +1,14 @@
 /*****sidebar setting for digital triplet start *****/
 Sidebar.prototype.init = function () {
   this.addSearchPalette(false);
-  this.addD3TopicPalette(true);
-  this.addD3InfoPalette(true);
-  this.addD3PhysPalette(true);
+  this.addProblemSolvingLayerPalette(true);
+  this.addEngineeringCyclePalette(true);
+  this.addInformationLayerPalette(true);
+  this.addPhysicalLayerPalette(true);
 };
 
-/*****D3Topic start*****/
-Sidebar.prototype.addD3TopicPalette = function (expand) {
+/*****ProblemSolvingLayer start*****/
+Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
   var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
@@ -77,9 +78,67 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group')
+  ];
+  this.addPaletteFunctions("Problem Solving Layer", "Problem Solving Layer", null != expand ? expand : true, fns);
+};
+/*****ProblemSolvingLayer end*****/
 
+/*****Engineering Cycle start*****/
+Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
+  var sb = this;
+  var fns = [
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      120,
+      60,
+      "Data Collect",
+      "Data Collect",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECIA;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      120,
+      60,
+      "Info Analyze",
+      "Info Analyze",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      120,
+      60,
+      "Evaluate",
+      "Evaluate",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      120,
+      60,
+      "Decide",
+      "Decide",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      120,
+      60,
+      "Execute",
+      "Execute",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
     this.addEntry('Engineering Cycle', function () {
       var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell1.vertex = true;
@@ -140,16 +199,14 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       cell5.insertEdge(edge6, true);
 
       return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6], 640, 60, 'Engineering Cycle');
-    }),
-
-
+    })
   ];
-  this.addPaletteFunctions("Problem Solving Layer", "Problem Solving Layer", null != expand ? expand : true, fns);
+  this.addPaletteFunctions("Engineering Cycle", "Engineering Cycle", null != expand ? expand : true, fns);
 };
-/*****D3Topic end*****/
+/*****Engineering Cycle end*****/
 
-/*****D3Info start*****/
-Sidebar.prototype.addD3InfoPalette = function (expand) {
+/*****InformationLayer start*****/
+Sidebar.prototype.addInformationLayerPalette = function (expand) {
   var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
@@ -219,14 +276,14 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Containe for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("Information Layer", "Information Layer", null != expand ? expand : true, fns);
 };
-/*****D3Info end*****/
+/*****InformationLayer end*****/
 
-/*****D3Phys start*****/
-Sidebar.prototype.addD3PhysPalette = function (expand) {
+/*****PhysicalLayer start*****/
+Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
   var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
@@ -296,11 +353,11 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("Physical Layer", "Physical Layer", null != expand ? expand : true, fns);
 };
-/*****D3Phys end*****/
+/*****PhysicalLayer end*****/
 /*****sidebar setting for digital triplet end *****/
 
 /*****setting for "compressXml:false" start*****/
