@@ -768,8 +768,8 @@ EditorUi.prototype.updateActionStates = function () {
   e = "cut copy bold italic underline delete duplicate editStyle editTooltip editLink backgroundColor borderColor edit toFront toBack lockUnlock solid dashed pasteSize dotted fillColor gradientColor shadow fontColor formattedText rounded toggleRounded sharp strokeColor".split(" ");
   for (h = 0; h < e.length; h++) this.actions.get(e[h]).setEnabled(c);
   this.actions.get("setAsDefaultStyle").setEnabled(1 == a.getSelectionCount());
-  this.actions.get("setContainerIntheSameLayer").setEnabled(1 == a.getSelectionCount());
-  this.actions.get("setParentProcessIntheSameLayer").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setContainerforSpecialization").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setParentAction").setEnabled(1 == a.getSelectionCount());
   this.actions.get("clearWaypoints").setEnabled(!a.isSelectionEmpty());
   this.actions.get("copySize").setEnabled(1 == a.getSelectionCount());
   this.actions.get("turn").setEnabled(!a.isSelectionEmpty());
@@ -933,7 +933,7 @@ EditorUi.prototype.createKeyHandler = function (a) {
     }), f.bindControlKey(13, function () {
       n.ctrlEnter()
     }), f.bindAction(8, !1, "delete"),
-    f.bindAction(8, !0, "deleteAll"), f.bindAction(46, !1, "delete"), f.bindAction(46, !0, "deleteAll"), f.bindAction(36, !1, "resetView"), f.bindAction(72, !0, "fitWindow", !0), f.bindAction(74, !0, "fitPage"), f.bindAction(74, !0, "fitTwoPages", !0), f.bindAction(48, !0, "customZoom"), f.bindAction(82, !0, "turn"), f.bindAction(82, !0, "clearDefaultStyle", !0), f.bindAction(83, !0, "save"), f.bindAction(83, !0, "saveAs", !0), f.bindAction(65, !0, "selectAll"), f.bindAction(65, !0, "selectNone", !0), f.bindAction(73, !0, "selectVertices", !0), f.bindAction(69, !0, "selectEdges", !0), f.bindAction(69, !0, "editStyle"), f.bindAction(66, !0, "bold"), f.bindAction(66, !0, "toBack", !0), f.bindAction(70, !0, "toFront", !0), f.bindAction(68, !0, "duplicate"), f.bindAction(68, !0, "setAsDefaultStyle", !0), f.bindAction(90, !0, "undo"), f.bindAction(89, !0, "autosize", !0), f.bindAction(88, !0, "cut"), f.bindAction(67, !0, "copy"), f.bindAction(188, !0, "setContainerIntheSameLayer", !0),f.bindAction(190, !0, "setParentProcessIntheSameLayer", !0), f.bindAction(86, !0, "paste"), f.bindAction(71, !0, "group"), f.bindAction(77, !0, "editData"), f.bindAction(71, !0, "grid", !0), f.bindAction(73, !0, "italic"), f.bindAction(76, !0, "lockUnlock"),
+    f.bindAction(8, !0, "deleteAll"), f.bindAction(46, !1, "delete"), f.bindAction(46, !0, "deleteAll"), f.bindAction(36, !1, "resetView"), f.bindAction(72, !0, "fitWindow", !0), f.bindAction(74, !0, "fitPage"), f.bindAction(74, !0, "fitTwoPages", !0), f.bindAction(48, !0, "customZoom"), f.bindAction(82, !0, "turn"), f.bindAction(82, !0, "clearDefaultStyle", !0), f.bindAction(83, !0, "save"), f.bindAction(83, !0, "saveAs", !0), f.bindAction(65, !0, "selectAll"), f.bindAction(65, !0, "selectNone", !0), f.bindAction(73, !0, "selectVertices", !0), f.bindAction(69, !0, "selectEdges", !0), f.bindAction(69, !0, "editStyle"), f.bindAction(66, !0, "bold"), f.bindAction(66, !0, "toBack", !0), f.bindAction(70, !0, "toFront", !0), f.bindAction(68, !0, "duplicate"), f.bindAction(68, !0, "setAsDefaultStyle", !0), f.bindAction(90, !0, "undo"), f.bindAction(89, !0, "autosize", !0), f.bindAction(88, !0, "cut"), f.bindAction(67, !0, "copy"), f.bindAction(188, !0, "setContainerforEC", !0),f.bindAction(190, !0, "setParentAction", !0), f.bindAction(86, !0, "paste"), f.bindAction(71, !0, "group"), f.bindAction(77, !0, "editData"), f.bindAction(71, !0, "grid", !0), f.bindAction(73, !0, "italic"), f.bindAction(76, !0, "lockUnlock"),
     f.bindAction(76, !0, "layers", !0), f.bindAction(80, !0, "formatPanel", !0), f.bindAction(85, !0, "underline"), f.bindAction(85, !0, "ungroup", !0), f.bindAction(190, !0, "superscript"), f.bindAction(188, !0, "subscript"), f.bindAction(9, !1, "indent", !0), f.bindKey(13, function () {
       b.isEnabled() && b.startEditingAtCell()
     }), f.bindKey(113, function () {
@@ -1604,12 +1604,15 @@ Actions.prototype.init = function () {
   }, null, null, Editor.ctrlKey + "+Shift+D");
 
   /***Set Container in the Same Layer***/
-  this.addAction("setContainerIntheSameLayer", function () {
-    b.setSelectionCells(b.setContainer_sameLayer());
+  this.addAction("setContainerforSpecialization", function () {
+    b.setSelectionCells(b.setContainerforSpecialization());
+  }, null, null, null);
+  this.addAction("setContainerforEC", function () {
+    b.setSelectionCells(b.setContainerforEC());
   }, null, null, Editor.ctrlKey + "+Shift+<");
   /***Set Parent Process in the Same Layer***/
-  this.addAction("setParentProcessIntheSameLayer", function () {
-    b.setSelectionCells(b.setParentProcess_sameLayer());
+  this.addAction("setParentAction", function () {
+    b.setSelectionCells(b.setParentAction());
   }, null, null, Editor.ctrlKey + "+Shift+>");
 
   this.addAction("clearDefaultStyle", function () {
@@ -1731,7 +1734,7 @@ Actions.prototype.init = function () {
 
 
 Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
-  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setContainerIntheSameLayer", "setParentProcessIntheSameLayer"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
+  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setContainerforSpecialization","setContainerforEC", "setParentAction"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
 };
 
 (function () {
@@ -2034,26 +2037,49 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       return k
     };
 
-    q.setContainer_sameLayer = function (b, c) {
+    q.setContainerforSpecialization = function (b, c) {
 
+      //selectedCell:cell you select
       var selectedCell = this.getSelectionCell();
-
       var selectedCell_x = selectedCell.geometry.x;
       var selectedCell_y = selectedCell.geometry.y;
 
-      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 200, 200), 'swimlane;pd3type=container;');
+      //cell:container
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 200, 200), 'swimlane;pd3type=container;containertype=specialization');
       cell.vertex = true;
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
 
-      cell.geometry.x = selectedCell_x;
-      cell.geometry.y = selectedCell_y + selectedCell.geometry.height + 60;
+      //edge:arrow to connect selacted cell with container
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
 
-      edge.geometry.setTerminalPoint(new mxPoint(selectedCell_x, cell.geometry.y), true);
+      //コンテナの座標を決める
+      //選択したセルがコンテナに含まれているか否か
+      //含まれている場合
+      if(selectedCell.parent.style!=null){
+        if(selectedCell.parent.style.indexOf('pd3type=container;') !== -1){
+          //親アクションが存在する場合，子アクションの座標は親アクションに対する相対座標で表される．
+          //コンテナのx座標は，親コンテナのx座標 + 選択セルの相対x座標
+          cell.geometry.x = selectedCell.parent.geometry.x+selectedCell.geometry.x;
+          //コンテナのy座標は，親コンテナ左上角のy座標 + 親コンテナの高さ + 60
+          cell.geometry.y = selectedCell.parent.geometry.y + selectedCell.parent.geometry.height + 60;
+      }}else{//含まれていない場合
+        //コンテナのx座標は，選択したセルのx座標
+        cell.geometry.x = selectedCell_x;
+        //コンテナのy座標は，選択したセルの左上角のy座標 + 選択したセルの高さ + 60
+        cell.geometry.y = selectedCell_y + selectedCell.geometry.height + 60;
+      }
+
+      //コンテナの左上角を矢印の根本に接続する．
+      edge.geometry.setTerminalPoint(new mxPoint(cell.geometry.x+cell.geometry.width/2, cell.geometry.y), true);
+      //選択したセルの左下角をコンテナからの矢印の先端と接続する
       edge.geometry.setTerminalPoint(new mxPoint(selectedCell_x, selectedCell_y+selectedCell.geometry.height), false);
       edge.edge = true;
 
+      //コンテナに矢印の根本を挿入する．
       cell.insertEdge(edge, true);
+      //選択したセルに矢印の先端を接続する．
       selectedCell.insertEdge(edge, false);
+
+    
 
       var selectedCell_style = [];
       var pd3layer_source = "",
@@ -2080,7 +2106,78 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       return cell, edge;
     };
 
-    q.setParentProcess_sameLayer = function (b, c) {
+    q.setContainerforEC = function (b, c) {
+
+      //selectedCell:cell you select
+      var selectedCell = this.getSelectionCell();
+      var selectedCell_x = selectedCell.geometry.x;
+      var selectedCell_y = selectedCell.geometry.y;
+
+      //cell:container
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 200, 200), 'swimlane;rounded=1;pd3type=container;containertype=ec');
+      cell.vertex = true;
+
+      //edge:arrow to connect selacted cell with container
+      //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印をアクションの左下に接続する
+      //exitX=0;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印をコンテナの上辺の中点に接続する
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+
+      //コンテナの座標を決める
+      //選択したセルがコンテナに含まれているか否か
+      //含まれている場合
+      if(selectedCell.parent.style!=null){
+        if(selectedCell.parent.style.indexOf('pd3type=container;') !== -1){
+          //親アクションが存在する場合，子アクションの座標は親アクションに対する相対座標で表される．
+          //コンテナのx座標は，親コンテナのx座標 + 選択セルの相対x座標 + コンテナの幅の半分(100)
+          cell.geometry.x = selectedCell.parent.geometry.x　+　selectedCell.geometry.x;
+          //コンテナのy座標は，親コンテナ左上角のy座標 + 親コンテナの高さ + 60
+          cell.geometry.y = selectedCell.parent.geometry.y + selectedCell.parent.geometry.height + 60;
+      }}else{//含まれていない場合
+        //コンテナのx座標は，選択したセルのx座標+コンテナの幅の半分(100)
+        cell.geometry.x = selectedCell_x;
+        //コンテナのy座標は，選択したセルの左上角のy座標 + 選択したセルの高さ + 60
+        cell.geometry.y = selectedCell_y + selectedCell.geometry.height + 60;
+      }
+
+      //コンテナの中心を矢印の根本に接続する．
+      edge.geometry.setTerminalPoint(new mxPoint(cell.geometry.x+cell.geometry.width/2, cell.geometry.y), true);
+      //選択したセルの左下角をコンテナからの矢印の先端と接続する
+      edge.geometry.setTerminalPoint(new mxPoint(selectedCell_x, selectedCell_y+selectedCell.geometry.height), false);
+      edge.edge = true;
+
+      //コンテナに矢印の根本を挿入する．
+      cell.insertEdge(edge, true);
+      //選択したセルに矢印の先端を接続する．
+      selectedCell.insertEdge(edge, false);
+
+    
+
+      var selectedCell_style = [];
+      var pd3layer_source = "",
+          fillColor_source = "",
+          strokeColor_source = "";
+          selectedCell_style = selectedCell.style.split(';');
+      for (var i = 0; i < selectedCell_style.length; i++) {
+        if (selectedCell_style[i].indexOf('pd3layer') !== -1) {
+          pd3layer_source = selectedCell_style[i]+';';
+        } else if (selectedCell_style[i].indexOf('fillColor') !== -1) {
+          fillColor_source = selectedCell_style[i]+';';
+        } else if (selectedCell_style[i].indexOf('strokeColor') !== -1) {
+          strokeColor_source = selectedCell_style[i] + ';';
+        }
+      }
+      
+      cell.style = cell.style + pd3layer_source + fillColor_source + strokeColor_source;
+      edge.style = edge.style + pd3layer_source + fillColor_source + strokeColor_source;
+
+
+      this.addCell(cell);
+      this.addCell(edge);
+
+      return cell, edge;
+    };
+
+    q.setParentAction = function (b, c) {
 
       var selectedContainer = this.getSelectionCell();
 
