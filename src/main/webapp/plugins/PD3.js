@@ -21,7 +21,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=start;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;",
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=start;fillColor=#ffe6cc;strokeColor=#d79b00;",
       120,
       60,
       "[Start]",
@@ -31,7 +31,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;fillColor=#ffe6cc;pd3type=action;pd3action=end;strokeColor=#d79b00;dashed=1;",
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;fillColor=#ffe6cc;pd3type=action;pd3action=end;strokeColor=#d79b00;",
       120,
       60,
       "[End]",
@@ -41,7 +41,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "text;html=1;strokeColor=none;pd3layer=topic;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;",
+      "text;html=1;rounded=0;whiteSpace=wrap;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;pd3layer=topic;",
       40,
       20,
       "Text",
@@ -52,7 +52,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
     ),
     this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
 
-    this.addEntry('uml relation', function () {
+    this.addEntry('Control', function () {
       var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
@@ -68,7 +68,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
     }),
-    this.addEntry('uml relation', function () {
+    this.addEntry('Mechanism', function () {
       var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
@@ -77,9 +77,10 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
 
-    this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function () {
+    this.addEntry('Engineering Cycle', function () {
       var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell1.vertex = true;
       var cell2 = new mxCell('Info Analyze', new mxGeometry(190, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECIA;fillColor=#ffe6cc;strokeColor=#d79b00;');
@@ -91,37 +92,37 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
       var cell5 = new mxCell('Execute', new mxGeometry(760, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell5.vertex = true;
 
-      var edge1 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge1 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge1.geometry.setTerminalPoint(new mxPoint(-70, 30), true);
       edge1.geometry.setTerminalPoint(new mxPoint(0, 30), false);
       edge1.geometry.relative = true;
       edge1.edge = true;
 
-      var edge2 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge2 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge2.geometry.setTerminalPoint(new mxPoint(120, 30), true);
       edge2.geometry.setTerminalPoint(new mxPoint(190, 30), false);
       edge2.geometry.relative = true;
       edge2.edge = true;
 
-      var edge3 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge3 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge3.geometry.setTerminalPoint(new mxPoint(310, 30), true);
       edge3.geometry.setTerminalPoint(new mxPoint(380, 30), false);
       edge3.geometry.relative = true;
       edge3.edge = true;
 
-      var edge4 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge4 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge4.geometry.setTerminalPoint(new mxPoint(500, 30), true);
       edge4.geometry.setTerminalPoint(new mxPoint(570, 30), false);
       edge4.geometry.relative = true;
       edge4.edge = true;
 
-      var edge5 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge5 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge5.geometry.setTerminalPoint(new mxPoint(690, 30), true);
       edge5.geometry.setTerminalPoint(new mxPoint(760, 30), false);
       edge5.geometry.relative = true;
       edge5.edge = true;
 
-      var edge6 = new mxCell('input/output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      var edge6 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
       edge6.geometry.setTerminalPoint(new mxPoint(880, 30), true);
       edge6.geometry.setTerminalPoint(new mxPoint(950, 30), false);
       edge6.geometry.relative = true;
@@ -162,7 +163,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=action;pd3action=start;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;",
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=info;pd3type=action;pd3action=start;fillColor=#dae8fc;strokeColor=#6c8ebf;",
       120,
       60,
       "[Start]",
@@ -172,7 +173,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=action;pd3action=end;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;",
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=info;pd3type=action;pd3action=end;fillColor=#dae8fc;strokeColor=#6c8ebf;",
       120,
       60,
       "[End]",
@@ -182,7 +183,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "text;html=1;strokeColor=none;pd3layer=info;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;",
+      "text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;pd3layer=info;",
       40,
       20,
       "Text",
@@ -193,7 +194,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
     ),
     this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;pd3layer=info;pd3type=arrow;fillColor=#dae8fc;strokeColor=#6c8ebf;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
 
-    this.addEntry('uml relation', function () {
+    this.addEntry('Control', function () {
       var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;pd3layer=info;pd3type=arrow;fillColor=#dae8fc;strokeColor=#6c8ebf;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
@@ -209,7 +210,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
     }),
-    this.addEntry('uml relation', function () {
+    this.addEntry('Mechanism', function () {
       var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;pd3layer=info;pd3type=arrow;fillColor=#dae8fc;strokeColor=#6c8ebf;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
@@ -218,7 +219,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Containe for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("Information Layer", "Information Layer", null != expand ? expand : true, fns);
 };
@@ -229,7 +230,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
   var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=action;pd3action=start;fillColor=#d5e8d4;strokeColor=#82b366;",
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=action;fillColor=#d5e8d4;strokeColor=#82b366;",
       120,
       60,
       "Function",
@@ -239,7 +240,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=action;pd3action=end;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;",
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=phys;pd3type=action;pd3action=start;fillColor=#d5e8d4;strokeColor=#82b366;",
       120,
       60,
       "[Start]",
@@ -249,7 +250,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=action;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;",
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=phys;pd3type=action;pd3action=end;fillColor=#d5e8d4;strokeColor=#82b366;",
       120,
       60,
       "[End]",
@@ -259,7 +260,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "text;html=1;strokeColor=none;pd3layer=phys;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;",
+      "text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;pd3layer=phys;",
       40,
       20,
       "Text",
@@ -270,7 +271,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
     ),
     this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;pd3layer=phys;pd3type=arrow;fillColor=#d5e8d4;strokeColor=#82b366;', 80, 0, 'Input/Output', 'Input/Output', null, 'uml sequence message call invoke dispatch'),
 
-    this.addEntry('uml relation', function () {
+    this.addEntry('Control', function () {
       var edge = new mxCell('Control', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=center;verticalAlign=bottom;pd3layer=phys;pd3type=arrow;fillColor=#d5e8d4;strokeColor=#82b366;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, 50), false);
@@ -286,7 +287,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, 50, 'Control');
     }),
-    this.addEntry('uml relation', function () {
+    this.addEntry('Mechanism', function () {
       var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=middle;pd3layer=phys;pd3type=arrow;fillColor=#d5e8d4;strokeColor=#82b366;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(0, -50), false);
