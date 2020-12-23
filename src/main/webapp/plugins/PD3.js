@@ -143,7 +143,7 @@ Sidebar.prototype.addD3TopicPalette = function (expand) {
 
 
   ];
-  this.addPaletteFunctions("D3Topic", "D3Topic", null != expand ? expand : true, fns);
+  this.addPaletteFunctions("Problem Solving Layer", "Problem Solving Layer", null != expand ? expand : true, fns);
 };
 /*****D3Topic end*****/
 
@@ -220,7 +220,7 @@ Sidebar.prototype.addD3InfoPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
   ];
-  this.addPaletteFunctions("D3Info", "D3Info", null != expand ? expand : true, fns);
+  this.addPaletteFunctions("Information Layer", "Information Layer", null != expand ? expand : true, fns);
 };
 /*****D3Info end*****/
 
@@ -297,7 +297,7 @@ Sidebar.prototype.addD3PhysPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container', 'Container', null, null, 'container swimlane lane pool group'),
   ];
-  this.addPaletteFunctions("D3Phys", "D3Phys", null != expand ? expand : true, fns);
+  this.addPaletteFunctions("Physical Layer", "Physical Layer", null != expand ? expand : true, fns);
 };
 /*****D3Phys end*****/
 /*****sidebar setting for digital triplet end *****/
