@@ -2037,6 +2037,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       return k
     };
 
+    //詳細化のために，親アクションのコンテナを設置する
     q.setContainerforSpecialization = function (b, c) {
 
       //selectedCell:cell you select
@@ -2106,6 +2107,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       return cell, edge;
     };
 
+    //親アクションのエンジニアリングサイクルコンテナを設置する
     q.setContainerforEC = function (b, c) {
 
       //selectedCell:cell you select
@@ -2118,8 +2120,8 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       cell.vertex = true;
 
       //edge:arrow to connect selacted cell with container
-      //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印をアクションの左下に接続する
-      //exitX=0;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印をコンテナの上辺の中点に接続する
+      //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印（矢印の先端）をアクションの左下に接続する
+      //exitX=0.5;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印（矢印の根本）をコンテナの上辺の中点に接続する
       var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
 
       //コンテナの座標を決める
@@ -2177,6 +2179,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       return cell, edge;
     };
 
+    //親アクションを設置する．
     q.setParentAction = function (b, c) {
 
       var selectedContainer = this.getSelectionCell();
@@ -2184,15 +2187,19 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       var selectedContainer_x = selectedContainer.geometry.x;
       var selectedContainer_y = selectedContainer.geometry.y;
 
+      //edge:arrow to connect selacted cell with container
+      //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印（矢印の先端）をアクションの左下に接続する
+      //exitX=0.5;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印（矢印の根本）をコンテナの上辺の中点に接続する
       var cell = new mxCell(selectedContainer.value, new mxGeometry(0, 0, 120, 60), 'rounded=0;whiteSpace=wrap;pd3type=action;');
       cell.vertex = true;
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
 
       cell.geometry.x = selectedContainer_x;
       cell.geometry.y = selectedContainer_y - 120;
 
-      edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x, selectedContainer_y), false);
-
+      //矢印の根本をコンテナの上辺の中心に接続する
+      edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x+selectedContainer.geometry.width/2, selectedContainer_y), false);
+      //矢印の先端を親アクションの左角下に接続する．
       edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x, selectedContainer_y-60), true);
       edge.edge = true;
 
