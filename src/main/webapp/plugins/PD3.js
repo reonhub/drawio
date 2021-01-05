@@ -78,7 +78,7 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group')
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group')
   ];
   this.addPaletteFunctions("Problem Solving Layer", "Problem Solving Layer", null != expand ? expand : true, fns);
 };
@@ -138,7 +138,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       null,
       "rect rectangle box"
     ),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
     this.addEntry('Engineering Cycle', function () {
       var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell1.vertex = true;
@@ -276,7 +276,7 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;containertype=specialization;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("Information Layer", "Information Layer", null != expand ? expand : true, fns);
 };
@@ -353,7 +353,7 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;containertype=specialization;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
   ];
   this.addPaletteFunctions("Physical Layer", "Physical Layer", null != expand ? expand : true, fns);
 };
