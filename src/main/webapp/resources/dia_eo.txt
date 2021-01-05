@@ -375,6 +375,7 @@ hideIt=Kaŝi {1}
 hidden=Kaŝita
 home=Home
 horizontal=Horizontal
+FlowforPD3=Flow for PD3
 horizontalFlow=Horizontal Flow
 horizontalTree=Horizontal Tree
 howTranslate=How good is the translation in your language?
