@@ -78,9 +78,9 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group')
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, 250, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group')
   ];
-  this.addPaletteFunctions("Problem Solving Layer", "Problem Solving Layer", null != expand ? expand : true, fns);
+  this.addPaletteFunctions("Problem Solving Layer", "Problem Solving Layer (PSL)", null != expand ? expand : true, fns);
 };
 /*****ProblemSolvingLayer end*****/
 
@@ -138,7 +138,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       null,
       "rect rectangle box"
     ),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', 200, 200, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', 1100, 250, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
     this.addEntry('Engineering Cycle', function () {
       var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, 120, 60), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell1.vertex = true;
@@ -201,7 +201,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6], 640, 60, 'Engineering Cycle');
     })
   ];
-  this.addPaletteFunctions("Engineering Cycle", "Engineering Cycle", null != expand ? expand : true, fns);
+  this.addPaletteFunctions("Engineering Cycle", "Engineering Cycle (EC)", null != expand ? expand : true, fns);
 };
 /*****Engineering Cycle end*****/
 
@@ -276,9 +276,9 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;containertype=specialization;fillColor=#dae8fc;strokeColor=#6c8ebf;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;containertype=specialization;fillColor=#dae8fc;strokeColor=#6c8ebf;', 400, 250, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
   ];
-  this.addPaletteFunctions("Information Layer", "Information Layer", null != expand ? expand : true, fns);
+  this.addPaletteFunctions("Information Layer", "Information Layer (IL)", null != expand ? expand : true, fns);
 };
 /*****InformationLayer end*****/
 
@@ -353,9 +353,9 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
 
       return sb.createEdgeTemplateFromCells([edge], 0, -50, 'Mechanism');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;containertype=specialization;fillColor=#d5e8d4;strokeColor=#82b366;', 200, 200, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;containertype=specialization;fillColor=#d5e8d4;strokeColor=#82b366;', 400, 250, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group'),
   ];
-  this.addPaletteFunctions("Physical Layer", "Physical Layer", null != expand ? expand : true, fns);
+  this.addPaletteFunctions("Physical Layer", "Physical Layer (PL)", null != expand ? expand : true, fns);
 };
 /*****PhysicalLayer end*****/
 /*****sidebar setting for digital triplet end *****/
@@ -768,8 +768,10 @@ EditorUi.prototype.updateActionStates = function () {
   e = "cut copy bold italic underline delete duplicate editStyle editTooltip editLink backgroundColor borderColor edit toFront toBack lockUnlock solid dashed pasteSize dotted fillColor gradientColor shadow fontColor formattedText rounded toggleRounded sharp strokeColor".split(" ");
   for (h = 0; h < e.length; h++) this.actions.get(e[h]).setEnabled(c);
   this.actions.get("setAsDefaultStyle").setEnabled(1 == a.getSelectionCount());
-  this.actions.get("setContainerforSpecialization").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setContainerforSpecializationinPSL").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setParentAction").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setContainerforSpecializationinIL").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setContainerforSpecializationinPL").setEnabled(1 == a.getSelectionCount());
   this.actions.get("clearWaypoints").setEnabled(!a.isSelectionEmpty());
   this.actions.get("copySize").setEnabled(1 == a.getSelectionCount());
   this.actions.get("turn").setEnabled(!a.isSelectionEmpty());
@@ -1604,8 +1606,14 @@ Actions.prototype.init = function () {
   }, null, null, Editor.ctrlKey + "+Shift+D");
 
   /***Set Container in the Same Layer***/
-  this.addAction("setContainerforSpecialization", function () {
-    b.setSelectionCells(b.setContainerforSpecialization());
+  this.addAction("setContainerforSpecializationinPSL", function () {
+    b.setSelectionCells(b.setContainerforSpecializationinPSL());
+  }, null, null, null);
+  this.addAction("setContainerforSpecializationinIL", function () {
+    b.setSelectionCells(b.setContainerforSpecializationinIL());
+  }, null, null, null);
+  this.addAction("setContainerforSpecializationinPL", function () {
+    b.setSelectionCells(b.setContainerforSpecializationinPL());
   }, null, null, null);
   this.addAction("setContainerforEC", function () {
     b.setSelectionCells(b.setContainerforEC());
@@ -1734,7 +1742,7 @@ Actions.prototype.init = function () {
 
 
 Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
-  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setContainerforSpecialization","setContainerforEC", "setParentAction"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
+  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setContainerforSpecializationinPSL","setContainerforSpecializationinIL","setContainerforSpecializationinPL","setContainerforEC", "setParentAction"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
 };
 
 (function () {
@@ -2038,7 +2046,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     };
 
     //詳細化のために，親アクションのコンテナを設置する
-    q.setContainerforSpecialization = function (b, c) {
+    q.setContainerforSpecializationinPSL = function (b, c) {
 
       //selectedCell:cell you select
       var selectedCell = this.getSelectionCell();
@@ -2046,7 +2054,63 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       var selectedCell_y = selectedCell.geometry.y;
 
       //cell:container
-      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 200, 200), 'swimlane;pd3type=container;containertype=specialization');
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, 250), 'swimlane;pd3type=container;containertype=specialization');
+      cell.vertex = true;
+
+      //edge:arrow to connect selacted cell with container
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+
+      //コンテナの座標を決める
+      //選択したセルがコンテナに含まれているか否か
+      //含まれている場合
+      if(selectedCell.parent.style!=null){
+        if(selectedCell.parent.style.indexOf('pd3type=container;') !== -1){
+          //親アクションが存在する場合，子アクションの座標は親アクションに対する相対座標で表される．
+          //コンテナのx座標は，親コンテナのx座標 + 選択セルの相対x座標
+          cell.geometry.x = selectedCell.parent.geometry.x+selectedCell.geometry.x;
+          //コンテナのy座標は，親コンテナ左上角のy座標 + 親コンテナの高さ + 60
+          cell.geometry.y = selectedCell.parent.geometry.y + selectedCell.parent.geometry.height + 60;
+      }}else{//含まれていない場合
+        //コンテナのx座標は，選択したセルのx座標
+        cell.geometry.x = selectedCell_x;
+        //コンテナのy座標は，選択したセルの左上角のy座標 + 選択したセルの高さ + 60
+        cell.geometry.y = selectedCell_y + selectedCell.geometry.height + 60;
+      }
+
+      //コンテナの左上角を矢印の根本に接続する．
+      edge.geometry.setTerminalPoint(new mxPoint(cell.geometry.x+cell.geometry.width/2, cell.geometry.y), true);
+      //選択したセルの左下角をコンテナからの矢印の先端と接続する
+      edge.geometry.setTerminalPoint(new mxPoint(selectedCell_x, selectedCell_y+selectedCell.geometry.height), false);
+      edge.edge = true;
+
+      //コンテナに矢印の根本を挿入する．
+      cell.insertEdge(edge, true);
+      //選択したセルに矢印の先端を接続する．
+      selectedCell.insertEdge(edge, false);
+
+    
+      var pd3layer = "pd3layer=topic;",
+          fillColor = "fillColor=#ffe6cc;",
+          strokeColor = "strokeColor=#d79b00;";
+
+      cell.style = cell.style + pd3layer + fillColor + strokeColor;
+      edge.style = edge.style + pd3layer + fillColor + strokeColor;
+
+
+      this.addCell(cell);
+      this.addCell(edge);
+
+      return cell, edge;
+    };
+    q.setContainerforSpecializationinIL = function (b, c) {
+
+      //selectedCell:cell you select
+      var selectedCell = this.getSelectionCell();
+      var selectedCell_x = selectedCell.geometry.x;
+      var selectedCell_y = selectedCell.geometry.y;
+
+      //cell:container
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, 250), 'swimlane;pd3type=container;containertype=specialization');
       cell.vertex = true;
 
       //edge:arrow to connect selacted cell with container
@@ -2082,23 +2146,67 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
     
 
-      var selectedCell_style = [];
-      var pd3layer_source = "",
-          fillColor_source = "",
-          strokeColor_source = "";
-          selectedCell_style = selectedCell.style.split(';');
-      for (var i = 0; i < selectedCell_style.length; i++) {
-        if (selectedCell_style[i].indexOf('pd3layer') !== -1) {
-          pd3layer_source = selectedCell_style[i]+';';
-        } else if (selectedCell_style[i].indexOf('fillColor') !== -1) {
-          fillColor_source = selectedCell_style[i]+';';
-        } else if (selectedCell_style[i].indexOf('strokeColor') !== -1) {
-          strokeColor_source = selectedCell_style[i] + ';';
-        }
+      var pd3layer = "pd3layer=info;",
+          fillColor = "fillColor=#dae8fc;",
+          strokeColor = "strokeColor=#6c8ebf;";
+
+      cell.style = cell.style + pd3layer + fillColor + strokeColor;
+      edge.style = edge.style + pd3layer + fillColor + strokeColor;
+
+
+      this.addCell(cell);
+      this.addCell(edge);
+
+      return cell, edge;
+    };
+    q.setContainerforSpecializationinPL = function (b, c) {
+
+      //selectedCell:cell you select
+      var selectedCell = this.getSelectionCell();
+      var selectedCell_x = selectedCell.geometry.x;
+      var selectedCell_y = selectedCell.geometry.y;
+
+      //cell:container
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, 250), 'swimlane;pd3type=container;containertype=specialization');
+      cell.vertex = true;
+
+      //edge:arrow to connect selacted cell with container
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+
+      //コンテナの座標を決める
+      //選択したセルがコンテナに含まれているか否か
+      //含まれている場合
+      if(selectedCell.parent.style!=null){
+        if(selectedCell.parent.style.indexOf('pd3type=container;') !== -1){
+          //親アクションが存在する場合，子アクションの座標は親アクションに対する相対座標で表される．
+          //コンテナのx座標は，親コンテナのx座標 + 選択セルの相対x座標
+          cell.geometry.x = selectedCell.parent.geometry.x+selectedCell.geometry.x;
+          //コンテナのy座標は，親コンテナ左上角のy座標 + 親コンテナの高さ + 60
+          cell.geometry.y = selectedCell.parent.geometry.y + selectedCell.parent.geometry.height + 60;
+      }}else{//含まれていない場合
+        //コンテナのx座標は，選択したセルのx座標
+        cell.geometry.x = selectedCell_x;
+        //コンテナのy座標は，選択したセルの左上角のy座標 + 選択したセルの高さ + 60
+        cell.geometry.y = selectedCell_y + selectedCell.geometry.height + 60;
       }
-      
-      cell.style = cell.style + pd3layer_source + fillColor_source + strokeColor_source;
-      edge.style = edge.style + pd3layer_source + fillColor_source + strokeColor_source;
+
+      //コンテナの左上角を矢印の根本に接続する．
+      edge.geometry.setTerminalPoint(new mxPoint(cell.geometry.x+cell.geometry.width/2, cell.geometry.y), true);
+      //選択したセルの左下角をコンテナからの矢印の先端と接続する
+      edge.geometry.setTerminalPoint(new mxPoint(selectedCell_x, selectedCell_y+selectedCell.geometry.height), false);
+      edge.edge = true;
+
+      //コンテナに矢印の根本を挿入する．
+      cell.insertEdge(edge, true);
+      //選択したセルに矢印の先端を接続する．
+      selectedCell.insertEdge(edge, false);
+
+      var pd3layer = "pd3layer=phys;",
+      fillColor = "fillColor=#d5e8d4;",
+      strokeColor = "strokeColor=#82b366;";
+
+      cell.style = cell.style + pd3layer + fillColor + strokeColor;
+      edge.style = edge.style + pd3layer + fillColor + strokeColor;
 
 
       this.addCell(cell);
@@ -2109,17 +2217,16 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
     //親アクションのエンジニアリングサイクルコンテナを設置する
     q.setContainerforEC = function (b, c) {
-
       //selectedCell:cell you select
       var selectedCell = this.getSelectionCell();
       var selectedCell_x = selectedCell.geometry.x;
       var selectedCell_y = selectedCell.geometry.y;
 
       //cell:container
-      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 200, 200), 'swimlane;rounded=1;pd3type=container;containertype=ec');
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 1100, 250), 'swimlane;rounded=1;pd3type=container;containertype=ec');
       cell.vertex = true;
 
-      //edge:arrow to connect selacted cell with container
+      //edge:arrow to connect selected cell with container
       //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印（矢印の先端）をアクションの左下に接続する
       //exitX=0.5;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印（矢印の根本）をコンテナの上辺の中点に接続する
       var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
@@ -2152,26 +2259,30 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       //選択したセルに矢印の先端を接続する．
       selectedCell.insertEdge(edge, false);
 
-    
-
-      var selectedCell_style = [];
-      var pd3layer_source = "",
-          fillColor_source = "",
-          strokeColor_source = "";
-          selectedCell_style = selectedCell.style.split(';');
-      for (var i = 0; i < selectedCell_style.length; i++) {
-        if (selectedCell_style[i].indexOf('pd3layer') !== -1) {
-          pd3layer_source = selectedCell_style[i]+';';
-        } else if (selectedCell_style[i].indexOf('fillColor') !== -1) {
-          fillColor_source = selectedCell_style[i]+';';
-        } else if (selectedCell_style[i].indexOf('strokeColor') !== -1) {
-          strokeColor_source = selectedCell_style[i] + ';';
-        }
-      }
+      // var selectedCell_style = [];
+      // var pd3layer_source = "",
+      //     fillColor_source = "",
+      //     strokeColor_source = "";
+      //     selectedCell_style = selectedCell.style.split(';');
+      // for (var i = 0; i < selectedCell_style.length; i++) {
+      //   if (selectedCell_style[i].indexOf('pd3layer') !== -1) {
+      //     pd3layer_source = selectedCell_style[i]+';';
+      //   } else if (selectedCell_style[i].indexOf('fillColor') !== -1) {
+      //     fillColor_source = selectedCell_style[i]+';';
+      //   } else if (selectedCell_style[i].indexOf('strokeColor') !== -1) {
+      //     strokeColor_source = selectedCell_style[i] + ';';
+      //   }
+      // }
       
-      cell.style = cell.style + pd3layer_source + fillColor_source + strokeColor_source;
-      edge.style = edge.style + pd3layer_source + fillColor_source + strokeColor_source;
+      // cell.style = cell.style + pd3layer_source + fillColor_source + strokeColor_source;
+      // edge.style = edge.style + pd3layer_source + fillColor_source + strokeColor_source;
 
+      var pd3layer = "pd3layer=topic;",
+          fillColor = "fillColor=#ffe6cc;",
+          strokeColor = "strokeColor=#d79b00;";
+
+      cell.style = cell.style + pd3layer + fillColor + strokeColor;
+      edge.style = edge.style + pd3layer + fillColor + strokeColor;
 
       this.addCell(cell);
       this.addCell(edge);
