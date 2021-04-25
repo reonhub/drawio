@@ -206,6 +206,87 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       cell5.insertEdge(edge6, true);
 
       return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6], 640, box_height, 'Engineering Cycle');
+    }),
+    this.addEntry('Engineering Cycle ver2', function () {
+      var cell1 = new mxCell('Define Problem', new mxGeometry(0, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#fa6800;strokeColor=#C73500;fontColor=#ffffff;');
+      cell1.vertex = true;
+      var cell2 = new mxCell('Data Collect', new mxGeometry(box_width+arrow_inout_len, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECIA;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;');
+      cell2.vertex = true;
+      var cell3 = new mxCell('Analyze Info', new mxGeometry((box_width+arrow_inout_len)*2, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;');
+      cell3.vertex = true;
+      var cell4 = new mxCell('Evaluate', new mxGeometry((box_width+arrow_inout_len)*3, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;');
+      cell4.vertex = true;
+      var cell5 = new mxCell('List-up Solutions', new mxGeometry((box_width+arrow_inout_len)*4, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;');
+      cell5.vertex = true;
+      var cell6 = new mxCell('Decide', new mxGeometry((box_width+arrow_inout_len)*5, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#a20025;strokeColor=#6F0000;fontColor=#ffffff;');
+      cell6.vertex = true;
+      var cell7 = new mxCell('Execute', new mxGeometry((box_width+arrow_inout_len)*6, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;');
+      cell7.vertex = true;
+
+      var edge1 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge1.geometry.setTerminalPoint(new mxPoint(-arrow_inout_len, box_height/2), true);
+      edge1.geometry.setTerminalPoint(new mxPoint(0, box_height/2), false);
+      edge1.geometry.relative = true;
+      edge1.edge = true;
+
+      var edge2 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge2.geometry.setTerminalPoint(new mxPoint(box_width, box_height/2), true);
+      edge2.geometry.setTerminalPoint(new mxPoint(box_width+arrow_inout_len, box_height/2), false);
+      edge2.geometry.relative = true;
+      edge2.edge = true;
+
+      var edge3 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge3.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len), box_height/2), true);
+      edge3.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*2, box_height/2), false);
+      edge3.geometry.relative = true;
+      edge3.edge = true;
+
+      var edge4 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge4.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*2, box_height/2), true);
+      edge4.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*3, box_height/2), false);
+      edge4.geometry.relative = true;
+      edge4.edge = true;
+
+      var edge5 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge5.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*3, box_height/2), true);
+      edge5.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*4, box_height/2), false);
+      edge5.geometry.relative = true;
+      edge5.edge = true;
+
+      var edge6 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge6.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*4, box_height/2), true);
+      edge6.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*5, box_height/2), false);
+      edge6.geometry.relative = true;
+      edge6.edge = true;
+
+      var edge7 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge7.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*5, box_height/2), true);
+      edge7.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*6, box_height/2), false);
+      edge7.geometry.relative = true;
+      edge7.edge = true;
+
+      var edge8 = new mxCell('Input/Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+      edge8.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*6, box_height/2), true);
+      edge8.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*7, box_height/2), false);
+      edge8.geometry.relative = true;
+      edge8.edge = true;
+
+      cell1.insertEdge(edge1, false);
+      cell1.insertEdge(edge2, true);
+      cell2.insertEdge(edge2, false);
+      cell2.insertEdge(edge3, true);
+      cell3.insertEdge(edge3, false);
+      cell3.insertEdge(edge4, true);
+      cell4.insertEdge(edge4, false);
+      cell4.insertEdge(edge5, true);
+      cell5.insertEdge(edge5, false);
+      cell5.insertEdge(edge6, true);
+      cell6.insertEdge(edge6, false);
+      cell6.insertEdge(edge7, true);
+      cell7.insertEdge(edge7, false);
+      cell7.insertEdge(edge8, true);
+
+      return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, cell6, cell7, edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8], 640, box_height, 'Engineering Cycle');
     })
   ];
   this.addPaletteFunctions("Engineering Cycle", "Engineering Cycle (EC)", null != expand ? expand : true, fns);
