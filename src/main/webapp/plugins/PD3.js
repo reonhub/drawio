@@ -69,7 +69,7 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
       edge.geometry.x = -1;
       edge.edge = true;
 
-      var cell = new mxCell('Reason', new mxGeometry(0, 0, 0, 0), 'edgeLabel;resizable=0;html=1;align=left;verticalAlign=middle;');
+      var cell = new mxCell('Reason', new mxGeometry(0, 8, 0, 35), 'edgeLabel;resizable=0;html=1;align=left;verticalAlign=middle;');
       cell.geometry.relative = true;
       cell.setConnectable(false);
       cell.vertex = true;
@@ -349,7 +349,7 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
       edge.geometry.x = -1;
       edge.edge = true;
 
-      var cell = new mxCell('Reason', new mxGeometry(0, 0, 0, 0), 'edgeLabel;resizable=0;html=1;align=left;verticalAlign=middle;');
+      var cell = new mxCell('Reason', new mxGeometry(0, 8, 0, 35), 'edgeLabel;resizable=0;html=1;align=left;verticalAlign=middle;');
       cell.geometry.relative = true;
       cell.setConnectable(false);
       cell.vertex = true;
@@ -426,7 +426,7 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
       edge.geometry.x = -1;
       edge.edge = true;
 
-      var cell = new mxCell('Reason', new mxGeometry(0, 0, 0, 0), 'edgeLabel;resizable=0;html=1;align=left;verticalAlign=middle;');
+      var cell = new mxCell('Reason', new mxGeometry(0, 8, 0, 35), 'edgeLabel;resizable=0;html=1;align=left;verticalAlign=middle;');
       cell.geometry.relative = true;
       cell.setConnectable(false);
       cell.vertex = true;
