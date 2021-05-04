@@ -2249,7 +2249,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       cell.vertex = true;
 
       //edge:arrow to connect selacted cell with container
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;pd3type=arrow;');
 
       //コンテナの座標を決める
       //選択したセルがコンテナに含まれているか否か
@@ -2305,7 +2305,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       cell.vertex = true;
 
       //edge:arrow to connect selacted cell with container
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;pd3type=arrow;');
 
       //コンテナの座標を決める
       //選択したセルがコンテナに含まれているか否か
@@ -2362,7 +2362,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       cell.vertex = true;
 
       //edge:arrow to connect selacted cell with container
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;pd3type=arrow;');
 
       //コンテナの座標を決める
       //選択したセルがコンテナに含まれているか否か
@@ -2420,7 +2420,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       //edge:arrow to connect selected cell with container
       //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印（矢印の先端）をアクションの左下に接続する
       //exitX=0.5;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印（矢印の根本）をコンテナの上辺の中点に接続する
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;pd3type=arrow;');
 
       //コンテナの座標を決める
       //選択したセルがコンテナに含まれているか否か
@@ -2476,7 +2476,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       //exitX=0.5;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印（矢印の根本）をコンテナの上辺の中点に接続する
       var cell = new mxCell(selectedContainer.value, new mxGeometry(0, 0, box_width, 60), 'rounded=0;whiteSpace=wrap;pd3type=action;');
       cell.vertex = true;
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;pd3type=arrow;');
+      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;endSize=8;entryX=0;entryY=1;exitX=0.5;exitY=0;pd3type=arrow;');
 
       cell.geometry.x = selectedContainer_x;
       cell.geometry.y = selectedContainer_y - 120;
@@ -2777,14 +2777,14 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }), this.addEntry("tree sub sections", function () {
         var a = new mxCell("Sub Section", new mxGeometry(0, 0, 100, 60), "whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;");
         a.vertex = !0;
-        var b = new mxCell("", new mxGeometry(0, 0, 0, 0), "edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=none;rounded=0;targetPortConstraint=eastwest;sourcePortConstraint=northsouth;");
+        var b = new mxCell("", new mxGeometry(0, 0, 0, 0), "startArrow=none;endArrow=none;rounded=0;targetPortConstraint=eastwest;sourcePortConstraint=northsouth;");
         b.geometry.setTerminalPoint(new mxPoint(110, -40), !0);
         b.geometry.relative = !0;
         b.edge = !0;
         a.insertEdge(b, !1);
         var c = new mxCell("Sub Section", new mxGeometry(120, 0, 100, 60), "whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;");
         c.vertex = !0;
-        var e = new mxCell("", new mxGeometry(0, 0, 0, 0), "edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=none;rounded=0;targetPortConstraint=eastwest;sourcePortConstraint=northsouth;");
+        var e = new mxCell("", new mxGeometry(0, 0, 0, 0), "startArrow=none;endArrow=none;rounded=0;targetPortConstraint=eastwest;sourcePortConstraint=northsouth;");
         e.geometry.setTerminalPoint(new mxPoint(110, -40), !0);
         e.geometry.relative = !0;
         e.edge = !0;
