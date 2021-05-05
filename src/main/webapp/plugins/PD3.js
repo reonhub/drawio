@@ -79,12 +79,12 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
     }),
     this.addEntry('Mechanism', function () {
       var edge = new mxCell('Mechanism', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-      edge.geometry.setTerminalPoint(new mxPoint(0, -arrow_updown_len), false);
+      edge.geometry.setTerminalPoint(new mxPoint(0, arrow_updown_len), true);
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), false);
       edge.geometry.relative = true;
       edge.edge = true;
 
-      return sb.createEdgeTemplateFromCells([edge], 0, -arrow_updown_len, 'Mechanism');
+      return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Mechanism');
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Container for Specialization', 'Container for Specialization', null, null, 'container swimlane lane pool group')
   ];
