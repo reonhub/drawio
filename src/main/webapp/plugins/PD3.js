@@ -1,3 +1,10 @@
+Graph.prototype.defaultEdgeStyle = {
+  edgeStyle: "",
+  rounded: "0",
+  jettySize: "auto",
+  orthogonalLoop: "0",
+  verticalAlign: "bottom"
+};
 /*****sidebar setting for digital triplet start *****/
 Sidebar.prototype.init = function () {
   this.addSearchPalette(false);
