@@ -154,7 +154,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       "rect rectangle box"
     ),
     // this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', containerforEC_width, container_height, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;', containerforEC_ver2_width, container_height, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=5;', containerforEC_ver2_width, container_height, 'Container for EC', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
     this.addEntry('Engineering Cycle', function () {
       var cell1 = new mxCell('Data Collect', new mxGeometry(0, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
       cell1.vertex = true;
