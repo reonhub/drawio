@@ -188,6 +188,26 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       null,
       "rect rectangle box"
     ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=start;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      startendbox_width,
+      startendbox_height,
+      "EC\nStart",
+      "EC Start Box",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=start;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      startendbox_width,
+      startendbox_height,
+      "EC\nEnd",
+      "EC End Box",
+      null,
+      null,
+      "rect rectangle box"
+    ),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;fillColor=#ffe6cc;strokeColor=#d79b00;', containerforEC_width, container_height, 'Defined Problem', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
     this.addEntry('Engineering Cycle', function () {
       var cell1 = new mxCell('Define Problem', new mxGeometry(0, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#fa6800;strokeColor=#C73500;fontColor=#ffffff;');
