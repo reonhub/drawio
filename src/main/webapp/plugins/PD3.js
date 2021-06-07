@@ -18,6 +18,8 @@ var arrow_inout_len = 100;
 var arrow_updown_len = 80;
 var box_width = 120;
 var box_height = 60;
+var startendbox_width = 60;
+var startendbox_height = 45;
 var container_height = 200;
 var containerforEC_padding = 40;
 var containerforEC_width = box_width*7+arrow_inout_len*8+containerforEC_padding*2;
@@ -37,8 +39,8 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
     ),
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=start;fillColor=#ffe6cc;strokeColor=#d79b00;",
-      box_width,
-      box_height,
+      startendbox_width,
+      startendbox_height,
       "Start",
       "Start Box",
       null,
@@ -47,8 +49,8 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
     ),
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;fillColor=#ffe6cc;pd3type=action;pd3action=end;strokeColor=#d79b00;",
-      box_width,
-      box_height,
+      startendbox_width,
+      startendbox_height,
       "End",
       "End Box",
       null,
@@ -289,8 +291,8 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
     ),
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=info;pd3type=action;pd3action=start;fillColor=#dae8fc;strokeColor=#6c8ebf;",
-      box_width,
-      box_height,
+      startendbox_width,
+      startendbox_height,
       "Start",
       "Start Box",
       null,
@@ -299,8 +301,8 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
     ),
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=info;pd3type=action;pd3action=end;fillColor=#dae8fc;strokeColor=#6c8ebf;",
-      box_width,
-      box_height,
+      startendbox_width,
+      startendbox_height,
       "End",
       "End Box",
       null,
@@ -347,8 +349,8 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
     ),
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=phys;pd3type=action;pd3action=start;fillColor=#d5e8d4;strokeColor=#82b366;",
-      box_width,
-      box_height,
+      startendbox_width,
+      startendbox_height,
       "Start",
       "Start Box",
       null,
@@ -357,8 +359,8 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
     ),
     this.createVertexTemplateEntry(
       "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=phys;pd3type=action;pd3action=end;fillColor=#d5e8d4;strokeColor=#82b366;",
-      box_width,
-      box_height,
+      startendbox_width,
+      startendbox_height,
       "End",
       "End Box",
       null,
