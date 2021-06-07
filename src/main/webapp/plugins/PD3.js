@@ -18,7 +18,7 @@ var arrow_inout_len = 100;
 var arrow_updown_len = 80;
 var box_width = 120;
 var box_height = 60;
-var startendbox_width = 60;
+var startend_box_width = 60;
 var startendbox_height = 60;
 var container_height = 200;
 var containerforEC_padding = 40;
@@ -189,7 +189,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=start;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=ECstart;fillColor=#ffe6cc;strokeColor=#d79b00;",
       startendbox_width,
       startendbox_height,
       "EC\nStart",
@@ -199,7 +199,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=start;fillColor=#ffe6cc;strokeColor=#d79b00;",
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=ECend;fillColor=#ffe6cc;strokeColor=#d79b00;",
       startendbox_width,
       startendbox_height,
       "EC\nEnd",
