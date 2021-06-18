@@ -822,10 +822,10 @@ EditorUi.prototype.updateActionStates = function () {
   e = "cut copy bold italic underline delete duplicate editStyle editTooltip editLink backgroundColor borderColor edit toFront toBack lockUnlock solid dashed pasteSize dotted fillColor gradientColor shadow fontColor formattedText rounded toggleRounded sharp strokeColor".split(" ");
   for (h = 0; h < e.length; h++) this.actions.get(e[h]).setEnabled(c);
   this.actions.get("setAsDefaultStyle").setEnabled(1 == a.getSelectionCount());
-  this.actions.get("setContainerforSpecializationinPSL").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setProblemSolvingContainer").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setParentAction").setEnabled(1 == a.getSelectionCount());
-  this.actions.get("setContainerforSpecializationinIL").setEnabled(1 == a.getSelectionCount());
-  this.actions.get("setContainerforSpecializationinPL").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setInformationOperationContainer").setEnabled(1 == a.getSelectionCount());
+  this.actions.get("setPhysicalOperationContainer").setEnabled(1 == a.getSelectionCount());
   this.actions.get("clearWaypoints").setEnabled(!a.isSelectionEmpty());
   this.actions.get("copySize").setEnabled(1 == a.getSelectionCount());
   this.actions.get("turn").setEnabled(!a.isSelectionEmpty());
@@ -1660,14 +1660,14 @@ Actions.prototype.init = function () {
   }, null, null, Editor.ctrlKey + "+Shift+D");
 
   /***Set Container in the Same Layer***/
-  this.addAction("setContainerforSpecializationinPSL", function () {
-    b.setSelectionCells(b.setContainerforSpecializationinPSL());
+  this.addAction("setProblemSolvingContainer", function () {
+    b.setSelectionCells(b.setProblemSolvingContainer());
   }, null, null, null);
-  this.addAction("setContainerforSpecializationinIL", function () {
-    b.setSelectionCells(b.setContainerforSpecializationinIL());
+  this.addAction("setInformationOperationContainer", function () {
+    b.setSelectionCells(b.setInformationOperationContainer());
   }, null, null, null);
-  this.addAction("setContainerforSpecializationinPL", function () {
-    b.setSelectionCells(b.setContainerforSpecializationinPL());
+  this.addAction("setPhysicalOperationContainer", function () {
+    b.setSelectionCells(b.setPhysicalOperationContainer());
   }, null, null, null);
   this.addAction("setContainerforEC", function () {
     b.setSelectionCells(b.setContainerforEC());
@@ -1897,7 +1897,7 @@ Actions.prototype.init = function () {
 
 
 Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
-  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setContainerforSpecializationinPSL","setContainerforSpecializationinIL","setContainerforSpecializationinPL","setContainerforEC", "setParentAction"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
+  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setProblemSolvingContainer","setInformationOperationContainer","setPhysicalOperationContainer","setContainerforEC", "setParentAction"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
 };
 
 (function () {
@@ -2201,7 +2201,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     };
 
     //詳細化のために，親アクションのコンテナを設置する
-    q.setContainerforSpecializationinPSL = function (b, c) {
+    q.setProblemSolvingContainer = function (b, c) {
 
       //selectedCell:cell you select
       var selectedCell = this.getSelectionCell();
@@ -2257,7 +2257,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
       return cell, edge;
     };
-    q.setContainerforSpecializationinIL = function (b, c) {
+    q.setInformationOperationContainer = function (b, c) {
 
       //selectedCell:cell you select
       var selectedCell = this.getSelectionCell();
@@ -2314,7 +2314,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
       return cell, edge;
     };
-    q.setContainerforSpecializationinPL = function (b, c) {
+    q.setPhysicalOperationContainer = function (b, c) {
 
       //selectedCell:cell you select
       var selectedCell = this.getSelectionCell();
