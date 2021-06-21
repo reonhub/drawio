@@ -119,7 +119,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
   var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#e3c800;strokeColor=#d79b00;fontColor=#ffffff;',
+      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;fillColor=#e3c800;strokeColor=#d79b00;fontColor=#ffffff;',
       box_width,
       box_height,
       "Define Problem",
@@ -129,17 +129,17 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECIA;fillColor=#60a917;strokeColor=#d79b00;fontColor=#ffffff;',
+      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCD;fillColor=#60a917;strokeColor=#d79b00;fontColor=#ffffff;',
       box_width,
       box_height,
-      "Data Collect",
+      "Collect Data",
       "Data Collection Box",
       null,
       null,
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#0050ef;strokeColor=#d79b00;fontColor=#ffffff;',
+      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECAI;fillColor=#0050ef;strokeColor=#d79b00;fontColor=#ffffff;',
       box_width,
       box_height,
       "Analyze Information",
@@ -149,7 +149,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',
+      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',
       box_width,
       box_height,
       "Evaluate",
@@ -159,7 +159,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#d80073;strokeColor=#d79b00;fontColor=#ffffff;',
+      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECLS;fillColor=#d80073;strokeColor=#d79b00;fontColor=#ffffff;',
       box_width,
       box_height,
       "List-up Solutions",
@@ -169,7 +169,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;',
+      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDE;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;',
       box_width,
       box_height,
       "Decide",
