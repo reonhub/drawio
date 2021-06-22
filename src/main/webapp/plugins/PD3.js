@@ -15,15 +15,25 @@ Sidebar.prototype.init = function () {
   this.addPhysicalLayerPalette(true);
 };
 
-var arrow_inout_len = 100;
-var arrow_updown_len = 80;
-var box_width = 120;
-var box_height = 60;
-var startendbox_width = 60;
-var startendbox_height = 60;
-var container_height = 200;
-var containerforEC_padding = 40;
-var containerforEC_width = box_width*7+arrow_inout_len*8+containerforEC_padding*2;
+var arrow_inout_len = 100,
+arrow_updown_len = 80,
+box_width = 120,
+box_height = 60,
+startendbox_width = 60,
+startendbox_height = 60,
+container_height = 200,
+containerforEC_padding = 40,
+containerforEC_width = box_width*7+arrow_inout_len*8+containerforEC_padding*2,
+ECDP_val = "Define Problem",
+ECDP_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;fillColor=#e3c800;strokeColor=#d79b00;fontColor=#ffffff;',
+ECCD_val = "Collect Data",
+ECCD_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCD;fillColor=#60a917;strokeColor=#d79b00;fontColor=#ffffff;',ECAI_val = "Analyze Information",
+ECAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECAI;fillColor=#0050ef;strokeColor=#d79b00;fontColor=#ffffff;',
+ECEV_val = "Evaluate",
+ECEV_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',ECLS_val = "List-up Solutions",
+ECLS_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECLS;fillColor=#d80073;strokeColor=#d79b00;fontColor=#ffffff;',ECDE_val = "Decide",
+ECDE_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDE;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;',ECEX_val ="Execute",
+ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#1ba1e2;strokeColor=#d79b00;fontColor=#ffffff;';
 /*****ProblemSolvingLayer start*****/
 Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
   var sb = this;
@@ -119,60 +129,60 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
   var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;fillColor=#e3c800;strokeColor=#d79b00;fontColor=#ffffff;',
+      ECDP_style,
       box_width,
       box_height,
-      "Define Problem",
+      ECDP_val,
       "Problem Definition Box",
       null,
       null,
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCD;fillColor=#60a917;strokeColor=#d79b00;fontColor=#ffffff;',
+      ECCD_style,
       box_width,
       box_height,
-      "Collect Data",
+      ECCD_val,
       "Data Collection Box",
       null,
       null,
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECAI;fillColor=#0050ef;strokeColor=#d79b00;fontColor=#ffffff;',
+      ECAI_style,
       box_width,
       box_height,
-      "Analyze Information",
-      "Information Analysis Box",
+      ECAI_val,
+      "Info Analysis Box",
       null,
       null,
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',
+      ECEV_style,
       box_width,
       box_height,
-      "Evaluate",
+      ECEV_val,
       "Evaluation Box",
       null,
       null,
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECLS;fillColor=#d80073;strokeColor=#d79b00;fontColor=#ffffff;',
+      ECLS_style,
       box_width,
       box_height,
-      "List-up Solutions",
+      ECLS_val,
       "Solution Listing Box",
       null,
       null,
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDE;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;',
+      ECDE_style,
       box_width,
       box_height,
-      "Decide",
+      ECDE_val,
       "Decision Box",
       null,
       null,
@@ -180,10 +190,10 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
     ),
     
     this.createVertexTemplateEntry(
-      'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#1ba1e2;strokeColor=#d79b00;fontColor=#ffffff;',
+      ECEX_style,
       box_width,
       box_height,
-      "Execute",
+      ECEX_val,
       "Execution Box",
       null,
       null,
@@ -210,87 +220,87 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       "rect rectangle box"
     ),
   //   this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;fillColor=#ffe6cc;strokeColor=#d79b00;', containerforEC_width, container_height, 'Label of Parent Action Box', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
-  //   this.addEntry('Engineering Cycle', function () {
-  //     var cell1 = new mxCell('Define Problem', new mxGeometry(0, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#e3c800;strokeColor=#d79b00;fontColor=#ffffff;');
-  //     cell1.vertex = true;
-  //     var cell2 = new mxCell('Data Collect', new mxGeometry(box_width+arrow_inout_len, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECIA;fillColor=#60a917;strokeColor=#d79b00;fontColor=#ffffff;');
-  //     cell2.vertex = true;
-  //     var cell3 = new mxCell('Analyze Info', new mxGeometry((box_width+arrow_inout_len)*2, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#0050ef;strokeColor=#d79b00;fontColor=#ffffff;');
-  //     cell3.vertex = true;
-  //     var cell4 = new mxCell('Evaluate', new mxGeometry((box_width+arrow_inout_len)*3, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;');
-  //     cell4.vertex = true;
-  //     var cell5 = new mxCell('List-up Solutions', new mxGeometry((box_width+arrow_inout_len)*4, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#d80073;strokeColor=#d79b00;fontColor=#ffffff;');
-  //     cell5.vertex = true;
-  //     var cell6 = new mxCell('Decide', new mxGeometry((box_width+arrow_inout_len)*5, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;');
-  //     cell6.vertex = true;
-  //     var cell7 = new mxCell('Execute', new mxGeometry((box_width+arrow_inout_len)*6, 0, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#1ba1e2;strokeColor=#d79b00;fontColor=#ffffff;');
-  //     cell7.vertex = true;
+  this.addEntry('Engineering Cycle', function () {
+    var cell1 = new mxCell(ECDP_val, new mxGeometry(0, 0, box_width, box_height), ECDP_style);
+    cell1.vertex = true;
+    var cell2 = new mxCell(ECCD_val, new mxGeometry(box_width+arrow_inout_len, 0, box_width, box_height), ECCD_style);
+    cell2.vertex = true;
+    var cell3 = new mxCell(ECAI_val, new mxGeometry((box_width+arrow_inout_len)*2, 0, box_width, box_height), ECAI_style);
+    cell3.vertex = true;
+    var cell4 = new mxCell(ECEV_val, new mxGeometry((box_width+arrow_inout_len)*3, 0, box_width, box_height), ECEV_style);
+    cell4.vertex = true;
+    var cell5 = new mxCell(ECLS_val, new mxGeometry((box_width+arrow_inout_len)*4, 0, box_width, box_height), ECLS_style);
+    cell5.vertex = true;
+    var cell6 = new mxCell(ECDE_val, new mxGeometry((box_width+arrow_inout_len)*5, 0, box_width, box_height), ECDE_style);
+    cell6.vertex = true;
+    var cell7 = new mxCell(ECEX_val, new mxGeometry((box_width+arrow_inout_len)*6, 0, box_width, box_height), ECEX_style);
+    cell7.vertex = true;
 
-  //     var edge1 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //     edge1.geometry.setTerminalPoint(new mxPoint(-arrow_inout_len, box_height/2), true);
-  //     edge1.geometry.setTerminalPoint(new mxPoint(0, box_height/2), false);
-  //     edge1.geometry.relative = true;
-  //     edge1.edge = true;
+    var edge1 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    edge1.geometry.setTerminalPoint(new mxPoint(-arrow_inout_len, box_height/2), true);
+    edge1.geometry.setTerminalPoint(new mxPoint(0, box_height/2), false);
+    edge1.geometry.relative = true;
+    edge1.edge = true;
 
-  //     var edge2 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //     edge2.geometry.setTerminalPoint(new mxPoint(box_width, box_height/2), true);
-  //     edge2.geometry.setTerminalPoint(new mxPoint(box_width+arrow_inout_len, box_height/2), false);
-  //     edge2.geometry.relative = true;
-  //     edge2.edge = true;
+    var edge2 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    edge2.geometry.setTerminalPoint(new mxPoint(box_width, box_height/2), true);
+    edge2.geometry.setTerminalPoint(new mxPoint(box_width+arrow_inout_len, box_height/2), false);
+    edge2.geometry.relative = true;
+    edge2.edge = true;
 
-  //     var edge3 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //     edge3.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len), box_height/2), true);
-  //     edge3.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*2, box_height/2), false);
-  //     edge3.geometry.relative = true;
-  //     edge3.edge = true;
+    var edge3 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    edge3.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len), box_height/2), true);
+    edge3.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*2, box_height/2), false);
+    edge3.geometry.relative = true;
+    edge3.edge = true;
 
-  //     var edge4 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //     edge4.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*2, box_height/2), true);
-  //     edge4.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*3, box_height/2), false);
-  //     edge4.geometry.relative = true;
-  //     edge4.edge = true;
+    var edge4 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    edge4.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*2, box_height/2), true);
+    edge4.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*3, box_height/2), false);
+    edge4.geometry.relative = true;
+    edge4.edge = true;
 
-  //     var edge5 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //     edge5.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*3, box_height/2), true);
-  //     edge5.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*4, box_height/2), false);
-  //     edge5.geometry.relative = true;
-  //     edge5.edge = true;
+    var edge5 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    edge5.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*3, box_height/2), true);
+    edge5.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*4, box_height/2), false);
+    edge5.geometry.relative = true;
+    edge5.edge = true;
 
-  //     var edge6 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //     edge6.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*4, box_height/2), true);
-  //     edge6.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*5, box_height/2), false);
-  //     edge6.geometry.relative = true;
-  //     edge6.edge = true;
+    var edge6 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    edge6.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*4, box_height/2), true);
+    edge6.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*5, box_height/2), false);
+    edge6.geometry.relative = true;
+    edge6.edge = true;
 
-  //     var edge7 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //     edge7.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*5, box_height/2), true);
-  //     edge7.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*6, box_height/2), false);
-  //     edge7.geometry.relative = true;
-  //     edge7.edge = true;
+    var edge7 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    edge7.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*5, box_height/2), true);
+    edge7.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*6, box_height/2), false);
+    edge7.geometry.relative = true;
+    edge7.edge = true;
 
-  //     var edge8 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //     edge8.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*6, box_height/2), true);
-  //     edge8.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*7, box_height/2), false);
-  //     edge8.geometry.relative = true;
-  //     edge8.edge = true;
+    var edge8 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    edge8.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*6, box_height/2), true);
+    edge8.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*7, box_height/2), false);
+    edge8.geometry.relative = true;
+    edge8.edge = true;
 
-  //     cell1.insertEdge(edge1, false);
-  //     cell1.insertEdge(edge2, true);
-  //     cell2.insertEdge(edge2, false);
-  //     cell2.insertEdge(edge3, true);
-  //     cell3.insertEdge(edge3, false);
-  //     cell3.insertEdge(edge4, true);
-  //     cell4.insertEdge(edge4, false);
-  //     cell4.insertEdge(edge5, true);
-  //     cell5.insertEdge(edge5, false);
-  //     cell5.insertEdge(edge6, true);
-  //     cell6.insertEdge(edge6, false);
-  //     cell6.insertEdge(edge7, true);
-  //     cell7.insertEdge(edge7, false);
-  //     cell7.insertEdge(edge8, true);
+    cell1.insertEdge(edge1, false);
+    cell1.insertEdge(edge2, true);
+    cell2.insertEdge(edge2, false);
+    cell2.insertEdge(edge3, true);
+    cell3.insertEdge(edge3, false);
+    cell3.insertEdge(edge4, true);
+    cell4.insertEdge(edge4, false);
+    cell4.insertEdge(edge5, true);
+    cell5.insertEdge(edge5, false);
+    cell5.insertEdge(edge6, true);
+    cell6.insertEdge(edge6, false);
+    cell6.insertEdge(edge7, true);
+    cell7.insertEdge(edge7, false);
+    cell7.insertEdge(edge8, true);
 
-  //     return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, cell6, cell7, edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8], 640, box_height, 'Engineering Cycle');
-  //   })
+    return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, cell6, cell7, edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8], 640, box_height, 'Engineering Cycle');
+    })
   ];
   this.addPaletteFunctions("Engineering Cycle", "Engineering Cycle", null != expand ? expand : true, fns);
 };
