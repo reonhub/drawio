@@ -118,7 +118,9 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
       edge.edge = true;
       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Annotation Arrow');
     }),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Label of Parent Action Box', 'Problem-Solving Container', null, null, 'container swimlane lane pool group')
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Label of Parent Action Box', 'Problem-Solving Container', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=while;whiletype=container;strokeColor=#d79b00;swimlaneLine=0;dashed=1;swimlaneFillColor=none;fillColor=none;', box_width+50, box_height+50, '', 'While Box', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=while;whiletype=container;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneLine=0;dashed=1;', 400, container_height, 'While', 'While Container', null, null, 'container swimlane lane pool group')
   ];
   this.addPaletteFunctions("Problem-Solving Layer", "Problem-Solving Layer", null != expand ? expand : true, fns);
 };
