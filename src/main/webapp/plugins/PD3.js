@@ -119,7 +119,7 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Annotation Arrow');
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Label of Parent Action Box', 'Problem-Solving Container', null, null, 'container swimlane lane pool group'),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=while;whiletype=container;strokeColor=#d79b00;swimlaneLine=0;dashed=1;swimlaneFillColor=none;fillColor=none;', box_width+50, box_height+50, '', 'While Box', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=while;whiletype=box;strokeColor=#d79b00;swimlaneLine=0;dashed=1;swimlaneFillColor=none;fillColor=none;', box_width+50, box_height+50, '', 'While Box', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=while;whiletype=container;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneLine=0;dashed=1;', 400, container_height, 'While', 'While Container', null, null, 'container swimlane lane pool group')
   ];
   this.addPaletteFunctions("Problem-Solving Layer", "Problem-Solving Layer", null != expand ? expand : true, fns);
@@ -201,26 +201,26 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       null,
       "rect rectangle box"
     ),
-    this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=ECstart;fillColor=#ffe6cc;strokeColor=#d79b00;",
-      startendbox_width,
-      startendbox_height,
-      "EC\nStart",
-      "EC Start Box",
-      null,
-      null,
-      "rect rectangle box"
-    ),
-    this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=ECend;fillColor=#ffe6cc;strokeColor=#d79b00;",
-      startendbox_width,
-      startendbox_height,
-      "EC\nEnd",
-      "EC End Box",
-      null,
-      null,
-      "rect rectangle box"
-    ),
+    // this.createVertexTemplateEntry(
+    //   "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=ECstart;fillColor=#ffe6cc;strokeColor=#d79b00;",
+    //   startendbox_width,
+    //   startendbox_height,
+    //   "EC\nStart",
+    //   "EC Start Box",
+    //   null,
+    //   null,
+    //   "rect rectangle box"
+    // ),
+    // this.createVertexTemplateEntry(
+    //   "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=ECend;fillColor=#ffe6cc;strokeColor=#d79b00;",
+    //   startendbox_width,
+    //   startendbox_height,
+    //   "EC\nEnd",
+    //   "EC End Box",
+    //   null,
+    //   null,
+    //   "rect rectangle box"
+    // ),
   //   this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;fillColor=#ffe6cc;strokeColor=#d79b00;', containerforEC_width, container_height, 'Label of Parent Action Box', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
   this.addEntry('Engineering Cycle', function () {
     var cell1 = new mxCell(ECDP_val, new mxGeometry(0, 0, box_width, box_height), ECDP_style);
@@ -835,7 +835,7 @@ EditorUi.prototype.updateActionStates = function () {
   for (h = 0; h < e.length; h++) this.actions.get(e[h]).setEnabled(c);
   this.actions.get("setAsDefaultStyle").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setProblemSolvingContainer").setEnabled(1 == a.getSelectionCount());
-  this.actions.get("setParentAction").setEnabled(1 == a.getSelectionCount());
+  // this.actions.get("setParentAction").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setInformationOperationContainer").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setPhysicalOperationContainer").setEnabled(1 == a.getSelectionCount());
   this.actions.get("clearWaypoints").setEnabled(!a.isSelectionEmpty());
@@ -1001,7 +1001,7 @@ EditorUi.prototype.createKeyHandler = function (a) {
     }), f.bindControlKey(13, function () {
       n.ctrlEnter()
     }), f.bindAction(8, !1, "delete"),
-    f.bindAction(8, !0, "deleteAll"), f.bindAction(46, !1, "delete"), f.bindAction(46, !0, "deleteAll"), f.bindAction(36, !1, "resetView"), f.bindAction(72, !0, "fitWindow", !0), f.bindAction(74, !0, "fitPage"), f.bindAction(74, !0, "fitTwoPages", !0), f.bindAction(48, !0, "customZoom"), f.bindAction(82, !0, "turn"), f.bindAction(82, !0, "clearDefaultStyle", !0), f.bindAction(83, !0, "save"), f.bindAction(83, !0, "saveAs", !0), f.bindAction(65, !0, "selectAll"), f.bindAction(65, !0, "selectNone", !0), f.bindAction(73, !0, "selectVertices", !0), f.bindAction(69, !0, "selectEdges", !0), f.bindAction(69, !0, "editStyle"), f.bindAction(66, !0, "bold"), f.bindAction(66, !0, "toBack", !0), f.bindAction(70, !0, "toFront", !0), f.bindAction(68, !0, "duplicate"), f.bindAction(68, !0, "setAsDefaultStyle", !0), f.bindAction(90, !0, "undo"), f.bindAction(89, !0, "autosize", !0), f.bindAction(88, !0, "cut"), f.bindAction(67, !0, "copy"), f.bindAction(188, !0, "setContainerforEC", !0),f.bindAction(190, !0, "setParentAction", !0), f.bindAction(86, !0, "paste"), f.bindAction(71, !0, "group"), f.bindAction(77, !0, "editData"), f.bindAction(71, !0, "grid", !0), f.bindAction(73, !0, "italic"), f.bindAction(76, !0, "lockUnlock"),
+    f.bindAction(8, !0, "deleteAll"), f.bindAction(46, !1, "delete"), f.bindAction(46, !0, "deleteAll"), f.bindAction(36, !1, "resetView"), f.bindAction(72, !0, "fitWindow", !0), f.bindAction(74, !0, "fitPage"), f.bindAction(74, !0, "fitTwoPages", !0), f.bindAction(48, !0, "customZoom"), f.bindAction(82, !0, "turn"), f.bindAction(82, !0, "clearDefaultStyle", !0), f.bindAction(83, !0, "save"), f.bindAction(83, !0, "saveAs", !0), f.bindAction(65, !0, "selectAll"), f.bindAction(65, !0, "selectNone", !0), f.bindAction(73, !0, "selectVertices", !0), f.bindAction(69, !0, "selectEdges", !0), f.bindAction(69, !0, "editStyle"), f.bindAction(66, !0, "bold"), f.bindAction(66, !0, "toBack", !0), f.bindAction(70, !0, "toFront", !0), f.bindAction(68, !0, "duplicate"), f.bindAction(68, !0, "setAsDefaultStyle", !0), f.bindAction(90, !0, "undo"), f.bindAction(89, !0, "autosize", !0), f.bindAction(88, !0, "cut"), f.bindAction(67, !0, "copy"), f.bindAction(86, !0, "paste"), f.bindAction(71, !0, "group"), f.bindAction(77, !0, "editData"), f.bindAction(71, !0, "grid", !0), f.bindAction(73, !0, "italic"), f.bindAction(76, !0, "lockUnlock"),
     f.bindAction(76, !0, "layers", !0), f.bindAction(80, !0, "formatPanel", !0), f.bindAction(85, !0, "underline"), f.bindAction(85, !0, "ungroup", !0), f.bindAction(190, !0, "superscript"), f.bindAction(188, !0, "subscript"), f.bindAction(9, !1, "indent", !0), f.bindKey(13, function () {
       b.isEnabled() && b.startEditingAtCell()
     }), f.bindKey(113, function () {
@@ -1681,114 +1681,114 @@ Actions.prototype.init = function () {
   this.addAction("setPhysicalOperationContainer", function () {
     b.setSelectionCells(b.setPhysicalOperationContainer());
   }, null, null, null);
-  this.addAction("setContainerforEC", function () {
-    b.setSelectionCells(b.setContainerforEC());
-    setEC(b);
-  }, null, null, Editor.ctrlKey + "+Shift+<");
-  function setEC(b){
-    var defaultParent = b.getDefaultParent();
-    var containerforEC=defaultParent.children[defaultParent.children.length-2];
+  // this.addAction("setContainerforEC", function () {
+  //   b.setSelectionCells(b.setContainerforEC());
+  //   setEC(b);
+  // }, null, null, Editor.ctrlKey + "+Shift+<");
+  // function setEC(b){
+  //   var defaultParent = b.getDefaultParent();
+  //   var containerforEC=defaultParent.children[defaultParent.children.length-2];
 
-    var cell_geometry_y = container_height/2-20
-    var edge_geometry_y = container_height/2-20+box_height/2;
-    var cell1 = new mxCell('Data Collect', new mxGeometry(containerforEC_padding+arrow_inout_len, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    cell1.vertex = true;
-    cell1.relative=true;
-    cell1.setParent(containerforEC);
-    containerforEC.insert(cell1);
-    var cell2 = new mxCell('Info Analyze', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*1, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECIA;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    cell2.vertex = true;
-    cell2.relative=true;
-    cell2.setParent(containerforEC);
-    containerforEC.insert(cell2);
-    var cell3 = new mxCell('Evaluate', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*2, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    cell3.vertex = true;
-    cell3.relative=true;
-    cell3.setParent(containerforEC);
-    containerforEC.insert(cell3);
-    var cell4 = new mxCell('Decide', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*3, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    cell4.vertex = true;
-    cell4.relative=true;
-    cell4.setParent(containerforEC);
-    containerforEC.insert(cell4);
-    var cell5 = new mxCell('Execute', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*4, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    cell5.vertex = true;
-    cell5.relative=true;
-    cell5.setParent(containerforEC);
-    containerforEC.insert(cell5);
+  //   var cell_geometry_y = container_height/2-20
+  //   var edge_geometry_y = container_height/2-20+box_height/2;
+  //   var cell1 = new mxCell('Data Collect', new mxGeometry(containerforEC_padding+arrow_inout_len, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   cell1.vertex = true;
+  //   cell1.relative=true;
+  //   cell1.setParent(containerforEC);
+  //   containerforEC.insert(cell1);
+  //   var cell2 = new mxCell('Info Analyze', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*1, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECIA;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   cell2.vertex = true;
+  //   cell2.relative=true;
+  //   cell2.setParent(containerforEC);
+  //   containerforEC.insert(cell2);
+  //   var cell3 = new mxCell('Evaluate', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*2, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   cell3.vertex = true;
+  //   cell3.relative=true;
+  //   cell3.setParent(containerforEC);
+  //   containerforEC.insert(cell3);
+  //   var cell4 = new mxCell('Decide', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*3, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   cell4.vertex = true;
+  //   cell4.relative=true;
+  //   cell4.setParent(containerforEC);
+  //   containerforEC.insert(cell4);
+  //   var cell5 = new mxCell('Execute', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*4, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   cell5.vertex = true;
+  //   cell5.relative=true;
+  //   cell5.setParent(containerforEC);
+  //   containerforEC.insert(cell5);
 
-    var edge1 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    edge1.geometry.setTerminalPoint(new mxPoint(containerforEC_padding, edge_geometry_y), true);
-    edge1.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len, edge_geometry_y), false);
-    edge1.geometry.relative = true;
-    edge1.edge = true;
-    edge1.relative=true;
-    edge1.setParent(containerforEC);
-    containerforEC.insert(edge1);
+  //   var edge1 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   edge1.geometry.setTerminalPoint(new mxPoint(containerforEC_padding, edge_geometry_y), true);
+  //   edge1.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len, edge_geometry_y), false);
+  //   edge1.geometry.relative = true;
+  //   edge1.edge = true;
+  //   edge1.relative=true;
+  //   edge1.setParent(containerforEC);
+  //   containerforEC.insert(edge1);
 
-    var edge2 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    edge2.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+box_width, edge_geometry_y), true);
-    edge2.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*1, edge_geometry_y), false);
-    edge2.geometry.relative = true;
-    edge2.edge = true;
-    edge2.relative=true;
-    edge2.setParent(containerforEC);
-    containerforEC.insert(edge2);
+  //   var edge2 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   edge2.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+box_width, edge_geometry_y), true);
+  //   edge2.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*1, edge_geometry_y), false);
+  //   edge2.geometry.relative = true;
+  //   edge2.edge = true;
+  //   edge2.relative=true;
+  //   edge2.setParent(containerforEC);
+  //   containerforEC.insert(edge2);
 
-    var edge3 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    edge3.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*2, edge_geometry_y), true);
-    edge3.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*2, edge_geometry_y), false);
-    edge3.geometry.relative = true;
-    edge3.edge = true;
-    edge3.relative=true;
-    edge3.setParent(containerforEC);
-    containerforEC.insert(edge3);
+  //   var edge3 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   edge3.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*2, edge_geometry_y), true);
+  //   edge3.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*2, edge_geometry_y), false);
+  //   edge3.geometry.relative = true;
+  //   edge3.edge = true;
+  //   edge3.relative=true;
+  //   edge3.setParent(containerforEC);
+  //   containerforEC.insert(edge3);
 
-    var edge4 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    edge4.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*3, edge_geometry_y), true);
-    edge4.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*3, edge_geometry_y), false);
-    edge4.geometry.relative = true;
-    edge4.edge = true;
-    edge4.relative=true;
-    edge4.setParent(containerforEC);
-    containerforEC.insert(edge4);
+  //   var edge4 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   edge4.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*3, edge_geometry_y), true);
+  //   edge4.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*3, edge_geometry_y), false);
+  //   edge4.geometry.relative = true;
+  //   edge4.edge = true;
+  //   edge4.relative=true;
+  //   edge4.setParent(containerforEC);
+  //   containerforEC.insert(edge4);
 
-    var edge5 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    edge5.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*4, edge_geometry_y), true);
-    edge5.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*4, edge_geometry_y), false);
-    edge5.geometry.relative = true;
-    edge5.edge = true;
-    edge5.relative=true;
-    edge5.setParent(containerforEC);
-    containerforEC.insert(edge5);
+  //   var edge5 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   edge5.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*4, edge_geometry_y), true);
+  //   edge5.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*4, edge_geometry_y), false);
+  //   edge5.geometry.relative = true;
+  //   edge5.edge = true;
+  //   edge5.relative=true;
+  //   edge5.setParent(containerforEC);
+  //   containerforEC.insert(edge5);
 
-    var edge6 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    edge6.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*5, edge_geometry_y), true);
-    edge6.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*5, edge_geometry_y), false);
-    edge6.geometry.relative = true;
-    edge6.edge = true;
-    edge6.relative=true;
-    edge6.setParent(containerforEC);
-    containerforEC.insert(edge6);
+  //   var edge6 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+  //   edge6.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*5, edge_geometry_y), true);
+  //   edge6.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*5, edge_geometry_y), false);
+  //   edge6.geometry.relative = true;
+  //   edge6.edge = true;
+  //   edge6.relative=true;
+  //   edge6.setParent(containerforEC);
+  //   containerforEC.insert(edge6);
 
-    cell1.insertEdge(edge1, false);
-    cell1.insertEdge(edge2, true);
-    cell2.insertEdge(edge2, false);
-    cell2.insertEdge(edge3, true);
-    cell3.insertEdge(edge3, false);
-    cell3.insertEdge(edge4, true);
-    cell4.insertEdge(edge4, false);
-    cell4.insertEdge(edge5, true);
-    cell5.insertEdge(edge5, false);
-    cell5.insertEdge(edge6, true);
+  //   cell1.insertEdge(edge1, false);
+  //   cell1.insertEdge(edge2, true);
+  //   cell2.insertEdge(edge2, false);
+  //   cell2.insertEdge(edge3, true);
+  //   cell3.insertEdge(edge3, false);
+  //   cell3.insertEdge(edge4, true);
+  //   cell4.insertEdge(edge4, false);
+  //   cell4.insertEdge(edge5, true);
+  //   cell5.insertEdge(edge5, false);
+  //   cell5.insertEdge(edge6, true);
     
-    b.refresh();
-    return cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6;
-  }
+  //   b.refresh();
+  //   return cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6;
+  // }
   /***Set Parent Process in the Same Layer***/
-  this.addAction("setParentAction", function () {
-    b.setSelectionCells(b.setParentAction());
-  }, null, null, Editor.ctrlKey + "+Shift+>");
+  // this.addAction("setParentAction", function () {
+  //   b.setSelectionCells(b.setParentAction());
+  // }, null, null, Editor.ctrlKey + "+Shift+>");
 
   this.addAction("clearDefaultStyle", function () {
     b.isEnabled() && c.clearDefaultStyle()
@@ -1909,7 +1909,7 @@ Actions.prototype.init = function () {
 
 
 Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
-  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setProblemSolvingContainer","setInformationOperationContainer","setPhysicalOperationContainer","setContainerforEC", "setParentAction"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
+  1 == this.editorUi.editor.graph.getSelectionCount() ? this.addMenuItems(a, ["-", "setAsDefaultStyle", "-", "setProblemSolvingContainer","setInformationOperationContainer","setPhysicalOperationContainer"], null, d) : this.editorUi.editor.graph.isSelectionEmpty() && this.addMenuItems(a, ["-", "clearDefaultStyle"], null, d)
 };
 
 (function () {
@@ -2440,56 +2440,56 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     };
 
     //親アクションを設置する．
-    q.setParentAction = function (b, c) {
+    // q.setParentAction = function (b, c) {
 
-      var selectedContainer = this.getSelectionCell();
+    //   var selectedContainer = this.getSelectionCell();
 
-      var selectedContainer_x = selectedContainer.geometry.x;
-      var selectedContainer_y = selectedContainer.geometry.y;
+    //   var selectedContainer_x = selectedContainer.geometry.x;
+    //   var selectedContainer_y = selectedContainer.geometry.y;
 
-      //edge:arrow to connect selacted cell with container
-      //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印（矢印の先端）をアクションの左下に接続する
-      //exitX=0.5;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印（矢印の根本）をコンテナの上辺の中点に接続する
-      var cell = new mxCell(selectedContainer.value, new mxGeometry(0, 0, box_width, 60), 'rounded=0;whiteSpace=wrap;pd3type=action;');
-      cell.vertex = true;
-      var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=1;exitX=0.5;exitY=0;pd3type=arrow;');
+    //   //edge:arrow to connect selacted cell with container
+    //   //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印（矢印の先端）をアクションの左下に接続する
+    //   //exitX=0.5;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印（矢印の根本）をコンテナの上辺の中点に接続する
+    //   var cell = new mxCell(selectedContainer.value, new mxGeometry(0, 0, box_width, 60), 'rounded=0;whiteSpace=wrap;pd3type=action;');
+    //   cell.vertex = true;
+    //   var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=1;exitX=0.5;exitY=0;pd3type=arrow;');
 
-      cell.geometry.x = selectedContainer_x;
-      cell.geometry.y = selectedContainer_y - 120;
+    //   cell.geometry.x = selectedContainer_x;
+    //   cell.geometry.y = selectedContainer_y - 120;
 
-      //矢印の根本をコンテナの上辺の中心に接続する
-      edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x+selectedContainer.geometry.width/2, selectedContainer_y), false);
-      //矢印の先端を親アクションの左角下に接続する．
-      edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x, selectedContainer_y-60), true);
-      edge.edge = true;
+    //   //矢印の根本をコンテナの上辺の中心に接続する
+    //   edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x+selectedContainer.geometry.width/2, selectedContainer_y), false);
+    //   //矢印の先端を親アクションの左角下に接続する．
+    //   edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x, selectedContainer_y-60), true);
+    //   edge.edge = true;
 
-      cell.insertEdge(edge, false);
-      selectedContainer.insertEdge(edge, true);
+    //   cell.insertEdge(edge, false);
+    //   selectedContainer.insertEdge(edge, true);
 
-      var selectedContainer_style = [];
-      var pd3layer_source = "",
-          fillColor_source = "",
-          strokeColor_source = "";
-          selectedContainer_style = selectedContainer.style.split(';');
-      for (var i = 0; i < selectedContainer_style.length; i++) {
-        if (selectedContainer_style[i].indexOf('pd3layer') !== -1) {
-          pd3layer_source = selectedContainer_style[i]+';';
-        } else if (selectedContainer_style[i].indexOf('fillColor') !== -1) {
-          fillColor_source = selectedContainer_style[i]+';';
-        } else if (selectedContainer_style[i].indexOf('strokeColor') !== -1) {
-          strokeColor_source = selectedContainer_style[i] + ';';
-        }
-      }
+    //   var selectedContainer_style = [];
+    //   var pd3layer_source = "",
+    //       fillColor_source = "",
+    //       strokeColor_source = "";
+    //       selectedContainer_style = selectedContainer.style.split(';');
+    //   for (var i = 0; i < selectedContainer_style.length; i++) {
+    //     if (selectedContainer_style[i].indexOf('pd3layer') !== -1) {
+    //       pd3layer_source = selectedContainer_style[i]+';';
+    //     } else if (selectedContainer_style[i].indexOf('fillColor') !== -1) {
+    //       fillColor_source = selectedContainer_style[i]+';';
+    //     } else if (selectedContainer_style[i].indexOf('strokeColor') !== -1) {
+    //       strokeColor_source = selectedContainer_style[i] + ';';
+    //     }
+    //   }
       
-      cell.style = cell.style + pd3layer_source + fillColor_source + strokeColor_source;
-      edge.style = edge.style + pd3layer_source + fillColor_source + strokeColor_source;
+    //   cell.style = cell.style + pd3layer_source + fillColor_source + strokeColor_source;
+    //   edge.style = edge.style + pd3layer_source + fillColor_source + strokeColor_source;
 
 
-      this.addCell(cell);
-      this.addCell(edge);
+    //   this.addCell(cell);
+    //   this.addCell(edge);
 
-      return cell, edge;
-    };
+    //   return cell, edge;
+    // };
 
     var z = q.moveCells;
     q.moveCells = function (b, c, d, e, f, g, k) {
