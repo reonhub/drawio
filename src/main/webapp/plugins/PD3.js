@@ -8,7 +8,7 @@ Graph.prototype.defaultEdgeStyle = {
 };
 /*****sidebar setting for digital triplet start *****/
 Sidebar.prototype.init = function () {
-  this.addSearchPalette(false);
+  this.addSearchPalette(true);
   this.addProblemSolvingLayerPalette(true);
   this.addEngineeringCyclePalette(true);
   this.addInformationLayerPalette(true);
