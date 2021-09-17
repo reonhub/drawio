@@ -6,6 +6,102 @@ Graph.prototype.defaultEdgeStyle = {
   verticalAlign: "bottom",
   endArrow: "block"
 };
+/*****NoLayer end*****/
+Sidebar.prototype.addNoPalette = function (expand) {
+  var sb = this;
+  var fns = [
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;",
+      box_width,
+      box_height,
+      "Action",
+      "Problem-Solving Action Box",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=start;",
+      startendbox_width,
+      startendbox_height,
+      "Start",
+      "Problem-Solving Start Box",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=end;",
+      startendbox_width,
+      startendbox_height,
+      "End",
+      "Problem-Solving End Box",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "text;html=1;rounded=0;whiteSpace=wrap;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;pd3layer=topic;",
+      40,
+      20,
+      "Text",
+      "Text",
+      null,
+      null,
+      "text textbox textarea label"
+    ),
+    this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;pd3layer=topic;pd3type=arrow;', 
+    arrow_inout_len,
+    0,
+    'Output',
+    'Information Arrow',
+    null,
+    'uml sequence message call invoke dispatch'
+    ),
+    this.addEntry('Intention', function () {
+      var edge = new mxCell('Intention', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      edge.geometry.setTerminalPoint(new mxPoint(0, arrow_updown_len), false);
+      edge.geometry.relative = true;
+      edge.edge = true;
+      return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Intention Arrow');
+    }),
+    this.addEntry('Tool/Knowledge', function () {
+      var edge = new mxCell('Tool/Knowledge', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, arrow_updown_len), true);
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), false);
+      edge.geometry.relative = true;
+      edge.edge = true;
+      return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Tool Arrow');
+    }),
+    this.addEntry('Rationale', function () {
+      var edge = new mxCell('Rationale', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      edge.geometry.setTerminalPoint(new mxPoint(-30, arrow_updown_len), false);
+      edge.geometry.relative = true;
+      edge.edge = true;
+      return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Rationale Arrow');
+    }),
+    this.addEntry('Annotation', function () {
+      var edge = new mxCell('Annotation', new mxGeometry(0, 0, 0, 0), 'endArrow=block;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;dashed=1;');
+      edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      edge.geometry.setTerminalPoint(new mxPoint(-30, arrow_updown_len), false);
+      edge.geometry.relative = true;
+      edge.edge = true;
+      return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Annotation Arrow');
+    }),
+    // this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;dashPattern=1 1;', 
+    // arrow_inout_len,
+    // 0,
+    // 'OR',
+    // 'OR Arrow',
+    // null,
+    // 'uml sequence message call invoke dispatch'
+    // ),
+  ];
+  this.addPaletteFunctions("No Layer", "No Layer", null != expand ? expand : true, fns);
+};
+/*****NoLayer end*****/
 /*****sidebar setting for digital triplet start *****/
 Sidebar.prototype.init = function () {
   this.addSearchPalette(true);
@@ -119,6 +215,14 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
       edge.edge = true;
       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Annotation Arrow');
     }),
+    // this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;dashPattern=1 1;', 
+    // arrow_inout_len,
+    // 0,
+    // 'OR',
+    // 'OR Arrow',
+    // null,
+    // 'uml sequence message call invoke dispatch'
+    // ),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Label of Parent Action Box', 'Problem-Solving Container', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=whilebox;strokeColor=#d79b00;swimlaneLine=0;dashed=1;swimlaneFillColor=none;fillColor=none;', box_width+50, box_height+50, '', 'While Box', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=whilecontainer;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneLine=0;dashed=1;', 400, container_height, 'While', 'While Container', null, null, 'container swimlane lane pool group')
