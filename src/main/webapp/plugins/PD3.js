@@ -6,7 +6,37 @@ Graph.prototype.defaultEdgeStyle = {
   verticalAlign: "bottom",
   endArrow: "block"
 };
-/*****NoLayer end*****/
+/*****sidebar setting for digital triplet start *****/
+Sidebar.prototype.init = function () {
+  this.addSearchPalette(true);
+  this.addProblemSolvingLayerPalette(true);
+  this.addEngineeringCyclePalette(true);
+  this.addInformationLayerPalette(true);
+  this.addPhysicalLayerPalette(true);
+  this.addNoLayerPalette(true);
+};
+
+var arrow_inout_len = 100,
+arrow_updown_len = 80,
+box_width = 120,
+box_height = 60,
+startendbox_width = 60,
+startendbox_height = 60,
+container_height = 200,
+containerforEC_padding = 40,
+containerforEC_width = box_width*7+arrow_inout_len*8+containerforEC_padding*2,
+ECDP_val = "Define Problem",
+ECDP_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;fillColor=#e3c800;strokeColor=#d79b00;fontColor=#ffffff;',
+ECCD_val = "Collect Data",
+ECCD_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCD;fillColor=#60a917;strokeColor=#d79b00;fontColor=#ffffff;',ECAI_val = "Analyze Information",
+ECAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECAI;fillColor=#0050ef;strokeColor=#d79b00;fontColor=#ffffff;',
+ECEV_val = "Evaluate",
+ECEV_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',
+ECLS_val = "List-up Solutions",
+ECLS_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECLS;fillColor=#d80073;strokeColor=#d79b00;fontColor=#ffffff;',ECDE_val = "Decide",
+ECDE_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDE;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;',ECEX_val ="Execute",
+ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#1ba1e2;strokeColor=#d79b00;fontColor=#ffffff;';
+/*****NoLayer start*****/
 Sidebar.prototype.addNoPalette = function (expand) {
   var sb = this;
   var fns = [
@@ -98,39 +128,12 @@ Sidebar.prototype.addNoPalette = function (expand) {
     // null,
     // 'uml sequence message call invoke dispatch'
     // ),
+  
+    
   ];
   this.addPaletteFunctions("No Layer", "No Layer", null != expand ? expand : true, fns);
 };
 /*****NoLayer end*****/
-/*****sidebar setting for digital triplet start *****/
-Sidebar.prototype.init = function () {
-  this.addSearchPalette(true);
-  this.addProblemSolvingLayerPalette(true);
-  this.addEngineeringCyclePalette(true);
-  this.addInformationLayerPalette(true);
-  this.addPhysicalLayerPalette(true);
-};
-
-var arrow_inout_len = 100,
-arrow_updown_len = 80,
-box_width = 120,
-box_height = 60,
-startendbox_width = 60,
-startendbox_height = 60,
-container_height = 200,
-containerforEC_padding = 40,
-containerforEC_width = box_width*7+arrow_inout_len*8+containerforEC_padding*2,
-ECDP_val = "Define Problem",
-ECDP_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;fillColor=#e3c800;strokeColor=#d79b00;fontColor=#ffffff;',
-ECCD_val = "Collect Data",
-ECCD_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCD;fillColor=#60a917;strokeColor=#d79b00;fontColor=#ffffff;',ECAI_val = "Analyze Information",
-ECAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECAI;fillColor=#0050ef;strokeColor=#d79b00;fontColor=#ffffff;',
-ECEV_val = "Evaluate",
-ECEV_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',
-ECLS_val = "List-up Solutions",
-ECLS_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECLS;fillColor=#d80073;strokeColor=#d79b00;fontColor=#ffffff;',ECDE_val = "Decide",
-ECDE_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDE;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;',ECEX_val ="Execute",
-ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#1ba1e2;strokeColor=#d79b00;fontColor=#ffffff;';
 /*****ProblemSolvingLayer start*****/
 Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
   var sb = this;
