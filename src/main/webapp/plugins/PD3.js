@@ -37,7 +37,7 @@ ECLS_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3
 ECDE_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDE;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;',ECEX_val ="Execute",
 ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#1ba1e2;strokeColor=#d79b00;fontColor=#ffffff;';
 /*****NoLayer start*****/
-Sidebar.prototype.addNoPalette = function (expand) {
+Sidebar.prototype.addNoLayerPalette = function (expand) {
   var sb = this;
   var fns = [
     this.createVertexTemplateEntry(
