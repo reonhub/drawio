@@ -4,7 +4,8 @@ Graph.prototype.defaultEdgeStyle = {
   jettySize: "auto",
   orthogonalLoop: "0",
   verticalAlign: "bottom",
-  endArrow: "block"
+  endArrow: "block",
+  fontSize: 14
 };
 /*****sidebar setting for digital triplet start *****/
 Sidebar.prototype.init = function () {
