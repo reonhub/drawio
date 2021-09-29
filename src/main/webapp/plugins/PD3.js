@@ -228,8 +228,8 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
     // 'uml sequence message call invoke dispatch'
     // ),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Label of Parent Action Box', 'Problem-Solving Container', null, null, 'container swimlane lane pool group'),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=whilebox;strokeColor=#d79b00;swimlaneLine=0;dashed=1;swimlaneFillColor=none;fillColor=none;', box_width+50, box_height+50, '', 'While Box', null, null, 'container swimlane lane pool group'),
-    this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=whilecontainer;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneLine=0;dashed=1;', 400, container_height, 'While', 'While Container', null, null, 'container swimlane lane pool group')
+    // this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=whilebox;strokeColor=#d79b00;swimlaneLine=0;dashed=1;swimlaneFillColor=none;fillColor=none;', box_width+50, box_height+50, '', 'While Box', null, null, 'container swimlane lane pool group'),
+    // this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=whilecontainer;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneLine=0;dashed=1;', 400, container_height, 'While', 'While Container', null, null, 'container swimlane lane pool group')
   ];
   this.addPaletteFunctions("Problem-Solving Layer", "Problem-Solving Layer", null != expand ? expand : true, fns);
 };
