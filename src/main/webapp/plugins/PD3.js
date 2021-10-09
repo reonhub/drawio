@@ -27,16 +27,19 @@ container_height = 200,
 containerforEC_padding = 40,
 containerforEC_width = box_width*7+arrow_inout_len*8+containerforEC_padding*2,
 ECDP_val = "Define Problem",
-ECDP_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;fillColor=#e3c800;strokeColor=#d79b00;fontColor=#ffffff;',
-ECCD_val = "Collect Data",
-ECCD_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCD;fillColor=#60a917;strokeColor=#d79b00;fontColor=#ffffff;',ECAI_val = "Analyze Information",
-ECAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECAI;fillColor=#0050ef;strokeColor=#d79b00;fontColor=#ffffff;',
-ECEV_val = "Evaluate",
-ECEV_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',
-ECLS_val = "List-up Solutions",
-ECLS_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECLS;fillColor=#d80073;strokeColor=#d79b00;fontColor=#ffffff;',ECDE_val = "Decide",
-ECDE_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDE;fillColor=#a20025;strokeColor=#d79b00;fontColor=#ffffff;',ECEX_val ="Execute",
-ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#1ba1e2;strokeColor=#d79b00;fontColor=#ffffff;';
+ECDP_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#E3CC39;',
+ECCAI_val = "Collect/Analyze Information",
+ECCAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCAI;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#3560EF;',
+// ECAI_val = "Analyze Information",
+// ECAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECAI;fillColor=#3560EF;strokeColor=#d79b00;fontColor=#ffffff;',
+// ECEV_val = "Evaluate",
+// ECEV_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',
+ECGH_val = "Generate Hypothesis",
+ECGH_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECGH;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#D850D3;',
+ECESI_val = "Evaluate/Select Information",
+ECESI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECESI;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#A24C42;',
+ECEX_val ="Execute",
+ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#31CBD6;';
 /*****NoLayer start*****/
 Sidebar.prototype.addNoLayerPalette = function (expand) {
   var sb = this;
@@ -244,57 +247,57 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       box_width,
       box_height,
       ECDP_val,
-      "Problem Definition Box",
+      "Problem Definition Type",
       null,
       null,
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      ECCD_style,
+      ECCAI_style,
       box_width,
       box_height,
-      ECCD_val,
-      "Data Collection Box",
+      ECCAI_val,
+      "Information Collection/Analysis Type",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    // this.createVertexTemplateEntry(
+    //   ECAI_style,
+    //   box_width,
+    //   box_height,
+    //   ECAI_val,
+    //   "Info Analysis Box",
+    //   null,
+    //   null,
+    //   "rect rectangle box"
+    // ),
+    // this.createVertexTemplateEntry(
+    //   ECEV_style,
+    //   box_width,
+    //   box_height,
+    //   ECEV_val,
+    //   "Information Evaluation/Selection Box",
+    //   null,
+    //   null,
+    //   "rect rectangle box"
+    // ),
+    this.createVertexTemplateEntry(
+      ECGH_style,
+      box_width,
+      box_height,
+      ECGH_val,
+      "Hypothesis Generation Type",
       null,
       null,
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      ECAI_style,
+      ECESI_style,
       box_width,
       box_height,
-      ECAI_val,
-      "Info Analysis Box",
-      null,
-      null,
-      "rect rectangle box"
-    ),
-    this.createVertexTemplateEntry(
-      ECEV_style,
-      box_width,
-      box_height,
-      ECEV_val,
-      "Evaluation Box",
-      null,
-      null,
-      "rect rectangle box"
-    ),
-    this.createVertexTemplateEntry(
-      ECLS_style,
-      box_width,
-      box_height,
-      ECLS_val,
-      "Solution Listing Box",
-      null,
-      null,
-      "rect rectangle box"
-    ),
-    this.createVertexTemplateEntry(
-      ECDE_style,
-      box_width,
-      box_height,
-      ECDE_val,
-      "Decision Box",
+      ECESI_val,
+      "Information Evaluation/Selection Type",
       null,
       null,
       "rect rectangle box"
@@ -305,7 +308,7 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
       box_width,
       box_height,
       ECEX_val,
-      "Execution Box",
+      "Execution Type",
       null,
       null,
       "rect rectangle box"
@@ -334,18 +337,18 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
   this.addEntry('Engineering Cycle', function () {
     var cell1 = new mxCell(ECDP_val, new mxGeometry(0, 0, box_width, box_height), ECDP_style);
     cell1.vertex = true;
-    var cell2 = new mxCell(ECCD_val, new mxGeometry(box_width+arrow_inout_len, 0, box_width, box_height), ECCD_style);
+    var cell2 = new mxCell(ECCAI_val, new mxGeometry(box_width+arrow_inout_len, 0, box_width, box_height), ECCAI_style);
     cell2.vertex = true;
-    var cell3 = new mxCell(ECAI_val, new mxGeometry((box_width+arrow_inout_len)*2, 0, box_width, box_height), ECAI_style);
+    // var cell3 = new mxCell(ECAI_val, new mxGeometry((box_width+arrow_inout_len)*2, 0, box_width, box_height), ECAI_style);
+    // cell3.vertex = true;
+    // var cell4 = new mxCell(ECEV_val, new mxGeometry((box_width+arrow_inout_len)*3, 0, box_width, box_height), ECEV_style);
+    // cell4.vertex = true;
+    var cell3 = new mxCell(ECGH_val, new mxGeometry((box_width+arrow_inout_len)*2, 0, box_width, box_height), ECGH_style);
     cell3.vertex = true;
-    var cell4 = new mxCell(ECEV_val, new mxGeometry((box_width+arrow_inout_len)*3, 0, box_width, box_height), ECEV_style);
+    var cell4 = new mxCell(ECESI_val, new mxGeometry((box_width+arrow_inout_len)*3, 0, box_width, box_height), ECESI_style);
     cell4.vertex = true;
-    var cell5 = new mxCell(ECLS_val, new mxGeometry((box_width+arrow_inout_len)*4, 0, box_width, box_height), ECLS_style);
+    var cell5 = new mxCell(ECEX_val, new mxGeometry((box_width+arrow_inout_len)*4, 0, box_width, box_height), ECEX_style);
     cell5.vertex = true;
-    var cell6 = new mxCell(ECDE_val, new mxGeometry((box_width+arrow_inout_len)*5, 0, box_width, box_height), ECDE_style);
-    cell6.vertex = true;
-    var cell7 = new mxCell(ECEX_val, new mxGeometry((box_width+arrow_inout_len)*6, 0, box_width, box_height), ECEX_style);
-    cell7.vertex = true;
 
     var edge1 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
     edge1.geometry.setTerminalPoint(new mxPoint(-arrow_inout_len, box_height/2), true);
@@ -383,17 +386,17 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
     edge6.geometry.relative = true;
     edge6.edge = true;
 
-    var edge7 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    edge7.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*5, box_height/2), true);
-    edge7.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*6, box_height/2), false);
-    edge7.geometry.relative = true;
-    edge7.edge = true;
+    // var edge7 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    // edge7.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*5, box_height/2), true);
+    // edge7.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*6, box_height/2), false);
+    // edge7.geometry.relative = true;
+    // edge7.edge = true;
 
-    var edge8 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-    edge8.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*6, box_height/2), true);
-    edge8.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*7, box_height/2), false);
-    edge8.geometry.relative = true;
-    edge8.edge = true;
+    // var edge8 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
+    // edge8.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*6, box_height/2), true);
+    // edge8.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*7, box_height/2), false);
+    // edge8.geometry.relative = true;
+    // edge8.edge = true;
 
     cell1.insertEdge(edge1, false);
     cell1.insertEdge(edge2, true);
@@ -405,12 +408,12 @@ Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
     cell4.insertEdge(edge5, true);
     cell5.insertEdge(edge5, false);
     cell5.insertEdge(edge6, true);
-    cell6.insertEdge(edge6, false);
-    cell6.insertEdge(edge7, true);
-    cell7.insertEdge(edge7, false);
-    cell7.insertEdge(edge8, true);
+    // cell6.insertEdge(edge6, false);
+    // cell6.insertEdge(edge7, true);
+    // cell7.insertEdge(edge7, false);
+    // cell7.insertEdge(edge8, true);
 
-    return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, cell6, cell7, edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8], 640, box_height, 'Engineering Cycle');
+    return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6], 640, box_height, 'Engineering Cycle');
     })
   ];
   this.addPaletteFunctions("Engineering Cycle", "Engineering Cycle", null != expand ? expand : true, fns);

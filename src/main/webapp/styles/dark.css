@@ -154,12 +154,12 @@ html .geEditor ::-webkit-scrollbar-thumb:hover, .geHsplit:hover, .geVsplit:hover
 	background-color:#a0a0a0;
 }
 html body .geStatusAlert {
-	background-color:#a20025;
+	background-color:#A24C42;
 	border:1px solid #bd002b;
 	color:#fff !important;
 }
 html body .geStatusAlert:hover {
-	background-color:#a20025;
+	background-color:#A24C42;
 	border-color:#bd002b;
 }
 html body .geCommentContainer {
