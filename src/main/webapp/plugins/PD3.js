@@ -2,7 +2,9 @@
 var EP_URI="",
     EP_URI_prefix="",
     EP_URI_div,
-    EP_URI_prefix_div;
+    EP_URI_prefix_div,
+    textbox1,
+    textbox2;
 
 /*Default Setting of both Node and Arc */
 Graph.prototype.defaultEdgeStyle = {
@@ -1927,11 +1929,12 @@ Actions.prototype.init = function () {
   this.addAction("editseeAlso", mxUtils.bind(this, function () {
     var graph = b;
     var selectedCells = graph.getSelectionCells();
+    
     if (null != a && 0 < a.length) {
       var graphModel = graph.getModel();
-      graphModel = new TextareaDialog(this.editorUi, mxResources.get("editseeAlso") + ":", selectedCells[0].seeAlso || "", function (graphModel) {
-        console.log(mxUtils.trim(graphModel));
-        selectedCells[0].seeAlso = mxUtils.trim(graphModel);
+      console.log(mxUtils.getChildNodes(graphModel));
+      graphModel = new TextareaDialog(this.editorUi, "edit seeAlso:", selectedCells[0].seeAlso || "", function (graphModel) {
+        selectedCells[0].seeAlso = textbox2.value = mxUtils.trim(graphModel);
       }, null, null, 400, 220);
       this.editorUi.showDialog(graphModel.container, 420, 300, !0, !0);
       graphModel.init()
@@ -14065,7 +14068,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     EP_URI_prefix_div.className= "ep_uri_prefix_div";
     EP_URI_prefix_div.style.display= "table";
     EP_URI_prefix_div.style.marginBottom="4px";
-  
 
     var c = mxUtils.button(mxResources.get("edit@prefix"), mxUtils.bind(this, function (a) {
       this.editorUi.actions.get("edit@prefix").funct()
@@ -14082,22 +14084,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     a.appendChild(EP_URI_prefix_div);
     a.appendChild(c);
     mxUtils.br(a);
-
-    // var c = mxUtils.button(mxResources.get("editData"), mxUtils.bind(this, function (a) {
-    //   this.editorUi.actions.get("editData").funct()
-    // }));
-    // c.setAttribute("title", mxResources.get("editData") + " (" + this.editorUi.actions.get("editData").shortcut + ")");
-    // c.style.width = "202px";
-    // c.style.marginBottom = "2px";
-    // a.appendChild(c);
-    // mxUtils.br(a);
-
-    // c = mxUtils.button(mxResources.get("clearDefaultStyle"), mxUtils.bind(this, function (a) {
-    //   this.editorUi.actions.get("clearDefaultStyle").funct()
-    // }));
-    // c.setAttribute("title", mxResources.get("clearDefaultStyle") + " (" + this.editorUi.actions.get("clearDefaultStyle").shortcut + ")");
-    // c.style.width = "202px";
-    // a.appendChild(c);
     return a
   };
 
@@ -14172,29 +14158,61 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     id_div = document.createElement("div");
     console.log(this);
     var cells = this.editorUi.editor.graph.getSelectionCells();
-    mxUtils.writeln(id_div, "id : " + cells[0].id);
+    mxUtils.writeln(id_div, "id : ");
     id_div.style.width = "200px";
     id_div.className= "id_div";
     id_div.style.marginBottom="4px";
     id_div.style.whiteSpace="normal";
     id_div.style.wordBreak="break-all";
+    id_div.style.height="18px";
+
+    textbox1 = document.createElement("input");
+    // mxUtils.setValue(textbox1, cells[0].id);
+    textbox1.value = cells[0].id;
+    textbox1.type="text";
+    textbox1.style.width = "200px";
+    textbox1.className= "textbox";
+    textbox1.style.marginBottom="4px";
+    textbox1.style.whiteSpace="normal";
+    textbox1.style.wordBreak="break-all";
+    textbox1.style.borderColor="rgb(37 37 37)";
+    textbox1.style.borderRadius="2px";
+    textbox1.style.borderWidth="thin";
+
+    a.appendChild(id_div);
+    a.appendChild(textbox1);
+
+    textbox2 = document.createElement("input");
+    // mxUtils.setValue(textbox2, cells[0].id);
+    textbox2.value = cells[0].id;
+    textbox2.type="text";
+    textbox2.style.width = "200px";
+    textbox2.className= "textbox";
+    textbox2.style.marginBottom="4px";
+    textbox2.style.whiteSpace="normal";
+    textbox2.style.wordBreak="break-all";
+    textbox2.style.borderColor="rgb(37 37 37)";
+    textbox2.style.borderRadius="2px";
+    textbox2.style.borderWidth="thin";
 
     seealso_div = document.createElement("div");
     var cells = this.editorUi.editor.graph.getSelectionCells();
+    mxUtils.writeln(seealso_div, "seeAlso : ");
     if (cells[0].seeAlso != undefined){
-      mxUtils.writeln(seealso_div, "seeAlso : " + cells[0].seeAlso);
+      textbox2.value = cells[0].seeAlso;
     }else{
-      mxUtils.writeln(seealso_div, "seeAlso : none");
+      textbox2.value = "";
     }
     seealso_div.style.width = "200px";
     seealso_div.className= "seealso_div";
     seealso_div.style.marginBottom="-10px";
     seealso_div.style.whiteSpace="normal";
     seealso_div.style.wordBreak="break-all";
+    seealso_div.style.height="28px";
 
-    a.appendChild(id_div);
     a.appendChild(seealso_div);
-    // a.appendChild(d);
+    a.appendChild(textbox2);
+
     return a;
 
   };
