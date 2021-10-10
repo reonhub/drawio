@@ -5,7 +5,11 @@ var EP_URI="",
     EP_URI_prefix_div,
     textbox1,
     textbox2,
-    root;
+    root,
+    URI_val,
+    prefix_val,
+    root_style=[];
+
 
 /*Default Setting of both Node and Arc */
 Graph.prototype.defaultEdgeStyle = {
@@ -1467,20 +1471,28 @@ Actions.prototype.init = function () {
   this.addAction("editURI", mxUtils.bind(this, function () {
     var graph = b;
     var graphModel = graph.getModel();
-    var s;
-    if(root.URI != undefined){
-      s = root.URI
+    root = graphModel.root;
+    root_style = setStyleArray(root);
+    if(root_style!=null){
+      if("URI" in root_style){
+        var URI_val = root_style["URI"];
+      }else{
+        URI_val = "";
+      }
     }else{
-      s = ""
+      root_style = {};
+      URI_val ="";
     }
-    graphModel = new TextareaDialog(this.editorUi, "Edit URI :", s, function (graphModel) {
+    graphModel = new TextareaDialog(this.editorUi, "Edit URI :", URI_val, function (graphModel) {
       var input = mxUtils.ltrim(graphModel);
-      if(input!=""){
-        root.URI = input;
+      if(input != ""){
+        root_style["URI"] = input;
         mxUtils.setTextContent(EP_URI_div,"URI : " + input);
       }else{
         mxUtils.setTextContent(EP_URI_div,"URI : none");
       }
+
+      root.style=setStyleString(root_style);
     }, null, null, 500, 30);
     this.editorUi.showDialog(graphModel.container, 520, 130, !0, !0);
     graphModel.init()
@@ -1490,19 +1502,28 @@ Actions.prototype.init = function () {
   this.addAction("editprefix", mxUtils.bind(this, function () {
     var graph = b;
     var graphModel = graph.getModel();
-    if(root.prefix != undefined){
-      s = root.prefix
+    root = graphModel.root;
+    root_style = setStyleArray(root);
+    if(root_style!=null){
+      if("prefix" in root_style){
+        var prefix_val = root_style["prefix"];
+      }else{
+        prefix_val = "";
+      }
     }else{
-      s = ""
+      root_style = {};
+      prefix_val ="";
     }
-    graphModel = new TextareaDialog(this.editorUi, "Edit prefix:", s , function (graphModel) {
+    graphModel = new TextareaDialog(this.editorUi, "Edit prefix:", prefix_val , function (graphModel) {
       var input = mxUtils.ltrim(graphModel);
       if(input!=""){
-        root.prefix = input
+        root_style["prefix"] = input;
         mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ input);
       }else{
         mxUtils.setTextContent(EP_URI_prefix_div, "prefix : none");
       }
+
+      root.style=setStyleString(root_style);
     }, null, null, 500, 30);
     this.editorUi.showDialog(graphModel.container, 520, 130, !0, !0);
     graphModel.init()
@@ -1951,18 +1972,35 @@ Actions.prototype.init = function () {
   this.addAction("editseeAlso", mxUtils.bind(this, function () {
     var graph = b;
     var selectedCells = graph.getSelectionCells();
+    // console.log(setStyleArray(selectedCells[0]));
+    var cell = selectedCells[0];
+    var cell_style = setStyleArray(selectedCells[0]);
+    console.log(cell_style);
+    if(cell_style!=null){
+      if("seeAlso" in cell_style){
+        var seeAlso_val = cell_style["seeAlso"];
+      }else{
+        seeAlso_val = "";
+      }
+    }else{
+      seeAlso_val ="";
+    }
     
     if (null != a && 0 < a.length) {
       var graphModel = graph.getModel();
-      graphModel = new TextareaDialog(this.editorUi, "edit seeAlso:", selectedCells[0].seeAlso || "", function (graphModel) {
-        var seeAlso_val = mxUtils.ltrim(graphModel);
-        if(seeAlso_val != ""){
-           selectedCells[0].seeAlso = seeAlso_val;
-           mxUtils.setTextContent(seealso_div, "seeAlso : " + selectedCells[0].seeAlso);
+      graphModel = new TextareaDialog(this.editorUi, "edit seeAlso:",  seeAlso_val, function (graphModel) {
+        var seeAlso_tmp = mxUtils.ltrim(graphModel);
+        cell_style["seeAlso"] = seeAlso_tmp;
+        cell.style = setStyleString(cell_style);
+        console.log(cell);
+
+        if(seeAlso_tmp != ""){
+          //  selectedCells[0].seeAlso = seeAlso_tmp;
+           mxUtils.setTextContent(seeAlso_div, "seeAlso : \r\n" + seeAlso_tmp);
         }else{
-          mxUtils.setTextContent(seealso_div, "seeAlso : none");
-          console.log("false1");
+          mxUtils.setTextContent(seeAlso_div, "seeAlso : none");
         }
+
       }, null, null, 400, 220);
 
       this.editorUi.showDialog(graphModel.container, 420, 300, !0, !0);
@@ -3633,7 +3671,18 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
   /*Node Property */
   Editor.commonVertexProperties = [{
     type: "separator"
-  }, {
+  }, 
+  {
+    name: "URI",
+    dispName: "URI",
+    type: "char",
+  }, 
+  {
+    name: "prefix",
+    dispName: "prefix",
+    type: "char",
+  }, 
+  {
     name: "resizeLastRow",
     dispName: "Resize Last Row",
     type: "bool",
@@ -14070,12 +14119,28 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     return a
   };
   DiagramFormatPanel.prototype.addStyleOps = function (a) {
-
     root = this.editorUi.editor.graph.getModel().root;
+    root_style = setStyleArray(root);
+    console.log(root_style);
+    if(root_style!=null){
+      if("URI" in root_style){
+        URI_val = root_style["URI"];
+      }else{
+        URI_val = "";
+      }
+      if("prefix" in root_style){
+        prefix_val = root_style["prefix"];
+      }else{
+        prefix_val = "";
+      }
+    }else{
+      URI_val = "";
+      prefix_val = "";
+    }
 
     EP_URI_div = document.createElement("div");
-    if(root.URI != undefined){
-        mxUtils.setTextContent(EP_URI_div,"URI : "+ root.URI);
+    if(URI_val != ""){
+        mxUtils.setTextContent(EP_URI_div,"URI : "+ URI_val);
       }else{
         mxUtils.setTextContent(EP_URI_div, "URI : none");
     }
@@ -14087,7 +14152,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     EP_URI_div.style.marginBottom="4px";
     EP_URI_div.style.wordBreak="break-all";
 
-    
+
     var c = mxUtils.button(mxResources.get("editURI"), mxUtils.bind(this, function (a) {
       this.editorUi.actions.get("editURI").funct()
     }));
@@ -14108,8 +14173,8 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
     a.style.fontSize ="14px"
     EP_URI_prefix_div = document.createElement("div");
-    if(root.prefix != undefined){
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ root.prefix);
+    if(prefix_val != ""){
+        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ prefix_val);
       }else{
         mxUtils.setTextContent(EP_URI_prefix_div, "prefix : none");
     }
@@ -14120,7 +14185,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     EP_URI_prefix_div.style.marginBottom="4px";
     EP_URI_prefix_div.style.wordBreak="break-all";
 
-    var c = mxUtils.button(mxResources.get("editprefix"), mxUtils.bind(this, function (a) {
+    var c = mxUtils.button("Edit prefix", mxUtils.bind(this, function (a) {
       this.editorUi.actions.get("editprefix").funct()
     }));
     c.setAttribute("title", mxResources.get("editprefix") + " (" + this.editorUi.actions.get("editprefix").shortcut + ")");
@@ -14135,8 +14200,44 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     a.appendChild(EP_URI_prefix_div);
     a.appendChild(c);
     mxUtils.br(a);
+
     return a
   };
+
+  function setStyleArray (mxCell){
+    if(mxCell.style != undefined){
+      var style = mxCell.style;
+      var style = style.split(';');
+      for(var i=0; i<style.length; i++){
+        style[i] = style[i].split('=');
+      }
+      var style_return = [];
+      for(var i=0; i<style.length; i++){
+        style_return[style[i][0]] = style[i][1]
+      }
+    }else{
+      style_return = null
+    }
+    return style_return;
+  } 
+
+  function setStyleString (styleArray){
+    var style_return = "";
+    if(styleArray == null){
+      style_return = null;
+    }else{
+      for(let key in styleArray){
+        if(key=="" || key == undefined || styleArray[key] == "" || styleArray[key] == undefined){
+          continue;
+        }else{
+          style_return += key + "=" + styleArray[key] + ";";
+        }
+      }
+    }
+
+    console.log(style_return);
+    return style_return;
+  }
 
   Editor.prototype.getGraphXml = function (a) {
     a = (null != a ? a : 1) ? (new mxCodec(mxUtils.createXmlDocument())).encode(this.graph.getModel()) : this.graph.encodeCells(mxUtils.sortCells(this.graph.model.getTopmostCells(this.graph.getSelectionCells())));
@@ -14215,8 +14316,33 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     id_div.style.height="18px";
 
     textbox1 = document.createElement("input");
-    // mxUtils.setValue(textbox1, cells[0].id);
-    textbox1.value = cells[0].id;
+
+    root = this.editorUi.editor.graph.getModel().root;
+    root_style = setStyleArray(root);
+
+    if(root_style!=null){
+      // if("URI" in root_style){
+      //   URI_val = root_style["URI"];
+      // }else{
+      //   URI_val = "";
+      // }
+      if("prefix" in root_style){
+        prefix_val = root_style["prefix"];
+      }else{
+        prefix_val = "";
+      }
+    }else{
+      // URI_val = "";
+      prefix_val = "";
+    }
+
+    if(prefix_val==""){
+      str = "";
+    }else{
+      str = "[" + prefix_val+ "]";
+    }
+    
+    textbox1.value = str +cells[0].id;
     textbox1.type="text";
     textbox1.style.width = "200px";
     textbox1.className= "textbox";
@@ -14243,26 +14369,42 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     // textbox2.style.borderRadius="2px";
     // textbox2.style.borderWidth="thin";
 
-    seealso_div = document.createElement("div");
+    seeAlso_div = document.createElement("div");
     var cells = this.editorUi.editor.graph.getSelectionCells();
-    if (cells[0].seeAlso != undefined){
-      mxUtils.write(seealso_div, "seeAlso : " + cells[0].seeAlso);
+    var cell_style = setStyleArray(cells[0]);
+    var seeAlso_val ="";
+
+    if(cell_style!=null){
+      if("seeAlso" in cell_style){
+        seeAlso_val = cell_style["seeAlso"];
+      }else{
+        seeAlso_val = "";
+      }
     }else{
-      mxUtils.write(seealso_div, "seeAlso : none");
+      seeAlso_val ="";
     }
-    // mxUtils.writeln(seealso_div, "seeAlso : ");
+    console.log(seeAlso_val);
+
+
+    if (seeAlso_val != ""){
+      mxUtils.writeln(seeAlso_div, "seeAlso : ");
+      mxUtils.write(seeAlso_div, seeAlso_val);
+    }else{
+      mxUtils.write(seeAlso_div, "seeAlso : none");
+    }
+    // mxUtils.writeln(seeAlso_div, "seeAlso : ");
     // if (cells[0].seeAlso != undefined){
     //   textbox2.value = cells[0].seeAlso;
     // }else{
     //   textbox2.value = "";
     // }
-    seealso_div.style.width = "200px";
-    seealso_div.className= "seealso_div";
-    seealso_div.style.whiteSpace="normal";
-    seealso_div.style.wordBreak="break-all";
-    seealso_div.style.marginBottom="4px";
+    seeAlso_div.style.width = "200px";
+    seeAlso_div.className= "seeAlso_div";
+    seeAlso_div.style.whiteSpace="normal";
+    seeAlso_div.style.wordBreak="break-all";
+    seeAlso_div.style.marginBottom="4px";
 
-    a.appendChild(seealso_div);
+    a.appendChild(seeAlso_div);
     // a.appendChild(textbox2);
 
     return a;
