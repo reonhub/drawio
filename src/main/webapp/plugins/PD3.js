@@ -19,6 +19,7 @@ Graph.prototype.defaultVertexStyle = {
 };
 /*****sidebar setting for digital triplet start *****/
 Sidebar.prototype.init = function () {
+
   this.addSearchPalette(false);
   this.addProblemSolvingLayerPalette(true);
   // this.addEngineeringCyclePalette(true);
@@ -5848,7 +5849,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }));
       d.setAttribute("title", mxResources.get("editseeAlso") + " (" + this.editorUi.actions.get("editseeAlso").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.height = "25px";
       d.style.backgroundColor="rgb(79 79 79)";
       d.style.borderColor="rgb(37 37 37)";
@@ -5863,7 +5864,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }));
       d.setAttribute("title", mxResources.get("setProblemSolvingLayerStyle") + " (" + this.editorUi.actions.get("setProblemSolvingLayerStyle").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.height = "25px";
       d.style.backgroundColor="#FFE6CC";
       d.style.borderColor="#d79b00";
@@ -5877,7 +5878,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }));
       d.setAttribute("title", mxResources.get("setInformationLayerStyle") + " (" + this.editorUi.actions.get("setInformationLayerStyle").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.height = "25px";
       d.style.backgroundColor="#dae8fc";
       d.style.borderColor="#6c8ebf";
@@ -5891,7 +5892,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }));
       d.setAttribute("title", mxResources.get("setPhysicalLayerStyle") + " (" + this.editorUi.actions.get("setPhysicalLayerStyle").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.height = "25px";
       d.style.backgroundColor="#d5e8d4";
       d.style.borderColor="#82b366";
@@ -5905,7 +5906,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }));
       d.setAttribute("title", mxResources.get("setDPBoxStyle") + " (" + this.editorUi.actions.get("setDPBoxStyle").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
       d.style.backgroundColor="#D1BC35";
@@ -5913,27 +5914,13 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       d.style.borderWidth="thin";
       a.appendChild(d);
       mxUtils.br(a);
-      
-      // d = mxUtils.button(mxResources.get("setDataCollectionBoxStyle"), mxUtils.bind(this, function (a) {
-      //   this.editorUi.actions.get("setDataCollectionBoxStyle").funct()
-      // }));
-      // d.setAttribute("title", mxResources.get("setDataCollectionBoxStyle") + " (" + this.editorUi.actions.get("setDataCollectionBoxStyle").shortcut + ")");
-      // d.style.marginBottom = "2px";
-      // d.style.width = "200px";
-      // d.style.color="#ffffff";
-      // d.style.borderColor="#d79b00";
-      // d.style.backgroundColor="#60a917";
-      // d.style.borderRadius="3px";
-      // d.style.borderWidth="thin";
-      // a.appendChild(d);
-      // mxUtils.br(a);
 
       d = mxUtils.button(mxResources.get("setCAIBoxStyle"), mxUtils.bind(this, function (a) {
         this.editorUi.actions.get("setCAIBoxStyle").funct()
       }));
       d.setAttribute("title", mxResources.get("setCAIBoxStyle") + " (" + this.editorUi.actions.get("setCAIBoxStyle").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
       d.style.backgroundColor="#3E54E6";
@@ -5942,26 +5929,12 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       a.appendChild(d);
       mxUtils.br(a);
 
-      // d = mxUtils.button(mxResources.get("setEvaluationBoxStyle"), mxUtils.bind(this, function (a) {
-      //   this.editorUi.actions.get("setEvaluationBoxStyle").funct()
-      // }));
-      // d.setAttribute("title", mxResources.get("setEvaluationBoxStyle") + " (" + this.editorUi.actions.get("setEvaluationBoxStyle").shortcut + ")");
-      // d.style.marginBottom = "2px";
-      // d.style.width = "200px";
-      // d.style.color="#ffffff";
-      // d.style.borderColor="#d79b00";
-      // d.style.backgroundColor="#6a00ff";
-      // d.style.borderRadius="3px";
-      // d.style.borderWidth="thin";
-      // a.appendChild(d);
-      // mxUtils.br(a);
-
       d = mxUtils.button(mxResources.get("setGHBoxStyle"), mxUtils.bind(this, function (a) {
         this.editorUi.actions.get("setGHBoxStyle").funct()
       }));
       d.setAttribute("title", mxResources.get("setGHBoxStyle") + " (" + this.editorUi.actions.get("setGHBoxStyle").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
       d.style.backgroundColor="#C93AC9";
@@ -5975,7 +5948,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }));
       d.setAttribute("title", mxResources.get("setESIBoxStyle") + " (" + this.editorUi.actions.get("setESIBoxStyle").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
       d.style.backgroundColor="#8F4132";
@@ -5989,7 +5962,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }));
       d.setAttribute("title", mxResources.get("setEXBoxStyle") + " (" + this.editorUi.actions.get("setEXBoxStyle").shortcut + ")");
       d.style.marginBottom = "2px";
-      d.style.width = "200px";
+      d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
       d.style.backgroundColor="#2EBAC9";
@@ -6024,7 +5997,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       d.style.borderRadius="3px";
       d.style.borderWidth="thin";
       a.appendChild(d);
-      mxUtils.br(a);
       
       return q.apply(this, arguments)
     };
@@ -6418,8 +6390,8 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         this.editorUi.actions.get("editStyle").funct()
       })), b.setAttribute("title", mxResources.get("editStyle") + " (" + this.editorUi.actions.get("editStyle").shortcut + ")"), 
       b.style.marginBottom = "2px",
-      b.style.width = "200px",
-      b.style.height = "23px",
+      b.style.width = "202px",
+      b.style.height = "20px",
       b.style.backgroundColor="rgb(242 242 242)",
       b.style.borderColor="rgb(37 37 37)",
       b.style.borderRadius="3px",
@@ -6434,7 +6406,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       })), d.setAttribute("title", mxResources.get("editImage")), d.style.marginBottom = "2px", null == b ? d.style.width = "202px" : (
         b.style.width = "100px", 
         d.style.width = "100px", 
-        d.style.height = "23px",
+        d.style.height = "20px",
         d.style.marginLeft = "2px",
         d.style.backgroundColor="rgb(242 242 242)",
         d.style.borderColor="rgb(37 37 37)",
@@ -14194,4 +14166,35 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       scale: 1,
       extFonts: d || []
     }
+  };
+
+  StyleFormatPanel.prototype.addObjectInfo = function (a) {
+    id_div = document.createElement("div");
+    console.log(this);
+    var cells = this.editorUi.editor.graph.getSelectionCells();
+    mxUtils.writeln(id_div, "id : " + cells[0].id);
+    id_div.style.width = "200px";
+    id_div.className= "id_div";
+    id_div.style.marginBottom="4px";
+    id_div.style.whiteSpace="normal";
+    id_div.style.wordBreak="break-all";
+
+    seealso_div = document.createElement("div");
+    var cells = this.editorUi.editor.graph.getSelectionCells();
+    if (cells[0].seeAlso != undefined){
+      mxUtils.writeln(seealso_div, "seeAlso : " + cells[0].seeAlso);
+    }else{
+      mxUtils.writeln(seealso_div, "seeAlso : none");
+    }
+    seealso_div.style.width = "200px";
+    seealso_div.className= "seealso_div";
+    seealso_div.style.marginBottom="-10px";
+    seealso_div.style.whiteSpace="normal";
+    seealso_div.style.wordBreak="break-all";
+
+    a.appendChild(id_div);
+    a.appendChild(seealso_div);
+    // a.appendChild(d);
+    return a;
+
   };
