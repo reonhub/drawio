@@ -14119,9 +14119,9 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     return a
   };
   DiagramFormatPanel.prototype.addStyleOps = function (a) {
+    a.style.fontSize ="14px";
     root = this.editorUi.editor.graph.getModel().root;
     root_style = setStyleArray(root);
-    console.log(root_style);
     if(root_style!=null){
       if("URI" in root_style){
         URI_val = root_style["URI"];
@@ -14383,8 +14383,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     }else{
       seeAlso_val ="";
     }
-    console.log(seeAlso_val);
-
 
     if (seeAlso_val != ""){
       mxUtils.writeln(seeAlso_div, "seeAlso : ");
