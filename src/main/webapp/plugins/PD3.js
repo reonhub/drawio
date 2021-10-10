@@ -1487,7 +1487,7 @@ Actions.prototype.init = function () {
       var input = mxUtils.ltrim(graphModel);
       if(input != ""){
         root_style["URI"] = input;
-        mxUtils.setTextContent(EP_URI_div,"URI : " + input);
+        mxUtils.setTextContent(EP_URI_div,"URI : \r\n" + input);
       }else{
         mxUtils.setTextContent(EP_URI_div,"URI : none");
       }
@@ -1518,7 +1518,7 @@ Actions.prototype.init = function () {
       var input = mxUtils.ltrim(graphModel);
       if(input!=""){
         root_style["prefix"] = input;
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ input);
+        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : \r\n"+ input);
       }else{
         mxUtils.setTextContent(EP_URI_prefix_div, "prefix : none");
       }
@@ -14140,7 +14140,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
     EP_URI_div = document.createElement("div");
     if(URI_val != ""){
-        mxUtils.setTextContent(EP_URI_div,"URI : "+ URI_val);
+        mxUtils.setTextContent(EP_URI_div,"URI : \r\n"+ URI_val);
       }else{
         mxUtils.setTextContent(EP_URI_div, "URI : none");
     }
@@ -14174,7 +14174,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     a.style.fontSize ="14px"
     EP_URI_prefix_div = document.createElement("div");
     if(prefix_val != ""){
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ prefix_val);
+        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : \r\n"+ prefix_val);
       }else{
         mxUtils.setTextContent(EP_URI_prefix_div, "prefix : none");
     }
