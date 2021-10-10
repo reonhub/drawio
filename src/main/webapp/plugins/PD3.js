@@ -1936,6 +1936,7 @@ Actions.prototype.init = function () {
       graphModel = new TextareaDialog(this.editorUi, "edit seeAlso:", selectedCells[0].seeAlso || "", function (graphModel) {
         selectedCells[0].seeAlso = textbox2.value = mxUtils.trim(graphModel);
       }, null, null, 400, 220);
+
       this.editorUi.showDialog(graphModel.container, 420, 300, !0, !0);
       graphModel.init()
     }
@@ -5851,9 +5852,9 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         this.editorUi.actions.get("editseeAlso").funct()
       }));
       d.setAttribute("title", mxResources.get("editseeAlso") + " (" + this.editorUi.actions.get("editseeAlso").shortcut + ")");
-      d.style.marginBottom = "2px";
+      d.style.marginBottom = "9px";
       d.style.width = "202px";
-      d.style.height = "25px";
+      d.style.height = "20px";
       d.style.backgroundColor="rgb(79 79 79)";
       d.style.borderColor="rgb(37 37 37)";
       d.style.color="white";
@@ -5868,7 +5869,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       d.setAttribute("title", mxResources.get("setProblemSolvingLayerStyle") + " (" + this.editorUi.actions.get("setProblemSolvingLayerStyle").shortcut + ")");
       d.style.marginBottom = "2px";
       d.style.width = "202px";
-      d.style.height = "25px";
+      d.style.height = "20px";
       d.style.backgroundColor="#FFE6CC";
       d.style.borderColor="#d79b00";
       d.style.borderRadius="3px";
@@ -5882,7 +5883,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       d.setAttribute("title", mxResources.get("setInformationLayerStyle") + " (" + this.editorUi.actions.get("setInformationLayerStyle").shortcut + ")");
       d.style.marginBottom = "2px";
       d.style.width = "202px";
-      d.style.height = "25px";
+      d.style.height = "20px";
       d.style.backgroundColor="#dae8fc";
       d.style.borderColor="#6c8ebf";
       d.style.borderRadius="3px";
@@ -5896,7 +5897,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       d.setAttribute("title", mxResources.get("setPhysicalLayerStyle") + " (" + this.editorUi.actions.get("setPhysicalLayerStyle").shortcut + ")");
       d.style.marginBottom = "2px";
       d.style.width = "202px";
-      d.style.height = "25px";
+      d.style.height = "20px";
       d.style.backgroundColor="#d5e8d4";
       d.style.borderColor="#82b366";
       d.style.borderRadius="3px";
@@ -5908,7 +5909,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         this.editorUi.actions.get("setDPBoxStyle").funct()
       }));
       d.setAttribute("title", mxResources.get("setDPBoxStyle") + " (" + this.editorUi.actions.get("setDPBoxStyle").shortcut + ")");
-      d.style.marginBottom = "2px";
+      d.style.marginBottom = "1px";
       d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
@@ -5922,7 +5923,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         this.editorUi.actions.get("setCAIBoxStyle").funct()
       }));
       d.setAttribute("title", mxResources.get("setCAIBoxStyle") + " (" + this.editorUi.actions.get("setCAIBoxStyle").shortcut + ")");
-      d.style.marginBottom = "2px";
+      d.style.marginBottom = "1px";
       d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
@@ -5936,7 +5937,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         this.editorUi.actions.get("setGHBoxStyle").funct()
       }));
       d.setAttribute("title", mxResources.get("setGHBoxStyle") + " (" + this.editorUi.actions.get("setGHBoxStyle").shortcut + ")");
-      d.style.marginBottom = "2px";
+      d.style.marginBottom = "1px";
       d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
@@ -5950,7 +5951,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         this.editorUi.actions.get("setESIBoxStyle").funct()
       }));
       d.setAttribute("title", mxResources.get("setESIBoxStyle") + " (" + this.editorUi.actions.get("setESIBoxStyle").shortcut + ")");
-      d.style.marginBottom = "2px";
+      d.style.marginBottom = "1px";
       d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
@@ -5964,7 +5965,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         this.editorUi.actions.get("setEXBoxStyle").funct()
       }));
       d.setAttribute("title", mxResources.get("setEXBoxStyle") + " (" + this.editorUi.actions.get("setEXBoxStyle").shortcut + ")");
-      d.style.marginBottom = "2px";
+      d.style.marginBottom = "10px";
       d.style.width = "202px";
       d.style.color="#ffffff";
       d.style.borderColor="#d79b00";
@@ -14156,7 +14157,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
   StyleFormatPanel.prototype.addObjectInfo = function (a) {
     id_div = document.createElement("div");
-    console.log(this);
     var cells = this.editorUi.editor.graph.getSelectionCells();
     mxUtils.writeln(id_div, "id : ");
     id_div.style.width = "200px";
@@ -14188,7 +14188,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     textbox2.type="text";
     textbox2.style.width = "200px";
     textbox2.className= "textbox";
-    textbox2.style.marginBottom="4px";
+    textbox2.style.marginBottom="2px";
     textbox2.style.whiteSpace="normal";
     textbox2.style.wordBreak="break-all";
     textbox2.style.borderColor="rgb(37 37 37)";
@@ -14216,3 +14216,22 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     return a;
 
   };
+
+  q = StyleFormatPanel.prototype.addWEBAPI;
+  StyleFormatPanel.prototype.addWEBAPI = function (a) {
+      var d = mxUtils.button("Get EP Description", mxUtils.bind(this, function (a) {
+        var getval = mxUtils.load("http://digital-triplet.net:5000/ep/expertB/actions");
+        mxUtils.popup(getval);
+      }));
+      d.setAttribute("title", mxResources.get("copyStyle") + " (" + this.editorUi.actions.get("copyStyle").shortcut + ")");
+      d.style.marginBottom = "2px";
+      d.style.width = "202px";
+      d.style.marginRight = "2px";
+      d.style.height = "20px";
+      d.style.backgroundColor="rgb(242 242 242)";
+      d.style.borderColor="rgb(37 37 37)";
+      d.style.borderRadius="3px";
+      d.style.borderWidth="thin";
+      a.appendChild(d);
+      return a;
+    };
