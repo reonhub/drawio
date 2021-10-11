@@ -10,8 +10,13 @@
     opacity: 0.3;
     cursor: pointer;
 	text-decoration: none; 
-    /* border-style: dashed; */
 }
+
+/* .geSidebarContainer .editButton{
+    background-color: rgb(79, 79, 79)!important;
+    border-color: rgb(37, 37, 37)!important;
+    color: white!important;
+} */
 
 .id_div {
     white-space: none !important; 
