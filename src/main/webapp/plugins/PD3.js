@@ -8,6 +8,9 @@ var EP_URI="",
     root,
     URI_val,
     prefix_val,
+    title_val,
+    author_val,
+    description_val,
     root_style=[];
 
 
@@ -26,19 +29,18 @@ Graph.prototype.defaultVertexStyle = {
 };
 /*****sidebar setting for digital triplet start *****/
 Sidebar.prototype.init = function () {
-
   this.addSearchPalette(false);
   this.addProblemSolvingLayerPalette(true);
-  // this.addEngineeringCyclePalette(true);
   this.addInformationLayerPalette(true);
   this.addPhysicalLayerPalette(true);
-  // this.addNoLayerPalette(true);
 };
 
 var arrow_inout_len = 100,
 arrow_updown_len = 80,
 box_width = 120,
 box_height = 60,
+object_width = 75,
+object_height = 45,
 startendbox_width = 60,
 startendbox_height = 60,
 container_height = 200,
@@ -48,10 +50,6 @@ ECDP_val = "Define Problem",
 ECDP_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#D1BC35;',
 ECCAI_val = "Collect/Analyze Information",
 ECCAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCAI;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#3E54E6;',
-// ECAI_val = "Analyze Information",
-// ECAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECAI;fillColor=#3E54E6;strokeColor=#d79b00;fontColor=#ffffff;',
-// ECEV_val = "Evaluate",
-// ECEV_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#6a00ff;strokeColor=#d79b00;fontColor=#ffffff;',
 ECGH_val = "Generate Hypothesis",
 ECGH_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECGH;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#C93AC9;',
 ECESI_val = "Evaluate/Select Information",
@@ -206,16 +204,6 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
       null,
       "rect rectangle box"
     ),
-    // this.createVertexTemplateEntry(
-    //   "text;html=1;rounded=0;whiteSpace=wrap;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;pd3layer=topic;",
-    //   40,
-    //   20,
-    //   "Text",
-    //   "Text",
-    //   null,
-    //   null,
-    //   "text textbox textarea label"
-    // ),
     this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;rounded=0;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;', 
     arrow_inout_len,
     0,
@@ -256,203 +244,21 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
       edge.edge = true;
       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Annotation Arrow');
     }),
-    // this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;rounded=0;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;dashPattern=1 1;', 
-    // arrow_inout_len,
-    // 0,
-    // 'OR',
-    // 'OR Arrow',
-    // null,
-    // 'uml sequence message call invoke dispatch'
-    // ),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Label of Parent Action Box', 'Problem-Solving Container', null, null, 'container swimlane lane pool group'),
-    // this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=whilebox;strokeColor=#d79b00;swimlaneLine=0;dashed=1;swimlaneFillColor=none;fillColor=none;', box_width+50, box_height+50, '', 'While Box', null, null, 'container swimlane lane pool group'),
-    // this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=whilecontainer;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneLine=0;dashed=1;', 400, container_height, 'While', 'While Container', null, null, 'container swimlane lane pool group')
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=object;strokeColor=#d79b00;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      object_width,
+      object_height,
+      "Object",
+      "Object",
+      null,
+      null,
+      "rect rectangle box"
+    ),
   ];
   this.addPaletteFunctions("Problem-Solving Layer", "Problem-Solving Layer", null != expand ? expand : true, fns);
 };
 /*****ProblemSolvingLayer end*****/
-
-// /*****Engineering Cycle start*****/
-// Sidebar.prototype.addEngineeringCyclePalette = function (expand) {
-//   var sb = this;
-//   var fns = [
-//     this.createVertexTemplateEntry(
-//       ECDP_style,
-//       box_width,
-//       box_height,
-//       ECDP_val,
-//       "Problem Definition Type",
-//       null,
-//       null,
-//       "rect rectangle box"
-//     ),
-//     this.createVertexTemplateEntry(
-//       ECCAI_style,
-//       box_width,
-//       box_height,
-//       ECCAI_val,
-//       "Information Collection/Analysis Type",
-//       null,
-//       null,
-//       "rect rectangle box"
-//     ),
-//     // this.createVertexTemplateEntry(
-//     //   ECAI_style,
-//     //   box_width,
-//     //   box_height,
-//     //   ECAI_val,
-//     //   "Info Analysis Box",
-//     //   null,
-//     //   null,
-//     //   "rect rectangle box"
-//     // ),
-//     // this.createVertexTemplateEntry(
-//     //   ECEV_style,
-//     //   box_width,
-//     //   box_height,
-//     //   ECEV_val,
-//     //   "Information Evaluation/Selection Box",
-//     //   null,
-//     //   null,
-//     //   "rect rectangle box"
-//     // ),
-//     this.createVertexTemplateEntry(
-//       ECGH_style,
-//       box_width,
-//       box_height,
-//       ECGH_val,
-//       "Hypothesis Generation Type",
-//       null,
-//       null,
-//       "rect rectangle box"
-//     ),
-//     this.createVertexTemplateEntry(
-//       ECESI_style,
-//       box_width,
-//       box_height,
-//       ECESI_val,
-//       "Information Evaluation/Selection Type",
-//       null,
-//       null,
-//       "rect rectangle box"
-//     ),
-    
-//     this.createVertexTemplateEntry(
-//       ECEX_style,
-//       box_width,
-//       box_height,
-//       ECEX_val,
-//       "Execution Type",
-//       null,
-//       null,
-//       "rect rectangle box"
-//     ),
-//     // this.createVertexTemplateEntry(
-//     //   "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=ECstart;fillColor=#ffe6cc;strokeColor=#d79b00;",
-//     //   startendbox_width,
-//     //   startendbox_height,
-//     //   "EC\nStart",
-//     //   "EC Start Box",
-//     //   null,
-//     //   null,
-//     //   "rect rectangle box"
-//     // ),
-//     // this.createVertexTemplateEntry(
-//     //   "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=ECend;fillColor=#ffe6cc;strokeColor=#d79b00;",
-//     //   startendbox_width,
-//     //   startendbox_height,
-//     //   "EC\nEnd",
-//     //   "EC End Box",
-//     //   null,
-//     //   null,
-//     //   "rect rectangle box"
-//     // ),
-//   //   this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=ec;fillColor=#ffe6cc;strokeColor=#d79b00;', containerforEC_width, container_height, 'Label of Parent Action Box', 'Container for Engineering Cycle', null, null, 'container swimlane lane pool group'),
-//   this.addEntry('Engineering Cycle', function () {
-//     var cell1 = new mxCell(ECDP_val, new mxGeometry(0, 0, box_width, box_height), ECDP_style);
-//     cell1.vertex = true;
-//     var cell2 = new mxCell(ECCAI_val, new mxGeometry(box_width+arrow_inout_len, 0, box_width, box_height), ECCAI_style);
-//     cell2.vertex = true;
-//     // var cell3 = new mxCell(ECAI_val, new mxGeometry((box_width+arrow_inout_len)*2, 0, box_width, box_height), ECAI_style);
-//     // cell3.vertex = true;
-//     // var cell4 = new mxCell(ECEV_val, new mxGeometry((box_width+arrow_inout_len)*3, 0, box_width, box_height), ECEV_style);
-//     // cell4.vertex = true;
-//     var cell3 = new mxCell(ECGH_val, new mxGeometry((box_width+arrow_inout_len)*2, 0, box_width, box_height), ECGH_style);
-//     cell3.vertex = true;
-//     var cell4 = new mxCell(ECESI_val, new mxGeometry((box_width+arrow_inout_len)*3, 0, box_width, box_height), ECESI_style);
-//     cell4.vertex = true;
-//     var cell5 = new mxCell(ECEX_val, new mxGeometry((box_width+arrow_inout_len)*4, 0, box_width, box_height), ECEX_style);
-//     cell5.vertex = true;
-
-//     var edge1 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-//     edge1.geometry.setTerminalPoint(new mxPoint(-arrow_inout_len, box_height/2), true);
-//     edge1.geometry.setTerminalPoint(new mxPoint(0, box_height/2), false);
-//     edge1.geometry.relative = true;
-//     edge1.edge = true;
-
-//     var edge2 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-//     edge2.geometry.setTerminalPoint(new mxPoint(box_width, box_height/2), true);
-//     edge2.geometry.setTerminalPoint(new mxPoint(box_width+arrow_inout_len, box_height/2), false);
-//     edge2.geometry.relative = true;
-//     edge2.edge = true;
-
-//     var edge3 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-//     edge3.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len), box_height/2), true);
-//     edge3.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*2, box_height/2), false);
-//     edge3.geometry.relative = true;
-//     edge3.edge = true;
-
-//     var edge4 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-//     edge4.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*2, box_height/2), true);
-//     edge4.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*3, box_height/2), false);
-//     edge4.geometry.relative = true;
-//     edge4.edge = true;
-
-//     var edge5 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-//     edge5.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*3, box_height/2), true);
-//     edge5.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*4, box_height/2), false);
-//     edge5.geometry.relative = true;
-//     edge5.edge = true;
-
-//     var edge6 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-//     edge6.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*4, box_height/2), true);
-//     edge6.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*5, box_height/2), false);
-//     edge6.geometry.relative = true;
-//     edge6.edge = true;
-
-//     // var edge7 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-//     // edge7.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*5, box_height/2), true);
-//     // edge7.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*6, box_height/2), false);
-//     // edge7.geometry.relative = true;
-//     // edge7.edge = true;
-
-//     // var edge8 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-//     // edge8.geometry.setTerminalPoint(new mxPoint(box_width+(box_width+arrow_inout_len)*6, box_height/2), true);
-//     // edge8.geometry.setTerminalPoint(new mxPoint((box_width+arrow_inout_len)*7, box_height/2), false);
-//     // edge8.geometry.relative = true;
-//     // edge8.edge = true;
-
-//     cell1.insertEdge(edge1, false);
-//     cell1.insertEdge(edge2, true);
-//     cell2.insertEdge(edge2, false);
-//     cell2.insertEdge(edge3, true);
-//     cell3.insertEdge(edge3, false);
-//     cell3.insertEdge(edge4, true);
-//     cell4.insertEdge(edge4, false);
-//     cell4.insertEdge(edge5, true);
-//     cell5.insertEdge(edge5, false);
-//     cell5.insertEdge(edge6, true);
-//     // cell6.insertEdge(edge6, false);
-//     // cell6.insertEdge(edge7, true);
-//     // cell7.insertEdge(edge7, false);
-//     // cell7.insertEdge(edge8, true);
-
-//     return sb.createVertexTemplateFromCells([cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6], 640, box_height, 'Engineering Cycle');
-//     })
-//   ];
-//   this.addPaletteFunctions("Engineering Cycle", "Engineering Cycle", null != expand ? expand : true, fns);
-// };
-// /*****Engineering Cycle end*****/
 
 /*****InformationLayer start*****/
 Sidebar.prototype.addInformationLayerPalette = function (expand) {
@@ -507,6 +313,17 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, -arrow_updown_len, 'Tool Arrow');
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;containertype=specialization;fillColor=#dae8fc;strokeColor=#6c8ebf;', 400, container_height, 'Label of Parent Action Box', 'Information Operation Container', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=object;strokeColor=#6c8ebf;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      object_width,
+      object_height,
+      "Object",
+      "Object",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+
   ];
   this.addPaletteFunctions("Information Layer", "Information Layer", null != expand ? expand : true, fns);
 };
@@ -566,100 +383,21 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, -arrow_updown_len, 'Tool Arrow');
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;containertype=specialization;fillColor=#d5e8d4;strokeColor=#82b366;', 400, container_height, 'Label of Parent Action Box', 'Physical Operation Container', null, null, 'container swimlane lane pool group'),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=object;strokeColor=#82b366;dashed=1;fontSize=14;fillColor=none;",
+      object_width,
+      object_height,
+      "Object",
+      "Object",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+
   ];
   this.addPaletteFunctions("Physical Layer", "Physical Layer", null != expand ? expand : true, fns);
 };
 /*****PhysicalLayer end*****/
-
-// /*****NoLayer start*****/
-// Sidebar.prototype.addNoLayerPalette = function (expand) {
-//   var sb = this;
-//   var fns = [
-//     this.createVertexTemplateEntry(
-//       "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;",
-//       box_width,
-//       box_height,
-//       "Action",
-//       "Problem-Solving Action Box",
-//       null,
-//       null,
-//       "rect rectangle box"
-//     ),
-//     this.createVertexTemplateEntry(
-//       "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=start;",
-//       startendbox_width,
-//       startendbox_height,
-//       "Start",
-//       "Problem-Solving Start Box",
-//       null,
-//       null,
-//       "rect rectangle box"
-//     ),
-//     this.createVertexTemplateEntry(
-//       "rounded=0;whiteSpace=wrap;html=1;dashed=1;pd3layer=topic;pd3type=action;pd3action=end;",
-//       startendbox_width,
-//       startendbox_height,
-//       "End",
-//       "Problem-Solving End Box",
-//       null,
-//       null,
-//       "rect rectangle box"
-//     ),
-//     this.createVertexTemplateEntry(
-//       "text;html=1;rounded=0;whiteSpace=wrap;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;pd3layer=topic;",
-//       40,
-//       20,
-//       "Text",
-//       "Text",
-//       null,
-//       null,
-//       "text textbox textarea label"
-//     ),
-//     this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;rounded=0;pd3layer=topic;pd3type=arrow;', 
-//     arrow_inout_len,
-//     0,
-//     'Output',
-//     'Information Arrow',
-//     null,
-//     'uml sequence message call invoke dispatch'
-//     ),
-//     this.addEntry('Intention', function () {
-//       var edge = new mxCell('Intention', new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;');
-//       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-//       edge.geometry.setTerminalPoint(new mxPoint(0, arrow_updown_len), false);
-//       edge.geometry.relative = true;
-//       edge.edge = true;
-//       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Intention Arrow');
-//     }),
-//     this.addEntry('Tool/Knowledge', function () {
-//       var edge = new mxCell('Tool/Knowledge', new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;');
-//       edge.geometry.setTerminalPoint(new mxPoint(0, arrow_updown_len), true);
-//       edge.geometry.setTerminalPoint(new mxPoint(0, 0), false);
-//       edge.geometry.relative = true;
-//       edge.edge = true;
-//       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Tool Arrow');
-//     }),
-//     this.addEntry('Rationale', function () {
-//       var edge = new mxCell('Rationale', new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;');
-//       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-//       edge.geometry.setTerminalPoint(new mxPoint(-30, arrow_updown_len), false);
-//       edge.geometry.relative = true;
-//       edge.edge = true;
-//       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Rationale Arrow');
-//     }),
-//     this.addEntry('Annotation', function () {
-//       var edge = new mxCell('Annotation', new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arrow;dashed=1;');
-//       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
-//       edge.geometry.setTerminalPoint(new mxPoint(-30, arrow_updown_len), false);
-//       edge.geometry.relative = true;
-//       edge.edge = true;
-//       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Annotation Arrow');
-//     }),  
-//   ];
-//   this.addPaletteFunctions("No Layer", "No Layer", null != expand ? expand : true, fns);
-// };
-// /*****NoLayer end*****/
-/*****sidebar setting for digital triplet end *****/
 
 /*****setting for "compressXml:false" start*****/
 var menusInit = Menus.prototype.init;
@@ -1485,9 +1223,10 @@ Actions.prototype.init = function () {
     }
     graphModel = new TextareaDialog(this.editorUi, "Edit URI :", URI_val, function (graphModel) {
       var input = mxUtils.ltrim(graphModel);
+      input = input.replace(/\r?\n/g,"");
       if(input != ""){
         root_style["URI"] = input;
-        mxUtils.setTextContent(EP_URI_div,"URI : \r\n" + input);
+        mxUtils.setTextContent(EP_URI_div,"URI : " + input);
       }else{
         mxUtils.setTextContent(EP_URI_div,"URI : none");
       }
@@ -1516,9 +1255,10 @@ Actions.prototype.init = function () {
     }
     graphModel = new TextareaDialog(this.editorUi, "Edit prefix:", prefix_val , function (graphModel) {
       var input = mxUtils.ltrim(graphModel);
+      input = input.replace(/\r?\n/g,"");
       if(input!=""){
         root_style["prefix"] = input;
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : \r\n"+ input);
+        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ input);
       }else{
         mxUtils.setTextContent(EP_URI_prefix_div, "prefix : none");
       }
@@ -1529,6 +1269,98 @@ Actions.prototype.init = function () {
     graphModel.init()
   }),null, null, null);
 
+  this.addAction("edittitle", mxUtils.bind(this, function () {
+    var graph = b;
+    var graphModel = graph.getModel();
+    root = graphModel.root;
+    root_style = setStyleArray(root);
+    if(root_style!=null){
+      if("title" in root_style){
+        var title_val = root_style["title"];
+      }else{
+        title_val = "";
+      }
+    }else{
+      root_style = {};
+      title_val ="";
+    }
+    graphModel = new TextareaDialog(this.editorUi, "Edit title:", title_val , function (graphModel) {
+      var input = mxUtils.ltrim(graphModel);
+      input = input.replace(/\r?\n/g,"");
+      if(input!=""){
+        root_style["title"] = input;
+        mxUtils.setTextContent(EP_URI_title_div, "title : "+ input);
+      }else{
+        mxUtils.setTextContent(EP_URI_title_div, "title : none");
+      }
+
+      root.style=setStyleString(root_style);
+    }, null, null, 500, 30);
+    this.editorUi.showDialog(graphModel.container, 520, 130, !0, !0);
+    graphModel.init()
+  }),null, null, null);
+
+  this.addAction("editauthor", mxUtils.bind(this, function () {
+    var graph = b;
+    var graphModel = graph.getModel();
+    root = graphModel.root;
+    root_style = setStyleArray(root);
+    if(root_style!=null){
+      if("author" in root_style){
+        var author_val = root_style["author"];
+      }else{
+        author_val = "";
+      }
+    }else{
+      root_style = {};
+      author_val ="";
+    }
+    graphModel = new TextareaDialog(this.editorUi, "Edit author:", author_val , function (graphModel) {
+      var input = mxUtils.ltrim(graphModel);
+      input = input.replace(/\r?\n/g,"");
+      if(input!=""){
+        root_style["author"] = input;
+        mxUtils.setTextContent(EP_URI_author_div, "author : "+ input);
+      }else{
+        mxUtils.setTextContent(EP_URI_author_div, "author : none");
+      }
+
+      root.style=setStyleString(root_style);
+    }, null, null, 500, 30);
+    this.editorUi.showDialog(graphModel.container, 520, 130, !0, !0);
+    graphModel.init()
+  }),null, null, null);
+
+  this.addAction("editdescription", mxUtils.bind(this, function () {
+    var graph = b;
+    var graphModel = graph.getModel();
+    root = graphModel.root;
+    root_style = setStyleArray(root);
+    if(root_style!=null){
+      if("description" in root_style){
+        var description_val = root_style["description"];
+      }else{
+        description_val = "";
+      }
+    }else{
+      root_style = {};
+      description_val ="";
+    }
+    graphModel = new TextareaDialog(this.editorUi, "Edit description:", description_val , function (graphModel) {
+      var input = mxUtils.ltrim(graphModel);
+      input = input.replace(/\r?\n/g,"");
+      if(input!=""){
+        root_style["description"] = input;
+        mxUtils.setTextContent(EP_URI_description_div, "description : "+ input);
+      }else{
+        mxUtils.setTextContent(EP_URI_description_div, "description : none");
+      }
+
+      root.style=setStyleString(root_style);
+    }, null, null, 500, 30);
+    this.editorUi.showDialog(graphModel.container, 520, 130, !0, !0);
+    graphModel.init()
+  }),null, null, null);
 
   this.addAction("editTooltip...", function () {
     if (b.isEnabled() && !b.isSelectionEmpty()) {
@@ -1992,7 +1824,6 @@ Actions.prototype.init = function () {
         var seeAlso_tmp = mxUtils.ltrim(graphModel);
         cell_style["seeAlso"] = seeAlso_tmp;
         cell.style = setStyleString(cell_style);
-        console.log(cell);
 
         if(seeAlso_tmp != ""){
           //  selectedCells[0].seeAlso = seeAlso_tmp;
@@ -3503,16 +3334,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     type: "char",
   }, 
   {
-    name: "URI",
-    dispName: "URI",
-    type: "char",
-  }, 
-  {
-    name: "prefix",
-    dispName: "prefix",
-    type: "char",
-  }, 
-  {
     name: "arcSize",
     dispName: "Arc Size",
     type: "float",
@@ -3671,16 +3492,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
   /*Node Property */
   Editor.commonVertexProperties = [{
     type: "separator"
-  }, 
-  {
-    name: "URI",
-    dispName: "URI",
-    type: "char",
-  }, 
-  {
-    name: "prefix",
-    dispName: "prefix",
-    type: "char",
   }, 
   {
     name: "resizeLastRow",
@@ -5945,6 +5756,8 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       d.style.backgroundColor="rgb(79 79 79)";
       d.style.borderColor="rgb(37 37 37)";
       d.style.color="white";
+      // d.style.backgroundColor="rgb(255 255 255)";
+      // d.style.borderColor="rgb(37 37 37)";
       d.style.borderRadius="3px";
       d.style.borderWidth="thin";
       a.appendChild(d);
@@ -6009,7 +5822,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       d = mxUtils.button(mxResources.get("setCAIBoxStyle"), mxUtils.bind(this, function (a) {
         this.editorUi.actions.get("setCAIBoxStyle").funct()
       }));
-      d.setAttribute("title", mxResources.get("setCAIBoxStyle") + " (" + this.editorUi.actions.get("setCAIBoxStyle").shortcut + ")");
+      // d.setAttribute("title", mxResources.get("setCAIBoxStyle") + " (" + this.editorUi.actions.get("setCAIBoxStyle").shortcut + ")");
       d.style.marginBottom = "1px";
       d.style.width = "202px";
       d.style.color="#ffffff";
@@ -7560,11 +7373,8 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       m.removeAttribute("editor"), 
       m.removeAttribute("pages"), 
       m.removeAttribute("type"), 
-      // m.setAttribute("URI", EP_URI), 
-      // m.setAttribute("prefix", EP_URI_prefix), 
       mxClient.IS_CHROMEAPP ? m.setAttribute("host", "Chrome") : EditorUi.isElectronApp ? m.setAttribute("host", "Electron") : m.setAttribute("host", window.location.hostname), 
       m.setAttribute("modified", (new Date).toISOString()), 
-      // m.setAttribute("agent", navigator.appVersion),
       m.setAttribute("agent", ""),
       m.setAttribute("version", EditorUi.VERSION), 
       m.setAttribute("etag", Editor.guid()), a = null != c ? c.getMode() : this.mode, null != a && m.setAttribute("type", a), 1 < m.getElementsByTagName("diagram").length && null != this.pages && m.setAttribute("pages", this.pages.length));
@@ -11683,9 +11493,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       this.actions.get("setInformationLayerStyle").setEnabled(b && !a.isSelectionEmpty());
       this.actions.get("setPhysicalLayerStyle").setEnabled(b && !a.isSelectionEmpty());
       this.actions.get("setDPBoxStyle").setEnabled(b && !a.isSelectionEmpty());
-      // this.actions.get("setDataCollectionBoxStyle").setEnabled(b && !a.isSelectionEmpty());
       this.actions.get("setCAIBoxStyle").setEnabled(b && !a.isSelectionEmpty());
-      // this.actions.get("setEvaluationBoxStyle").setEnabled(b && !a.isSelectionEmpty());
       this.actions.get("setGHBoxStyle").setEnabled(b && !a.isSelectionEmpty());
       this.actions.get("setESIBoxStyle").setEnabled(b && !a.isSelectionEmpty());
       this.actions.get("setEXBoxStyle").setEnabled(b && !a.isSelectionEmpty());
@@ -14133,17 +13941,36 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }else{
         prefix_val = "";
       }
+      if("title" in root_style){
+        title_val = root_style["title"];
+      }else{
+        title_val = "";
+      }
+      if("author" in root_style){
+        author_val = root_style["author"];
+      }else{
+        author_val = "";
+      }
+      if("description" in root_style){
+        description_val = root_style["description"];
+      }else{
+        description_val = "";
+      }
     }else{
       URI_val = "";
       prefix_val = "";
+      title_val = "";
+      author_val = "";
+      description_val = "";
     }
 
+    //Edit URI
     EP_URI_div = document.createElement("div");
     if(URI_val != ""){
-        mxUtils.setTextContent(EP_URI_div,"URI : \r\n"+ URI_val);
+        mxUtils.setTextContent(EP_URI_div,"URI : "+ URI_val);
       }else{
         mxUtils.setTextContent(EP_URI_div, "URI : none");
-    }
+      }
     EP_URI_div.style.width = "200px";
     EP_URI_div.style.overflow= "scroll";
     EP_URI_div.style.whiteSpace ="normal";
@@ -14158,29 +13985,36 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     }));
 
     c.setAttribute("title", mxResources.get("editURI") + " (" + this.editorUi.actions.get("editURI").shortcut + ")");
-    c.style.marginBottom = "13px";
-    c.style.width = "200px";
-    c.style.height = "25px";
-    c.style.backgroundColor="rgb(255 255 255)";
-    c.style.borderColor="rgb(37 37 37)";
-    c.style.borderRadius="3px";
-    c.style.borderWidth="thin";
+    function setButtonStyle(c){
+      c.style.marginBottom = "10px";
+      c.style.width = "200px";
+      c.style.height = "25px";
+      c.style.backgroundColor="rgb(255 255 255)";
+      c.style.borderColor="rgb(37 37 37)";
+      c.style.borderRadius="3px";
+      c.style.borderWidth="thin";
+      c.className = "editButton";
+      return c;
+    }
+    c = setButtonStyle(c);
 
     a.appendChild(EP_URI_div);
     a.appendChild(c);
 
     mxUtils.br(a);
 
-    a.style.fontSize ="14px"
+
+
+    //Edit prefix
     EP_URI_prefix_div = document.createElement("div");
     if(prefix_val != ""){
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : \r\n"+ prefix_val);
+        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ prefix_val);
       }else{
         mxUtils.setTextContent(EP_URI_prefix_div, "prefix : none");
     }
     EP_URI_prefix_div.style.width = "200px";
     EP_URI_prefix_div.style.whiteSpace ="normal";
-    EP_URI_prefix_div.className= "ep_uri_prefix_div";
+    EP_URI_prefix_div.className= "diagram_div";
     EP_URI_prefix_div.style.display= "table";
     EP_URI_prefix_div.style.marginBottom="4px";
     EP_URI_prefix_div.style.wordBreak="break-all";
@@ -14189,18 +14023,81 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       this.editorUi.actions.get("editprefix").funct()
     }));
     c.setAttribute("title", mxResources.get("editprefix") + " (" + this.editorUi.actions.get("editprefix").shortcut + ")");
-    c.style.marginBottom = "2px";
-    c.style.width = "200px";
-    c.style.height = "25px";
-    c.style.backgroundColor="rgb(255 255 255)";
-    c.style.borderColor="rgb(37 37 37)";
-    c.style.borderRadius="3px";
-    c.style.borderWidth="thin";
+    c = setButtonStyle(c);
 
     a.appendChild(EP_URI_prefix_div);
     a.appendChild(c);
     mxUtils.br(a);
 
+    //Edit title
+    EP_URI_title_div = document.createElement("div");
+    if(title_val != ""){
+        mxUtils.setTextContent(EP_URI_title_div, "Title : "+ title_val);
+      }else{
+        mxUtils.setTextContent(EP_URI_title_div, "Title : none");
+    }
+    EP_URI_title_div.style.width = "200px";
+    EP_URI_title_div.style.whiteSpace ="normal";
+    EP_URI_title_div.className= "diagram_div";
+    EP_URI_title_div.style.display= "table";
+    EP_URI_title_div.style.marginBottom="4px";
+    EP_URI_title_div.style.wordBreak="break-all";
+
+    var c = mxUtils.button("Edit title", mxUtils.bind(this, function (a) {
+      this.editorUi.actions.get("edittitle").funct()
+    }));
+    c.setAttribute("title", mxResources.get("edittitle") + " (" + this.editorUi.actions.get("edittitle").shortcut + ")");
+    c = setButtonStyle(c);
+
+    a.appendChild(EP_URI_title_div);
+    a.appendChild(c);
+    mxUtils.br(a);
+    
+    EP_URI_author_div = document.createElement("div");
+    if(author_val != ""){
+        mxUtils.setTextContent(EP_URI_author_div, "Author : "+ author_val);
+      }else{
+        mxUtils.setTextContent(EP_URI_author_div, "Author : none");
+    }
+    EP_URI_author_div.style.width = "200px";
+    EP_URI_author_div.style.whiteSpace ="normal";
+    EP_URI_author_div.className= "diagram_div";
+    EP_URI_author_div.style.display= "table";
+    EP_URI_author_div.style.marginBottom="4px";
+    EP_URI_author_div.style.wordBreak="break-all";
+
+    var c = mxUtils.button("Edit author", mxUtils.bind(this, function (a) {
+      this.editorUi.actions.get("editauthor").funct()
+    }));
+    c.setAttribute("title", mxResources.get("editauthor") + " (" + this.editorUi.actions.get("editauthor").shortcut + ")");
+    c = setButtonStyle(c);
+
+    a.appendChild(EP_URI_author_div);
+    a.appendChild(c);
+    mxUtils.br(a);
+
+    EP_URI_description_div = document.createElement("div");
+    if(description_val != ""){
+        mxUtils.setTextContent(EP_URI_description_div, "Description : "+ description_val);
+      }else{
+        mxUtils.setTextContent(EP_URI_description_div, "Description : none");
+    }
+    EP_URI_description_div.style.width = "200px";
+    EP_URI_description_div.style.whiteSpace ="normal";
+    EP_URI_description_div.className= "diagram_div";
+    EP_URI_description_div.style.display= "table";
+    EP_URI_description_div.style.marginBottom="4px";
+    EP_URI_description_div.style.wordBreak="break-all";
+
+    var c = mxUtils.button("Edit description", mxUtils.bind(this, function (a) {
+      this.editorUi.actions.get("editdescription").funct()
+    }));
+    c.setAttribute("title", mxResources.get("editdescription") + " (" + this.editorUi.actions.get("editdescription").shortcut + ")");
+    c = setButtonStyle(c);
+
+    a.appendChild(EP_URI_description_div);
+    a.appendChild(c);
+    mxUtils.br(a);
     return a
   };
 
