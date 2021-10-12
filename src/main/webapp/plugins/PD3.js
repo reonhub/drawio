@@ -9,8 +9,9 @@ var EP_URI="",
     URI_val,
     prefix_val,
     title_val,
-    author_val,
+    creator_val,
     description_val,
+    identifier_val,
     root_style=[];
 
 
@@ -1253,14 +1254,14 @@ Actions.prototype.init = function () {
       root_style = {};
       prefix_val ="";
     }
-    graphModel = new TextareaDialog(this.editorUi, "Edit prefix:", prefix_val , function (graphModel) {
+    graphModel = new TextareaDialog(this.editorUi, "Edit prefix of URI :", prefix_val , function (graphModel) {
       var input = mxUtils.ltrim(graphModel);
       input = input.replace(/\r?\n/g,"");
       if(input!=""){
         root_style["prefix"] = input;
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ input);
+        mxUtils.setTextContent(EP_URI_prefix_div, "Prefix : "+ input);
       }else{
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : none");
+        mxUtils.setTextContent(EP_URI_prefix_div, "Prefix : none");
       }
 
       root.style=setStyleString(root_style);
@@ -1300,29 +1301,29 @@ Actions.prototype.init = function () {
     graphModel.init()
   }),null, null, null);
 
-  this.addAction("editauthor", mxUtils.bind(this, function () {
+  this.addAction("editcreator", mxUtils.bind(this, function () {
     var graph = b;
     var graphModel = graph.getModel();
     root = graphModel.root;
     root_style = setStyleArray(root);
     if(root_style!=null){
-      if("author" in root_style){
-        var author_val = root_style["author"];
+      if("creator" in root_style){
+        var creator_val = root_style["creator"];
       }else{
-        author_val = "";
+        creator_val = "";
       }
     }else{
       root_style = {};
-      author_val ="";
+      creator_val ="";
     }
-    graphModel = new TextareaDialog(this.editorUi, "Edit author:", author_val , function (graphModel) {
+    graphModel = new TextareaDialog(this.editorUi, "Edit creator:", creator_val , function (graphModel) {
       var input = mxUtils.ltrim(graphModel);
       input = input.replace(/\r?\n/g,"");
       if(input!=""){
-        root_style["author"] = input;
-        mxUtils.setTextContent(EP_URI_author_div, "author : "+ input);
+        root_style["creator"] = input;
+        mxUtils.setTextContent(EP_URI_creator_div, "creator : "+ input);
       }else{
-        mxUtils.setTextContent(EP_URI_author_div, "author : none");
+        mxUtils.setTextContent(EP_URI_creator_div, "creator : none");
       }
 
       root.style=setStyleString(root_style);
@@ -1354,6 +1355,37 @@ Actions.prototype.init = function () {
         mxUtils.setTextContent(EP_URI_description_div, "description : "+ input);
       }else{
         mxUtils.setTextContent(EP_URI_description_div, "description : none");
+      }
+
+      root.style=setStyleString(root_style);
+    }, null, null, 500, 30);
+    this.editorUi.showDialog(graphModel.container, 520, 130, !0, !0);
+    graphModel.init()
+  }),null, null, null);
+
+  this.addAction("editidentifier", mxUtils.bind(this, function () {
+    var graph = b;
+    var graphModel = graph.getModel();
+    root = graphModel.root;
+    root_style = setStyleArray(root);
+    if(root_style!=null){
+      if("identifier" in root_style){
+        var identifier_val = root_style["identifier"];
+      }else{
+        identifier_val = "";
+      }
+    }else{
+      root_style = {};
+      identifier_val ="";
+    }
+    graphModel = new TextareaDialog(this.editorUi, "Edit identifier:", identifier_val , function (graphModel) {
+      var input = mxUtils.ltrim(graphModel);
+      input = input.replace(/\r?\n/g,"");
+      if(input!=""){
+        root_style["identifier"] = input;
+        mxUtils.setTextContent(EP_URI_identifier_div, "Identifier : "+ input);
+      }else{
+        mxUtils.setTextContent(EP_URI_identifier_div, "Identifier : none");
       }
 
       root.style=setStyleString(root_style);
@@ -13946,22 +13978,28 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }else{
         title_val = "";
       }
-      if("author" in root_style){
-        author_val = root_style["author"];
+      if("creator" in root_style){
+        creator_val = root_style["creator"];
       }else{
-        author_val = "";
+        creator_val = "";
       }
       if("description" in root_style){
         description_val = root_style["description"];
       }else{
         description_val = "";
       }
+      if("identifier" in root_style){
+        identifier_val = root_style["identifier"];
+      }else{
+        identifier_val = "";
+      }
     }else{
       URI_val = "";
       prefix_val = "";
       title_val = "";
-      author_val = "";
+      creator_val = "";
       description_val = "";
+      identifier_val = "";
     }
 
     //Edit URI
@@ -14008,9 +14046,9 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     //Edit prefix
     EP_URI_prefix_div = document.createElement("div");
     if(prefix_val != ""){
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : "+ prefix_val);
+        mxUtils.setTextContent(EP_URI_prefix_div, "Prefix : "+ prefix_val);
       }else{
-        mxUtils.setTextContent(EP_URI_prefix_div, "prefix : none");
+        mxUtils.setTextContent(EP_URI_prefix_div, "Prefix : none");
     }
     EP_URI_prefix_div.style.width = "200px";
     EP_URI_prefix_div.style.whiteSpace ="normal";
@@ -14053,29 +14091,30 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     a.appendChild(c);
     mxUtils.br(a);
     
-    EP_URI_author_div = document.createElement("div");
-    if(author_val != ""){
-        mxUtils.setTextContent(EP_URI_author_div, "Author : "+ author_val);
+    EP_URI_creator_div = document.createElement("div");
+    if(creator_val != ""){
+        mxUtils.setTextContent(EP_URI_creator_div, "Creator : "+ creator_val);
       }else{
-        mxUtils.setTextContent(EP_URI_author_div, "Author : none");
+        mxUtils.setTextContent(EP_URI_creator_div, "Creator : none");
     }
-    EP_URI_author_div.style.width = "200px";
-    EP_URI_author_div.style.whiteSpace ="normal";
-    EP_URI_author_div.className= "diagram_div";
-    EP_URI_author_div.style.display= "table";
-    EP_URI_author_div.style.marginBottom="4px";
-    EP_URI_author_div.style.wordBreak="break-all";
+    EP_URI_creator_div.style.width = "200px";
+    EP_URI_creator_div.style.whiteSpace ="normal";
+    EP_URI_creator_div.className= "diagram_div";
+    EP_URI_creator_div.style.display= "table";
+    EP_URI_creator_div.style.marginBottom="4px";
+    EP_URI_creator_div.style.wordBreak="break-all";
 
-    var c = mxUtils.button("Edit author", mxUtils.bind(this, function (a) {
-      this.editorUi.actions.get("editauthor").funct()
+    var c = mxUtils.button("Edit creator", mxUtils.bind(this, function (a) {
+      this.editorUi.actions.get("editcreator").funct()
     }));
-    c.setAttribute("title", mxResources.get("editauthor") + " (" + this.editorUi.actions.get("editauthor").shortcut + ")");
+    c.setAttribute("title", mxResources.get("editcreator") + " (" + this.editorUi.actions.get("editcreator").shortcut + ")");
     c = setButtonStyle(c);
 
-    a.appendChild(EP_URI_author_div);
+    a.appendChild(EP_URI_creator_div);
     a.appendChild(c);
     mxUtils.br(a);
 
+    //Edit description
     EP_URI_description_div = document.createElement("div");
     if(description_val != ""){
         mxUtils.setTextContent(EP_URI_description_div, "Description : "+ description_val);
@@ -14096,6 +14135,30 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     c = setButtonStyle(c);
 
     a.appendChild(EP_URI_description_div);
+    a.appendChild(c);
+    mxUtils.br(a);
+
+    //Edit identifier
+    EP_URI_identifier_div = document.createElement("div");
+    if(identifier_val != ""){
+        mxUtils.setTextContent(EP_URI_identifier_div, "Identifier : "+ identifier_val);
+      }else{
+        mxUtils.setTextContent(EP_URI_identifier_div, "Identifier : none");
+    }
+    EP_URI_identifier_div.style.width = "200px";
+    EP_URI_identifier_div.style.whiteSpace ="normal";
+    EP_URI_identifier_div.className= "diagram_div";
+    EP_URI_identifier_div.style.display= "table";
+    EP_URI_identifier_div.style.marginBottom="4px";
+    EP_URI_identifier_div.style.wordBreak="break-all";
+
+    var c = mxUtils.button("Edit identifier", mxUtils.bind(this, function (a) {
+      this.editorUi.actions.get("editidentifier").funct()
+    }));
+    c.setAttribute("title", mxResources.get("editidentifier") + " (" + this.editorUi.actions.get("editidentifier").shortcut + ")");
+    c = setButtonStyle(c);
+
+    a.appendChild(EP_URI_identifier_div);
     a.appendChild(c);
     mxUtils.br(a);
     return a
