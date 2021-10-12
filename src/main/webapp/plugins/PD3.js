@@ -13727,11 +13727,11 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
   };
   DiagramFormatPanel.prototype.init = function () {
     var a = this.editorUi.editor.graph;
-    // this.container.appendChild(this.addView(this.createPanel()));
     a.isEnabled() && (
-      // this.container.appendChild(this.addOptions(this.createPanel())), 
-      // this.container.appendChild(this.addPaperSize(this.createPanel())), 
-      this.container.appendChild(this.addStyleOps(this.createPanel()))
+      this.container.appendChild(this.addStyleOps(this.createPanel())),
+      this.container.appendChild(this.addView(this.createPanel()))
+      // this.container.appendChild(this.addPaperSize(this.createPanel())),
+      // this.container.appendChild(this.addOptions(this.createPanel()))
       )};
   DiagramFormatPanel.prototype.addView = function (a) {
     var c = this.editorUi,
@@ -13753,40 +13753,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         c.removeListener(this.listener)
       }
     }));
-    if (d.isEnabled()) {
-      var b = this.createColorOption(mxResources.get("background"), function () {
-        return d.background
-      }, function (a) {
-        a = new ChangePageSetup(c, a);
-        a.ignoreImage = !0;
-        d.model.execute(a)
-      }, "#ffffff", {
-        install: function (a) {
-          this.listener = function () {
-            a(d.background)
-          };
-          c.addListener("backgroundColorChanged", this.listener)
-        },
-        destroy: function () {
-          c.removeListener(this.listener)
-        }
-      });
-      if (this.showBackgroundImageOption) {
-        var f = mxUtils.button(mxResources.get("image"), function (a) {
-          c.showBackgroundImageDialog(null, c.editor.graph.backgroundImage);
-          mxEvent.consume(a)
-        });
-        f.style.position = "absolute";
-        f.className = "geColorBtn";
-        f.style.marginTop = "-4px";
-        f.style.paddingBottom = 11 == document.documentMode || mxClient.IS_MT ? "0px" : "2px";
-        f.style.height = "22px";
-        f.style.right = mxClient.IS_QUIRKS ? "52px" : "72px";
-        f.style.width = "56px";
-        b.appendChild(f)
-      }
-      a.appendChild(b)
-    }
+
     return a
   };
   DiagramFormatPanel.prototype.addOptions = function (a) {
@@ -13959,6 +13926,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     return a
   };
   DiagramFormatPanel.prototype.addStyleOps = function (a) {
+    a.appendChild(this.createTitle("EP Info"));
     a.style.fontSize ="14px";
     root = this.editorUi.editor.graph.getModel().root;
     root_style = setStyleArray(root);

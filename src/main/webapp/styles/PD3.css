@@ -12,6 +12,28 @@
 	text-decoration: none; 
 }
 
+.geColorBtn + input{
+	position: absolute;
+    text-align: right;
+    width: 38px;
+    margin-top: -1px !important;
+    margin-right: 2px;
+    right: 84px;
+    border-radius: 3px;
+    border-color: black;
+}
+
+.geColorBtn {
+    margin-top: -1px !important;
+    background-image: none;
+    border-color: black;
+}
+/* 
+input[type="checkbox" i]{
+    background-color: black;
+} */
+
+
 /* .geSidebarContainer .editButton{
     background-color: rgb(79, 79, 79)!important;
     border-color: rgb(37, 37, 37)!important;
