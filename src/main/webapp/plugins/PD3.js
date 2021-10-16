@@ -14169,8 +14169,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
   Editor.prototype.getGraphXml = function (a) {
     a = (null != a ? a : 1) ? (new mxCodec(mxUtils.createXmlDocument())).encode(this.graph.getModel()) : this.graph.encodeCells(mxUtils.sortCells(this.graph.model.getTopmostCells(this.graph.getSelectionCells())));
-    a.setAttribute("URI", EP_URI);
-    a.setAttribute("prefix", EP_URI_prefix);
     if (0 != this.graph.view.translate.x || 0 != this.graph.view.translate.y) 
     a.setAttribute("dx", Math.round(100 * this.graph.view.translate.x) / 100), 
     a.setAttribute("dy", Math.round(100 * this.graph.view.translate.y) / 100);
