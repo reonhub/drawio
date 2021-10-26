@@ -48,15 +48,15 @@ container_height = 200,
 containerforEC_padding = 40,
 containerforEC_width = box_width*7+arrow_inout_len*8+containerforEC_padding*2,
 ECDP_val = "Define Problem",
-ECDP_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDP;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#D1BC35;',
+ECDP_style = 'rounded=0;whiteSpace=wrap;html=1;fontSize=14;pd3layer=topic;pd3type=action;pd3action=ECDP;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#D1BC35;',
 ECCAI_val = "Collect/Analyze Information",
-ECCAI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECCAI;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#3E54E6;',
+ECCAI_style = 'rounded=0;whiteSpace=wrap;html=1;fontSize=14;pd3layer=topic;pd3type=action;pd3action=ECCAI;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#3E54E6;',
 ECGH_val = "Generate Hypothesis",
-ECGH_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECGH;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#C93AC9;',
+ECGH_style = 'rounded=0;whiteSpace=wrap;html=1;fontSize=14;pd3layer=topic;pd3type=action;pd3action=ECGH;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#C93AC9;',
 ECESI_val = "Evaluate/Select Information",
-ECESI_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECESI;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#8F4132;',
+ECESI_style = 'rounded=0;whiteSpace=wrap;html=1;fontSize=14;pd3layer=topic;pd3type=action;pd3action=ECESI;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#8F4132;',
 ECEX_val ="Execute",
-ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#2EBAC9;';
+ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;fontSize=14;pd3layer=topic;pd3type=action;pd3action=ECEX;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#2EBAC9;';
 
 
 /*****ProblemSolvingLayer start*****/
