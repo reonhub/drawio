@@ -1,41 +1,10 @@
-/*set global variables */
-var EP_URI="",
-    EP_URI_prefix="",
-    EP_URI_div,
-    EP_URI_prefix_div,
-    textbox1,
-    textbox2,
-    root,
-    URI_val,
-    prefix_val,
-    title_val,
-    creator_val,
-    description_val,
-    identifier_val,
-    root_style=[];
+/*---------------------
 
+グローバル変数の宣言
 
-/*Default Setting of both Node and Arc */
-Graph.prototype.defaultEdgeStyle = {
-  edgeStyle: "",
-  rounded: "0",
-  jettySize: "auto",
-  orthogonalLoop: "0",
-  verticalAlign: "bottom",
-  endArrow: "block",
-  fontSize: "14"
-};
-Graph.prototype.defaultVertexStyle = {
-  fontSize: "14"
-};
-/*****sidebar setting for digital triplet start *****/
-Sidebar.prototype.init = function () {
-  this.addSearchPalette(false);
-  this.addProblemSolvingLayerPalette(true);
-  this.addInformationLayerPalette(true);
-  this.addPhysicalLayerPalette(true);
-};
+---------------------*/
 
+//左サイドバー用
 var arrow_inout_len = 100,
 arrow_updown_len = 80,
 box_width = 120,
@@ -58,8 +27,55 @@ ECESI_style = 'rounded=0;whiteSpace=wrap;html=1;fontSize=14;pd3layer=topic;pd3ty
 ECEX_val ="Execute",
 ECEX_style = 'rounded=0;whiteSpace=wrap;html=1;fontSize=14;pd3layer=topic;pd3type=action;pd3action=ECEX;strokeColor=#d79b00;fontColor=#ffffff;fillColor=#2EBAC9;';
 
+//右サイドバー用
+var EP_URI="",
+    EP_URI_prefix="",
+    EP_URI_div,
+    EP_URI_prefix_div,
+    textbox1,
+    textbox2,
+    root,
+    URI_val,
+    prefix_val,
+    title_val,
+    creator_val,
+    description_val,
+    identifier_val,
+    root_style=[];
 
-/*****ProblemSolvingLayer start*****/
+/*---------------------
+
+ノードとアークの初期設定
+
+---------------------*/
+Graph.prototype.defaultEdgeStyle = {
+  edgeStyle: "",
+  rounded: "0",
+  jettySize: "auto",
+  orthogonalLoop: "0",
+  verticalAlign: "bottom",
+  endArrow: "block",
+  fontSize: "14"
+};
+Graph.prototype.defaultVertexStyle = {
+  fontSize: "14"
+};
+
+/*---------------------
+
+左サイドバー
+
+---------------------*/
+
+//左サイドバーの初期化
+Sidebar.prototype.init = function () {
+  this.addSearchPalette(false);
+  this.addProblemSolvingLayerPalette(true);
+  this.addInformationLayerPalette(true);
+  this.addPhysicalLayerPalette(true);
+};
+
+//問題解決レイヤー
 Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
   var sb = this;
   var fns = [
@@ -259,9 +275,8 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
   ];
   this.addPaletteFunctions("Problem-Solving Layer", "Problem-Solving Layer", null != expand ? expand : true, fns);
 };
-/*****ProblemSolvingLayer end*****/
 
-/*****InformationLayer start*****/
+//情報レイヤ―
 Sidebar.prototype.addInformationLayerPalette = function (expand) {
   var sb = this;
   var fns = [
@@ -328,9 +343,8 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
   ];
   this.addPaletteFunctions("Information Layer", "Information Layer", null != expand ? expand : true, fns);
 };
-/*****InformationLayer end*****/
 
-/*****PhysicalLayer start*****/
+//物理レイヤー
 Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
   var sb = this;
   var fns = [
@@ -398,9 +412,13 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
   ];
   this.addPaletteFunctions("Physical Layer", "Physical Layer", null != expand ? expand : true, fns);
 };
-/*****PhysicalLayer end*****/
 
-/*****setting for "compressXml:false" start*****/
+
+/*---------------------
+
+XMLファイル出力時の非圧縮設定
+
+---------------------*/
 var menusInit = Menus.prototype.init;
 Menus.prototype.init = function () {
   menusInit.apply(this, arguments);
@@ -419,6 +437,7 @@ Menus.prototype.init = function () {
 
     var selection = editorUi.addCheckbox(div, mxResources.get('selectionOnly'),
       false, graph.isSelectionEmpty());
+    //compressed　を　false　に変更
     var compressed = editorUi.addCheckbox(div, mxResources.get('compressed'), false);
     var pages = editorUi.addCheckbox(div, mxResources.get('allPages'), !noPages, noPages);
     pages.style.marginBottom = '16px';
@@ -439,9 +458,13 @@ Menus.prototype.init = function () {
     editorUi.showDialog(dlg.container, 300, 180, true, true);
   }));
 }
-/*****setting of "compressXml:false" end*****/
 
+/*---------------------
 
+ノードにマウスをホバーした時の設定
+
+---------------------*/
+//ノードから出力する矢印のレイヤーを，出力元のコンテナと同じにする
 /*****setting for the graph made through hover icon, partycularly connection edge start*****/
 Graph.prototype.isCloneConnectSource = function (source) {
   var layout = null;
@@ -628,7 +651,7 @@ Graph.prototype.connectVertex = function (source, direction, length, evt, forceC
           (target == null && cloneSource)) ? null : this.insertEdge(this.model.getParent(source),
           null, '', source, realTarget, this.createCurrentEdgeStyle());
 
-        /*****modification part for digital triplet start*****/
+        //修正個所　ここから
         var style = [];
         style = realTarget.style.split(';');
         var edgestyle = "";
@@ -639,7 +662,9 @@ Graph.prototype.connectVertex = function (source, direction, length, evt, forceC
         }
         edgestyle = edgestyle + "pd3type=arrow";
         edge.style = edge.style + edgestyle;
-        /*****modification part for digital triplet end*****/
+        //修正個所　ここまで
+
+
         // Inserts edge before source
         if (edge != null && this.connectionHandler.insertBeforeSource) {
           var index = null;
@@ -698,6 +723,7 @@ Graph.prototype.connectVertex = function (source, direction, length, evt, forceC
   }
 };
 
+//
 HoverIcons.prototype.drag = function (evt, x, y) {
   this.graph.currentEdgeStyle.pd3type='';
   this.graph.currentEdgeStyle.pd3layer='';
@@ -809,7 +835,6 @@ EditorUi.prototype.updateActionStates = function () {
   for (h = 0; h < e.length; h++) this.actions.get(e[h]).setEnabled(c);
   this.actions.get("setAsDefaultStyle").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setProblemSolvingContainer").setEnabled(1 == a.getSelectionCount());
-  // this.actions.get("setParentAction").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setInformationOperationContainer").setEnabled(1 == a.getSelectionCount());
   this.actions.get("setPhysicalOperationContainer").setEnabled(1 == a.getSelectionCount());
   this.actions.get("clearWaypoints").setEnabled(!a.isSelectionEmpty());
@@ -1881,114 +1906,6 @@ Actions.prototype.init = function () {
   this.addAction("setPhysicalOperationContainer", function () {
     b.setSelectionCells(b.setPhysicalOperationContainer());
   }, null, null, null);
-  // this.addAction("setContainerforEC", function () {
-  //   b.setSelectionCells(b.setContainerforEC());
-  //   setEC(b);
-  // }, null, null, Editor.ctrlKey + "+Shift+<");
-  // function setEC(b){
-  //   var defaultParent = b.getDefaultParent();
-  //   var containerforEC=defaultParent.children[defaultParent.children.length-2];
-
-  //   var cell_geometry_y = container_height/2-20
-  //   var edge_geometry_y = container_height/2-20+box_height/2;
-  //   var cell1 = new mxCell('Data Collect', new mxGeometry(containerforEC_padding+arrow_inout_len, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECDC;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   cell1.vertex = true;
-  //   cell1.relative=true;
-  //   cell1.setParent(containerforEC);
-  //   containerforEC.insert(cell1);
-  //   var cell2 = new mxCell('Info Analyze', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*1, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECIA;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   cell2.vertex = true;
-  //   cell2.relative=true;
-  //   cell2.setParent(containerforEC);
-  //   containerforEC.insert(cell2);
-  //   var cell3 = new mxCell('Evaluate', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*2, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEV;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   cell3.vertex = true;
-  //   cell3.relative=true;
-  //   cell3.setParent(containerforEC);
-  //   containerforEC.insert(cell3);
-  //   var cell4 = new mxCell('Decide', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*3, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECD;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   cell4.vertex = true;
-  //   cell4.relative=true;
-  //   cell4.setParent(containerforEC);
-  //   containerforEC.insert(cell4);
-  //   var cell5 = new mxCell('Execute', new mxGeometry(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*4, cell_geometry_y, box_width, box_height), 'rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=action;pd3action=ECEX;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   cell5.vertex = true;
-  //   cell5.relative=true;
-  //   cell5.setParent(containerforEC);
-  //   containerforEC.insert(cell5);
-
-  //   var edge1 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   edge1.geometry.setTerminalPoint(new mxPoint(containerforEC_padding, edge_geometry_y), true);
-  //   edge1.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len, edge_geometry_y), false);
-  //   edge1.geometry.relative = true;
-  //   edge1.edge = true;
-  //   edge1.relative=true;
-  //   edge1.setParent(containerforEC);
-  //   containerforEC.insert(edge1);
-
-  //   var edge2 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   edge2.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+box_width, edge_geometry_y), true);
-  //   edge2.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*1, edge_geometry_y), false);
-  //   edge2.geometry.relative = true;
-  //   edge2.edge = true;
-  //   edge2.relative=true;
-  //   edge2.setParent(containerforEC);
-  //   containerforEC.insert(edge2);
-
-  //   var edge3 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   edge3.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*2, edge_geometry_y), true);
-  //   edge3.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*2, edge_geometry_y), false);
-  //   edge3.geometry.relative = true;
-  //   edge3.edge = true;
-  //   edge3.relative=true;
-  //   edge3.setParent(containerforEC);
-  //   containerforEC.insert(edge3);
-
-  //   var edge4 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   edge4.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*3, edge_geometry_y), true);
-  //   edge4.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*3, edge_geometry_y), false);
-  //   edge4.geometry.relative = true;
-  //   edge4.edge = true;
-  //   edge4.relative=true;
-  //   edge4.setParent(containerforEC);
-  //   containerforEC.insert(edge4);
-
-  //   var edge5 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=0.5;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   edge5.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*4, edge_geometry_y), true);
-  //   edge5.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*4, edge_geometry_y), false);
-  //   edge5.geometry.relative = true;
-  //   edge5.edge = true;
-  //   edge5.relative=true;
-  //   edge5.setParent(containerforEC);
-  //   containerforEC.insert(edge5);
-
-  //   var edge6 = new mxCell('Output', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=1;exitY=0.5;pd3layer=topic;pd3type=arrow;fillColor=#ffe6cc;strokeColor=#d79b00;');
-  //   edge6.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+(arrow_inout_len+box_width)*5, edge_geometry_y), true);
-  //   edge6.geometry.setTerminalPoint(new mxPoint(containerforEC_padding+arrow_inout_len+(box_width+arrow_inout_len)*5, edge_geometry_y), false);
-  //   edge6.geometry.relative = true;
-  //   edge6.edge = true;
-  //   edge6.relative=true;
-  //   edge6.setParent(containerforEC);
-  //   containerforEC.insert(edge6);
-
-  //   cell1.insertEdge(edge1, false);
-  //   cell1.insertEdge(edge2, true);
-  //   cell2.insertEdge(edge2, false);
-  //   cell2.insertEdge(edge3, true);
-  //   cell3.insertEdge(edge3, false);
-  //   cell3.insertEdge(edge4, true);
-  //   cell4.insertEdge(edge4, false);
-  //   cell4.insertEdge(edge5, true);
-  //   cell5.insertEdge(edge5, false);
-  //   cell5.insertEdge(edge6, true);
-    
-  //   b.refresh();
-  //   return cell1, cell2, cell3, cell4, cell5, edge1, edge2, edge3, edge4, edge5, edge6;
-  // }
-  /***Set Parent Process in the Same Layer***/
-  // this.addAction("setParentAction", function () {
-  //   b.setSelectionCells(b.setParentAction());
-  // }, null, null, Editor.ctrlKey + "+Shift+>");
 
   this.addAction("clearDefaultStyle", function () {
     b.isEnabled() && c.clearDefaultStyle()
@@ -2638,58 +2555,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
       return cell, edge;
     };
-
-    //親アクションを設置する．
-    // q.setParentAction = function (b, c) {
-
-    //   var selectedContainer = this.getSelectionCell();
-
-    //   var selectedContainer_x = selectedContainer.geometry.x;
-    //   var selectedContainer_y = selectedContainer.geometry.y;
-
-    //   //edge:arrow to connect selacted cell with container
-    //   //entryX=0;entryY=1; : アクションの幅，高さをそれぞれ1とした時に，入力矢印（矢印の先端）をアクションの左下に接続する
-    //   //exitX=0.5;exitY=0; : コンテナの幅，高さをそれぞれ1としたときに，出力矢印（矢印の根本）をコンテナの上辺の中点に接続する
-    //   var cell = new mxCell(selectedContainer.value, new mxGeometry(0, 0, box_width, 60), 'rounded=0;whiteSpace=wrap;pd3type=action;');
-    //   cell.vertex = true;
-    //   var edge = new mxCell('', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=0;entryY=1;exitX=0.5;exitY=0;pd3type=arrow;');
-
-    //   cell.geometry.x = selectedContainer_x;
-    //   cell.geometry.y = selectedContainer_y - 120;
-
-    //   //矢印の根本をコンテナの上辺の中心に接続する
-    //   edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x+selectedContainer.geometry.width/2, selectedContainer_y), false);
-    //   //矢印の先端を親アクションの左角下に接続する．
-    //   edge.geometry.setTerminalPoint(new mxPoint(selectedContainer_x, selectedContainer_y-60), true);
-    //   edge.edge = true;
-
-    //   cell.insertEdge(edge, false);
-    //   selectedContainer.insertEdge(edge, true);
-
-    //   var selectedContainer_style = [];
-    //   var pd3layer_source = "",
-    //       fillColor_source = "",
-    //       strokeColor_source = "";
-    //       selectedContainer_style = selectedContainer.style.split(';');
-    //   for (var i = 0; i < selectedContainer_style.length; i++) {
-    //     if (selectedContainer_style[i].indexOf('pd3layer') !== -1) {
-    //       pd3layer_source = selectedContainer_style[i]+';';
-    //     } else if (selectedContainer_style[i].indexOf('fillColor') !== -1) {
-    //       fillColor_source = selectedContainer_style[i]+';';
-    //     } else if (selectedContainer_style[i].indexOf('strokeColor') !== -1) {
-    //       strokeColor_source = selectedContainer_style[i] + ';';
-    //     }
-    //   }
-      
-    //   cell.style = cell.style + pd3layer_source + fillColor_source + strokeColor_source;
-    //   edge.style = edge.style + pd3layer_source + fillColor_source + strokeColor_source;
-
-
-    //   this.addCell(cell);
-    //   this.addCell(edge);
-
-    //   return cell, edge;
-    // };
 
     var z = q.moveCells;
     q.moveCells = function (b, c, d, e, f, g, k) {
