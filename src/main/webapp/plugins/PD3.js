@@ -7464,6 +7464,21 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         if ("xml" == a) {
           var m = '<?xml version="1.0" encoding="UTF-8"?>\n' + this.getFileData(!0, null, null, null, e, f, null, null, null, b);
           this.saveData(g, a, m, "text/xml")
+        } else if ("rdf" == a){
+          g = d +"." + "ttl";
+          var m = '<?xml version="1.0" encoding="UTF-8"?>\n' + this.getFileData(!0, null, null, null, e, f, null, null, null, b);
+          result = $.ajax({
+            type: 'get',
+            url: 'http://localhost:3000/tordf', 
+            data: {'file': m},
+            success: function(data){
+              return data
+            },
+            async: false
+          });
+          rdf = result.responseText.replace('["','').replace('"]','').replace(/","/g,'\n').replace(/\\"/g,'"').replace(/ \.\n/g, ' .\n\n').replace(/\n@/g,'@');
+          this.saveData(g, a, rdf, "text/turtle");
+
         } else if ("html" == a) m = this.getHtml2(this.getFileData(!0), this.editor.graph, d), this.saveData(g, a, m, "text/html");
         else if ("svg" != a && "xmlsvg" != a || !this.spinner.spin(document.body, mxResources.get("export"))) "xmlpng" == a ? g = d + ".png" : "jpeg" == a && (g = d + ".jpg"), this.saveRequest(g, a, mxUtils.bind(this, function (d, b) {
           try {
@@ -8463,6 +8478,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       c.apply(this, arguments)
     };
     EditorUi.prototype.saveData = function (a, b, c, e, f) {
+      console.log(this.isLocalFileSave());
       this.isLocalFileSave() ? this.saveLocalFile(c, a, e, f, b) : this.saveRequest(a, b, mxUtils.bind(this, function (a, d) {
         return this.createEchoRequest(c, a, e, f, b, d)
       }), c, f, e)
@@ -12053,6 +12069,26 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       //   }), null, mxResources.get("export"));
       //   b.showDialog(a.container, 300, 180, !0, !0)
       // }));
+      b.actions.put("exportRdf", new Action(mxResources.get("formatRdf") + "...", function () {
+        var a = document.createElement("div");
+        a.style.whiteSpace = "nowrap";
+        var c = null == b.pages || 1 >= b.pages.length,
+          d = document.createElement("h3");
+        mxUtils.write(d, mxResources.get("formatRdf"));
+        d.style.cssText = "width:100%;text-align:center;margin-top:0px;margin-bottom:4px";
+        a.appendChild(d);
+        var e = b.addCheckbox(a, mxResources.get("selectionOnly"), !1, k.isSelectionEmpty()),
+          f = b.addCheckbox(a, mxResources.get("compressed"), !0),
+          g = b.addCheckbox(a, mxResources.get("allPages"), !c, c);
+        g.style.marginBottom = "16px";
+        mxEvent.addListener(e, "change", function () {
+          e.checked ? g.setAttribute("disabled", "disabled") : g.removeAttribute("disabled")
+        });
+        a = new CustomDialog(b, a, mxUtils.bind(this, function () {
+          b.downloadFile("rdf", !f.checked, null, !e.checked, c || !g.checked)
+        }), null, mxResources.get("export"));
+        b.showDialog(a.container, 300, 180, !0, !0)
+      }));
       b.actions.put("exportUrl", new Action(mxResources.get("url") + "...", function () {
         b.showPublishLinkDialog(mxResources.get("url"), !0, null, null, function (a, c, d, e, f, g) {
           a = new EmbedDialog(b, b.createLink(a, c, d, e, f, g, null, !0));
@@ -12872,7 +12908,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         this.addMenuItems(a, ["exportSvg", "-"], c);
         b.isOffline() || b.printPdfExport ? this.addMenuItems(a, ["exportPdf"], c) : b.isOffline() || mxClient.IS_IOS && navigator.standalone || this.addMenuItems(a, ["exportPdf"], c);
         mxClient.IS_IE || "undefined" === typeof VsdxExport && b.isOffline() || this.addMenuItems(a, ["exportVsdx"], c);
-        this.addMenuItems(a, ["-", "exportHtml", "exportXml", "exportUrl"], c);
+        this.addMenuItems(a, ["-", "exportHtml", "exportXml", "exportRdf", "exportUrl"], c);
         b.isOffline() || (a.addSeparator(c), this.addMenuItem(a, "export", c).firstChild.nextSibling.innerHTML = mxResources.get("advanced") + "...")
       })));
       this.put("importFrom", new Menu(mxUtils.bind(this, function (a, c) {

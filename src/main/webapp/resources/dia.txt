@@ -335,6 +335,7 @@ formatVsdx=VSDX
 formatVssx=VSSX
 formatXmlPlain=XML (Plain)
 formatXml=XML
+formatRdf=RDF
 forum=Discussion/Help Forums
 freehand=Freehand
 fromTemplate=From Template
