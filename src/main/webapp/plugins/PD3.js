@@ -7470,13 +7470,25 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
           result = $.ajax({
             type: 'get',
             url: 'http://localhost:3000/tordf', 
-            data: {'file': m},
+            data: {file: m},
             success: function(data){
               return data
             },
             async: false
           });
-          rdf = result.responseText.replace('["','').replace('"]','').replace(/","/g,'\n').replace(/\\"/g,'"').replace(/ \.\n/g, ' .\n\n').replace(/\n@/g,'@');
+          rdf = result.responseText.replace('["','').replace('"]','').replace(/","/g,'\n').replace(/\\"/g,'"').replace(/ \.\n/g, ' .\n\n').replace(/\n@/g,'@').replace(/\\"/g, "'");
+          url = encodeURI(`http://localhost:3030/akiyama/data?graph=${d}`)
+          $.ajax({
+            type: 'post',
+            url: url,
+            contentType: 'text/turtle',
+            data: rdf,
+            success: function(data){
+              console.log("uploaded!");
+            }
+          });
+          // g: filename
+          // a: "rdf"
           this.saveData(g, a, rdf, "text/turtle");
 
         } else if ("html" == a) m = this.getHtml2(this.getFileData(!0), this.editor.graph, d), this.saveData(g, a, m, "text/html");
@@ -8478,7 +8490,6 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       c.apply(this, arguments)
     };
     EditorUi.prototype.saveData = function (a, b, c, e, f) {
-      console.log(this.isLocalFileSave());
       this.isLocalFileSave() ? this.saveLocalFile(c, a, e, f, b) : this.saveRequest(a, b, mxUtils.bind(this, function (a, d) {
         return this.createEchoRequest(c, a, e, f, b, d)
       }), c, f, e)
