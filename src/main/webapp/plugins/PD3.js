@@ -263,11 +263,31 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Label of Parent Action Box', 'Problem-Solving Container', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=object;strokeColor=#d79b00;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=knowledge;strokeColor=#d79b00;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
-      "Object",
-      "Object",
+      "Knowledge",
+      "Knowledge",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=engineer;strokeColor=#d79b00;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      object_width,
+      object_height,
+      "Engineer",
+      "Engineer",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=tool;strokeColor=#d79b00;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      object_width,
+      object_height,
+      "Tool",
+      "Tool",
       null,
       null,
       "rect rectangle box"
@@ -330,11 +350,31 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;containertype=specialization;fillColor=#dae8fc;strokeColor=#6c8ebf;', 400, container_height, 'Label of Parent Action Box', 'Information Operation Container', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=object;strokeColor=#6c8ebf;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=knowledge;strokeColor=#6c8ebf;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
-      "Object",
-      "Object",
+      "Knowledge",
+      "Knowledge",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=engineer;strokeColor=#6c8ebf;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      object_width,
+      object_height,
+      "Engineer",
+      "Engineer",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=tool;strokeColor=#6c8ebf;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      object_width,
+      object_height,
+      "Tool",
+      "Tool",
       null,
       null,
       "rect rectangle box"
@@ -399,11 +439,31 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;containertype=specialization;fillColor=#d5e8d4;strokeColor=#82b366;', 400, container_height, 'Label of Parent Action Box', 'Physical Operation Container', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=object;strokeColor=#82b366;dashed=1;fontSize=14;fillColor=none;",
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=knowledge;strokeColor=#82b366;dashed=1;fontSize=14;fillColor=none;",
       object_width,
       object_height,
-      "Object",
-      "Object",
+      "Knowledge",
+      "Knowledge",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=engineer;strokeColor=#82b366;dashed=1;fontSize=14;fillColor=none;",
+      object_width,
+      object_height,
+      "Engineer",
+      "Engineer",
+      null,
+      null,
+      "rect rectangle box"
+    ),
+    this.createVertexTemplateEntry(
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=tool;strokeColor=#82b366;dashed=1;fontSize=14;fillColor=none;",
+      object_width,
+      object_height,
+      "Tool",
+      "Tool",
       null,
       null,
       "rect rectangle box"
@@ -1891,6 +1951,58 @@ Actions.prototype.init = function () {
 
       }, null, null, 400, 220);
 
+      this.editorUi.showDialog(graphModel.container, 420, 300, !0, !0);
+      graphModel.init()
+    }
+  }),null, null, null);
+
+  this.addAction("editID", mxUtils.bind(this, function () {
+    var graph = b;
+    var selectedCells = graph.getSelectionCells();
+    // console.log(setStyleArray(selectedCells[0]));
+    var cell = selectedCells[0];
+    var cell_style = setStyleArray(selectedCells[0]);
+    console.log(cell.id);
+    var id_val = cell.id;
+    if (null != a && 0 < a.length) {
+      var graphModel = graph.getModel();
+      root = this.editorUi.editor.graph.getModel().root;
+      root_style = setStyleArray(root);
+      graphModel = new TextareaDialog(this.editorUi, "edit id:",  id_val, function (graphModel) {
+        var id_tmp = mxUtils.ltrim(graphModel);
+        cell.id = id_tmp;
+        if(id_tmp != ""){
+          //  selectedCells[0].id = id_tmp;
+           mxUtils.setTextContent(id_div, "id : \r\n");
+  
+           if(root_style!=null){
+            // if("URI" in root_style){
+            //   URI_val = root_style["URI"];
+            // }else{
+            //   URI_val = "";
+            // }
+            if("prefix" in root_style){
+              prefix_val = root_style["prefix"];
+            }else{
+              prefix_val = "";
+            }
+          }else{
+            // URI_val = "";
+            prefix_val = "";
+          }
+    
+          if(prefix_val==""){
+            str = "";
+          }else{
+            str = "[" + prefix_val+ "]";
+          }
+          textbox = document.getElementById('id')
+          textbox.value = str + id_tmp
+        }else{
+          mxUtils.setTextContent(id_div, "id : none");
+        }
+
+      }, null, null, 400, 220);
       this.editorUi.showDialog(graphModel.container, 420, 300, !0, !0);
       graphModel.init()
     }
@@ -5643,6 +5755,23 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     var q = StyleFormatPanel.prototype.addStyleOps;
     StyleFormatPanel.prototype.addStyleOps = function (a) {
       
+      // d = mxUtils.button("Edit ID", mxUtils.bind(this, function (a) {
+      //   this.editorUi.actions.get("editID").funct()
+      // }));
+      // d.setAttribute("title", "editID");
+      // d.style.marginBottom = "9px";
+      // d.style.width = "202px";
+      // d.style.height = "20px";
+      // d.style.backgroundColor="rgb(79 79 79)";
+      // d.style.borderColor="rgb(37 37 37)";
+      // d.style.color="white";
+      // // d.style.backgroundColor="rgb(255 255 255)";
+      // // d.style.borderColor="rgb(37 37 37)";
+      // d.style.borderRadius="3px";
+      // d.style.borderWidth="thin";
+      // a.appendChild(d);
+      // mxUtils.br(a);
+
       d = mxUtils.button(mxResources.get("editseeAlso"), mxUtils.bind(this, function (a) {
         this.editorUi.actions.get("editseeAlso").funct()
       }));
@@ -14181,6 +14310,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     }
     
     textbox1.value = str +cells[0].id;
+    textbox1.id = "id"
     textbox1.type="text";
     textbox1.style.width = "200px";
     textbox1.className= "textbox";
@@ -14193,6 +14323,24 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
 
     a.appendChild(id_div);
     a.appendChild(textbox1);
+    mxUtils.br(a);
+
+    d = mxUtils.button("Edit ID", mxUtils.bind(this, function (a) {
+      this.editorUi.actions.get("editID").funct()
+    }));
+    d.setAttribute("title", "editID");
+    d.style.marginBottom = "9px";
+    d.style.width = "202px";
+    d.style.height = "20px";
+    d.style.backgroundColor="rgb(79 79 79)";
+    d.style.borderColor="rgb(37 37 37)";
+    d.style.color="white";
+    // d.style.backgroundColor="rgb(255 255 255)";
+    // d.style.borderColor="rgb(37 37 37)";
+    d.style.borderRadius="3px";
+    d.style.borderWidth="thin";
+    a.appendChild(d);
+    mxUtils.br(a);
 
     textbox2 = document.createElement("input");
     // mxUtils.setValue(textbox2, cells[0].id);
