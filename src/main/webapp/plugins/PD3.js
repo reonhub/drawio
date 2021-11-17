@@ -40,7 +40,7 @@ var EP_URI="",
     title_val,
     creator_val,
     description_val,
-    identifier_val,
+    eptype_val,
     root_style=[];
 
 /*---------------------
@@ -1448,29 +1448,29 @@ Actions.prototype.init = function () {
     graphModel.init()
   }),null, null, null);
 
-  this.addAction("editidentifier", mxUtils.bind(this, function () {
+  this.addAction("editeptype", mxUtils.bind(this, function () {
     var graph = b;
     var graphModel = graph.getModel();
     root = graphModel.root;
     root_style = setStyleArray(root);
     if(root_style!=null){
-      if("identifier" in root_style){
-        var identifier_val = root_style["identifier"];
+      if("eptype" in root_style){
+        var eptype_val = root_style["eptype"];
       }else{
-        identifier_val = "";
+        eptype_val = "";
       }
     }else{
       root_style = {};
-      identifier_val ="";
+      eptype_val ="";
     }
-    graphModel = new TextareaDialog(this.editorUi, "Edit identifier:", identifier_val , function (graphModel) {
+    graphModel = new TextareaDialog(this.editorUi, "Edit eptype:", eptype_val , function (graphModel) {
       var input = mxUtils.ltrim(graphModel);
       input = input.replace(/\r?\n/g,"");
       if(input!=""){
-        root_style["identifier"] = input;
-        mxUtils.setTextContent(EP_URI_identifier_div, "Identifier : "+ input);
+        root_style["eptype"] = input;
+        mxUtils.setTextContent(EP_URI_eptype_div, "EPtype : "+ input);
       }else{
-        mxUtils.setTextContent(EP_URI_identifier_div, "Identifier : none");
+        mxUtils.setTextContent(EP_URI_eptype_div, "EPtype : none");
       }
 
       root.style=setStyleString(root_style);
@@ -13997,10 +13997,10 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       }else{
         description_val = "";
       }
-      if("identifier" in root_style){
-        identifier_val = root_style["identifier"];
+      if("eptype" in root_style){
+        eptype_val = root_style["eptype"];
       }else{
-        identifier_val = "";
+        eptype_val = "";
       }
     }else{
       URI_val = "";
@@ -14008,7 +14008,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       title_val = "";
       creator_val = "";
       description_val = "";
-      identifier_val = "";
+      eptype_val = "";
     }
 
     //Edit URI
@@ -14147,27 +14147,27 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
     a.appendChild(c);
     mxUtils.br(a);
 
-    //Edit identifier
-    EP_URI_identifier_div = document.createElement("div");
-    if(identifier_val != ""){
-        mxUtils.setTextContent(EP_URI_identifier_div, "Identifier : "+ identifier_val);
+    //Edit eptype
+    EP_URI_eptype_div = document.createElement("div");
+    if(eptype_val != ""){
+        mxUtils.setTextContent(EP_URI_eptype_div, "EPtype : "+ eptype_val);
       }else{
-        mxUtils.setTextContent(EP_URI_identifier_div, "Identifier : none");
+        mxUtils.setTextContent(EP_URI_eptype_div, "EPtype : none");
     }
-    EP_URI_identifier_div.style.width = "200px";
-    EP_URI_identifier_div.style.whiteSpace ="normal";
-    EP_URI_identifier_div.className= "diagram_div";
-    EP_URI_identifier_div.style.display= "table";
-    EP_URI_identifier_div.style.marginBottom="4px";
-    EP_URI_identifier_div.style.wordBreak="break-all";
+    EP_URI_eptype_div.style.width = "200px";
+    EP_URI_eptype_div.style.whiteSpace ="normal";
+    EP_URI_eptype_div.className= "diagram_div";
+    EP_URI_eptype_div.style.display= "table";
+    EP_URI_eptype_div.style.marginBottom="4px";
+    EP_URI_eptype_div.style.wordBreak="break-all";
 
-    var c = mxUtils.button("Edit identifier", mxUtils.bind(this, function (a) {
-      this.editorUi.actions.get("editidentifier").funct()
+    var c = mxUtils.button("Edit eptype", mxUtils.bind(this, function (a) {
+      this.editorUi.actions.get("editeptype").funct()
     }));
-    c.setAttribute("title", mxResources.get("editidentifier") + " (" + this.editorUi.actions.get("editidentifier").shortcut + ")");
+    c.setAttribute("title", "editeptype");
     c = setButtonStyle(c);
 
-    a.appendChild(EP_URI_identifier_div);
+    a.appendChild(EP_URI_eptype_div);
     a.appendChild(c);
     mxUtils.br(a);
     return a
