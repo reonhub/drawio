@@ -1500,8 +1500,36 @@ Actions.prototype.init = function () {
   });
   this.addAction("editLink...", function () {
     if (b.isEnabled() && !b.isSelectionEmpty()) {
-      var a = b.getSelectionCell(),
-        d = b.getLinkForCell(a) || "";
+      selectedCell = b.getSelectionCell()
+      if(selectedCell.style.indexOf('pd3type=tool') !== -1){
+        if(typeof(selectedCell.value) === 'object' && b.getLinkForCell(selectedCell)){
+          appName = selectedCell.value.outerHTML.match(/label=\"(.*)\" link/)[1].replace(/ /g,'-')
+          selectedCell.edges[0].target.edges.forEach((edge) => {
+            if(edge.target && edge.target.id === selectedCell.edges[0].target.id && edge.style.indexOf('entryX=0;entryY=0.5;') !== -1){
+              filePath = edge.value.replace(/\//g,'-')
+            }
+          });
+        } else if (typeof(selectedCell.value) === 'object' && !b.getLinkForCell(selectedCell)){
+          appName = selectedCell.value.outerHTML.match(/label=\"(.*)\"/)[1].replace(/ /g,'-')
+          selectedCell.edges[0].target.edges.forEach((edge) => {
+            if(edge.target && edge.target.id === selectedCell.edges[0].target.id && edge.style.indexOf('entryX=0;entryY=0.5;') !== -1){
+              filePath = edge.value.replace(/\//g,'-')
+            }
+          });
+        } else {
+          appName = selectedCell.value.replace(/ /g,'-')
+          selectedCell.edges[0].target.edges.forEach((edge) => {
+            if(edge.target.id === selectedCell.edges[0].target.id && edge.style.indexOf('entryX=0;entryY=0.5;') !== -1){
+              filePath = edge.value.replace(/\//g,'-')
+            }
+          });
+        }
+        a = selectedCell
+        d = `http://localhost:3000/open/${appName}/${filePath}`
+      }else{
+        var a = selectedCell,
+          d = b.getLinkForCell(a) || "";
+      }
       c.showLinkDialog(d, mxResources.get("apply"), function (c) {
         c = mxUtils.trim(c);
         b.setLinkForCell(a, 0 < c.length ? c : null)
