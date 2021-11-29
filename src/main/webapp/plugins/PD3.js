@@ -273,7 +273,7 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=engineer;strokeColor=#d79b00;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      "labelPosition=center;html=1;shape=mxgraph.basic.frame;dx=3;pd3layer=topic;pd3type=engineer;strokeColor=#d79b00;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
       "Engineer",
@@ -360,7 +360,7 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=engineer;strokeColor=#6c8ebf;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      "labelPosition=center;html=1;shape=mxgraph.basic.frame;dx=3;pd3layer=topic;pd3type=engineer;strokeColor=#6c8ebf;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
       "Engineer",
@@ -449,7 +449,7 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=engineer;strokeColor=#82b366;dashed=1;fontSize=14;fillColor=none;",
+      "labelPosition=center;html=1;shape=mxgraph.basic.frame;dx=3;pd3layer=topic;pd3type=engineer;strokeColor=#82b366;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
       "Engineer",
