@@ -7627,6 +7627,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
           result = $.ajax({
             type: 'get',
             url: 'http://localhost:3000/tordf', 
+            crossDomain: true,
             data: {file: m},
             success: function(data){
               return data
@@ -7638,6 +7639,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
           $.ajax({
             type: 'post',
             url: url,
+            crossDomain: true,
             contentType: 'text/turtle',
             data: rdf,
             success: function(data){
@@ -12246,7 +12248,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
         d.style.cssText = "width:100%;text-align:center;margin-top:0px;margin-bottom:4px";
         a.appendChild(d);
         var e = b.addCheckbox(a, mxResources.get("selectionOnly"), !1, k.isSelectionEmpty()),
-          f = b.addCheckbox(a, mxResources.get("compressed"), !0),
+          f = b.addCheckbox(a, mxResources.get("compressed"), !1),
           g = b.addCheckbox(a, mxResources.get("allPages"), !c, c);
         g.style.marginBottom = "16px";
         mxEvent.addListener(e, "change", function () {
