@@ -263,11 +263,11 @@ Sidebar.prototype.addProblemSolvingLayerPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=topic;pd3type=container;containertype=specialization;fillColor=#ffe6cc;strokeColor=#d79b00;', 400, container_height, 'Label of Parent Action Box', 'Problem-Solving Container', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=knowledge;strokeColor=#d79b00;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=topic;pd3type=document;strokeColor=#d79b00;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
-      "Knowledge",
-      "Knowledge",
+      "Document",
+      "Document",
       null,
       null,
       "rect rectangle box"
@@ -350,11 +350,11 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=info;pd3type=container;containertype=specialization;fillColor=#dae8fc;strokeColor=#6c8ebf;', 400, container_height, 'Label of Parent Action Box', 'Information Operation Container', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=knowledge;strokeColor=#6c8ebf;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=info;pd3type=document;strokeColor=#6c8ebf;dashed=1;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
-      "Knowledge",
-      "Knowledge",
+      "Document",
+      "Document",
       null,
       null,
       "rect rectangle box"
@@ -439,11 +439,11 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
     }),
     this.createVertexTemplateEntry('swimlane;pd3layer=phys;pd3type=container;containertype=specialization;fillColor=#d5e8d4;strokeColor=#82b366;', 400, container_height, 'Label of Parent Action Box', 'Physical Operation Container', null, null, 'container swimlane lane pool group'),
     this.createVertexTemplateEntry(
-      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=knowledge;strokeColor=#82b366;dashed=1;fontSize=14;fillColor=none;",
+      "rounded=0;whiteSpace=wrap;html=1;pd3layer=phys;pd3type=document;strokeColor=#82b366;dashed=1;fontSize=14;fillColor=none;",
       object_width,
       object_height,
-      "Knowledge",
-      "Knowledge",
+      "Document",
+      "Document",
       null,
       null,
       "rect rectangle box"
