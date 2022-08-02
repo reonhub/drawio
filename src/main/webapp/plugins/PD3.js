@@ -2510,7 +2510,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       var selectedCell_y = selectedCell.geometry.y;
 
       //cell:container
-      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, container_height), 'swimlane;pd3type=container;containertype=specialization');
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, container_height), 'swimlane;pd3type=container;containertype=specialization;');
       cell.vertex = true;
 
       //edge:arrow to connect selacted cell with container
@@ -2566,7 +2566,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       var selectedCell_y = selectedCell.geometry.y;
 
       //cell:container
-      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, container_height), 'swimlane;pd3type=container;containertype=specialization');
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, container_height), 'swimlane;pd3type=container;containertype=specialization;');
       cell.vertex = true;
 
       //edge:arrow to connect selacted cell with container
@@ -2623,7 +2623,7 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
       var selectedCell_y = selectedCell.geometry.y;
 
       //cell:container
-      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, container_height), 'swimlane;pd3type=container;containertype=specialization');
+      var cell = new mxCell(selectedCell.value, new mxGeometry(0, 0, 400, container_height), 'swimlane;pd3type=container;containertype=specialization;');
       cell.vertex = true;
 
       //edge:arrow to connect selacted cell with container
