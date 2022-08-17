@@ -29,7 +29,3 @@ Supported Browsers
 ------------------
 diagrams.net supports IE 11, Chrome 70+, Firefox 70+, Safari 11+, Opera 50+, Native Android browser 7x+, the default browser in the current and previous major iOS versions (e.g. 11.2.x and 10.3.x) and Edge 79+.
 
-
-秋山怜穏
-
-秋山怜穏2
