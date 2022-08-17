@@ -7657,8 +7657,8 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
           g = d +"." + "ttl";
           var m = '<?xml version="1.0" encoding="UTF-8"?>\n' + this.getFileData(!0, null, null, null, e, f, null, null, null, b);
           result = $.ajax({
-            type: 'get',
-            url: 'http://localhost:3000/tordf', 
+            type: 'POST',
+            url: 'http://localhost:8080/drawio/cgi-bin/xml_to_rdf.cgi', 
             crossDomain: true,
             data: {file: m},
             success: function(data){
@@ -7667,17 +7667,18 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
             async: false
           });
           rdf = result.responseText.replace('["','').replace('"]','').replace(/","/g,'\n').replace(/\\"/g,'"').replace(/ \.\n/g, ' .\n\n').replace(/\n@/g,'@').replace(/\\"/g, "'");
-          url = encodeURI(`http://localhost:3030/akiyama/data?graph=${d}`)
-          $.ajax({
-            type: 'post',
-            url: url,
-            crossDomain: true,
-            contentType: 'text/turtle',
-            data: rdf,
-            success: function(data){
-              console.log("uploaded!");
-            }
-          });
+          // fusekiに保存する場合は以下のコメントアウトを用いる
+          // url = encodeURI(`http://localhost:3030/akiyama/data?graph=${d}`)
+          // $.ajax({
+          //   type: 'post',
+          //   url: url,
+          //   crossDomain: true,
+          //   contentType: 'text/turtle',
+          //   data: rdf,
+          //   success: function(data){
+          //     console.log("uploaded!");
+          //   }
+          // });
           // g: filename
           // a: "rdf"
           this.saveData(g, a, rdf, "text/turtle");
