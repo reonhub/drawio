@@ -7660,8 +7660,9 @@ Menus.prototype.addPopupMenuStyleItems = function (a, c, d) {
             type: 'POST',
             url: 'http://localhost:8080/drawio/cgi-bin/xml_to_rdf.cgi', 
             crossDomain: true,
-            data: {file: m},
+            data: m,
             success: function(data){
+              console.log(data);
               return data
             },
             async: false
