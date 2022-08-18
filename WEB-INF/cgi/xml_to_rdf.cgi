@@ -391,16 +391,11 @@ def xml_to_ttl(xml):
     # with open(ttlpath, 'w', encoding = 'utf-8') as f:
     #   f.write(data.serialize())
     print(data.serialize())
-    print("success")
   except Exception as e:
     print(e)
-    print("test")
-  else:
-    print("else")
-  return 
 
 # xml_to_ttl(args.file)
 print('Content-type: text/html')
 print("\n\n")
-print(xml_to_ttl(data))
+xml_to_ttl(data)
 print("\n")
