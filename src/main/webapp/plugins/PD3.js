@@ -349,7 +349,7 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, -arrow_updown_len, 'Tool Arrow');
     }),
     this.addEntry('Rationale', function () {
-      var edge = new mxCell(null, new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arc;arctype=rationale;fillColor=#dae8fc;strokeColor=#6c8ebf;');
+      var edge = new mxCell(null, new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=info;pd3type=arc;arctype=rationale;fillColor=#dae8fc;strokeColor=#6c8ebf;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(-30, arrow_updown_len), false);
       edge.geometry.relative = true;
@@ -357,7 +357,7 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Rationale Arrow');
     }),
     this.addEntry('Annotation', function () {
-      var edge = new mxCell(null, new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arc;arctype=annotation;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;');
+      var edge = new mxCell(null, new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=info;pd3type=arc;arctype=annotation;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(-30, arrow_updown_len), false);
       edge.geometry.relative = true;
@@ -376,7 +376,7 @@ Sidebar.prototype.addInformationLayerPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "labelPosition=center;html=1;shape=mxgraph.basic.frame;dx=3;pd3layer=topic;pd3type=engineer;strokeColor=#6c8ebf;fontSize=14;fillColor=none;strokeWidth=1;",
+      "labelPosition=center;html=1;shape=mxgraph.basic.frame;dx=3;pd3layer=info;pd3type=engineer;strokeColor=#6c8ebf;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
       "Engineer",
@@ -454,7 +454,7 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, -arrow_updown_len, 'Tool Arrow');
     }),
     this.addEntry('Rationale', function () {
-      var edge = new mxCell(null, new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arc;arctype=rationale;fillColor=#d5e8d4;strokeColor=#82b366;');
+      var edge = new mxCell(null, new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=phys;pd3type=arc;arctype=rationale;fillColor=#d5e8d4;strokeColor=#82b366;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(-30, arrow_updown_len), false);
       edge.geometry.relative = true;
@@ -462,7 +462,7 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
       return sb.createEdgeTemplateFromCells([edge], 0, arrow_updown_len, 'Rationale Arrow');
     }),
     this.addEntry('Annotation', function () {
-      var edge = new mxCell(null, new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=topic;pd3type=arc;arctype=annotation;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;');
+      var edge = new mxCell(null, new mxGeometry(0, 0, 0, 0), 'endArrow=block;rounded=0;endFill=1;html=1;align=left;verticalAlign=middle;pd3layer=phys;pd3type=arc;arctype=annotation;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;');
       edge.geometry.setTerminalPoint(new mxPoint(0, 0), true);
       edge.geometry.setTerminalPoint(new mxPoint(-30, arrow_updown_len), false);
       edge.geometry.relative = true;
@@ -481,7 +481,7 @@ Sidebar.prototype.addPhysicalLayerPalette = function (expand) {
       "rect rectangle box"
     ),
     this.createVertexTemplateEntry(
-      "labelPosition=center;html=1;shape=mxgraph.basic.frame;dx=3;pd3layer=topic;pd3type=engineer;strokeColor=#82b366;fontSize=14;fillColor=none;strokeWidth=1;",
+      "labelPosition=center;html=1;shape=mxgraph.basic.frame;dx=3;pd3layer=phys;pd3type=engineer;strokeColor=#82b366;fontSize=14;fillColor=none;strokeWidth=1;",
       object_width,
       object_height,
       "Engineer",
